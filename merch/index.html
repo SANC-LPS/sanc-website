@@ -38,9 +38,28 @@
   .product-card { background: var(--charcoal); position: relative; overflow: hidden; transition: transform 0.3s ease; }
   .product-card:hover { transform: translateY(-4px); }
 
-  .product-art { width: 100%; aspect-ratio: 1; overflow: hidden; position: relative; background: #111110; }
-  .product-art img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
-  .product-card:hover .product-art img { transform: scale(1.03); }
+  /* Flip container */
+  .product-art { width: 100%; aspect-ratio: 1; position: relative; cursor: pointer; }
+  .product-art .flip-inner { width: 100%; height: 100%; position: relative; transition: opacity 0.3s ease; }
+  .product-art img { width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; top: 0; left: 0; transition: opacity 0.4s ease; }
+  .product-art img.back { opacity: 0; }
+  .product-art.showing-back img.front { opacity: 0; }
+  .product-art.showing-back img.back { opacity: 1; }
+
+  .flip-hint {
+    position: absolute;
+    bottom: 0.6rem;
+    right: 0.6rem;
+    background: rgba(13,13,11,0.75);
+    border: 1px solid rgba(232,184,75,0.3);
+    font-family: 'Special Elite', cursive;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    padding: 0.25rem 0.5rem;
+    pointer-events: none;
+  }
 
   .product-info { padding: 1.25rem 1.5rem 1.5rem; border-top: 1px solid rgba(232,184,75,0.1); }
   .product-category { font-family: 'Special Elite', cursive; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.4rem; }
@@ -86,9 +105,14 @@
 
 <div class="merch-grid">
 
+  <!-- Able to Enable Tee — with flip -->
   <div class="product-card">
-    <div class="product-art">
-      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20able%20to%20enable%20tee.webp" alt="Able to Enable Tee">
+    <div class="product-art" onclick="this.classList.toggle('showing-back')">
+      <div class="flip-inner">
+        <img class="front" src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20able%20to%20enable%20tee.webp" alt="Able to Enable Tee Front">
+        <img class="back" src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20able%20to%20enable%20tee%20-%20back.webp" alt="Able to Enable Tee Back">
+      </div>
+      <span class="flip-hint">Tap to flip</span>
     </div>
     <div class="product-info">
       <p class="product-category">Able to Enable EP — 2015</p>
@@ -99,9 +123,14 @@
     </div>
   </div>
 
+  <!-- Pilgrim's Progress Tee — with flip -->
   <div class="product-card">
-    <div class="product-art">
-      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20pilgrims%20progress%20tee.webp" alt="Pilgrim's Progress Tee">
+    <div class="product-art" onclick="this.classList.toggle('showing-back')">
+      <div class="flip-inner">
+        <img class="front" src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20pilgrims%20progress%20tee.webp" alt="Pilgrim's Progress Tee Front">
+        <img class="back" src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20pilgrims%20progress%20tee%20-%20back.webp" alt="Pilgrim's Progress Tee Back">
+      </div>
+      <span class="flip-hint">Tap to flip</span>
     </div>
     <div class="product-info">
       <p class="product-category">Pilgrim's Progress — 2023</p>
@@ -112,9 +141,14 @@
     </div>
   </div>
 
+  <!-- Great Peace Tee — with flip -->
   <div class="product-card">
-    <div class="product-art">
-      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20great%20peace%20tee.webp" alt="Great Peace Tee">
+    <div class="product-art" onclick="this.classList.toggle('showing-back')">
+      <div class="flip-inner">
+        <img class="front" src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20great%20peace%20tee.webp" alt="Great Peace Tee Front">
+        <img class="back" src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20great%20peace%20tee%20-%20back.webp" alt="Great Peace Tee Back">
+      </div>
+      <span class="flip-hint">Tap to flip</span>
     </div>
     <div class="product-info">
       <p class="product-category">Great Peace EP — 2025</p>
@@ -125,9 +159,12 @@
     </div>
   </div>
 
+  <!-- SANC Tee — no flip -->
   <div class="product-card">
     <div class="product-art">
-      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20sanc%20tee.webp" alt="SANC Tee">
+      <div class="flip-inner">
+        <img class="front" src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20sanc%20tee.webp" alt="SANC Tee">
+      </div>
     </div>
     <div class="product-info">
       <p class="product-category">Logo</p>
@@ -138,9 +175,12 @@
     </div>
   </div>
 
+  <!-- SANC Tank — no flip -->
   <div class="product-card">
     <div class="product-art">
-      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20sank%20tanks.webp" alt="SANC Tank">
+      <div class="flip-inner">
+        <img class="front" src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20sank%20tanks.webp" alt="SANC Tank">
+      </div>
     </div>
     <div class="product-info">
       <p class="product-category">Logo</p>
@@ -151,9 +191,12 @@
     </div>
   </div>
 
+  <!-- Trucker Cap — no flip -->
   <div class="product-card">
     <div class="product-art">
-      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20hat.webp" alt="SANC Trucker Cap">
+      <div class="flip-inner">
+        <img class="front" src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20hat.webp" alt="SANC Trucker Cap">
+      </div>
     </div>
     <div class="product-info">
       <p class="product-category">Headwear</p>
@@ -164,9 +207,12 @@
     </div>
   </div>
 
+  <!-- Physical CD — no flip -->
   <div class="product-card">
     <div class="product-art">
-      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20abletoenable%20cd.webp" alt="Able to Enable CD">
+      <div class="flip-inner">
+        <img class="front" src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20abletoenable%20cd.webp" alt="Able to Enable CD">
+      </div>
     </div>
     <div class="product-info">
       <p class="product-category">Able to Enable EP — 2015</p>
