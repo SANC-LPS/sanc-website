@@ -29,74 +29,21 @@
   .nav-links a { font-family: 'Special Elite', cursive; font-size: 0.75rem; letter-spacing: 0.12em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 
-  .merch-header {
-    text-align: center;
-    padding: 4rem 2rem 2.5rem;
-    border-bottom: 1px solid rgba(232,184,75,0.1);
-  }
-  .merch-header h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 8vw, 6rem);
-    color: var(--gold);
-    letter-spacing: 0.12em;
-    line-height: 1;
-  }
-  .merch-header .sub {
-    font-family: 'Special Elite', cursive;
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-top: 0.5rem;
-  }
+  .merch-header { text-align: center; padding: 4rem 2rem 2.5rem; border-bottom: 1px solid rgba(232,184,75,0.1); }
+  .merch-header h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6rem); color: var(--gold); letter-spacing: 0.12em; line-height: 1; }
+  .merch-header .sub { font-family: 'Special Elite', cursive; font-size: 0.65rem; letter-spacing: 0.3em; color: var(--muted); text-transform: uppercase; margin-top: 0.5rem; }
 
-  .merch-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2px;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 3rem 2rem;
-  }
+  .merch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2px; max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
 
   .product-card { background: var(--charcoal); position: relative; overflow: hidden; transition: transform 0.3s ease; }
-  .product-card:not(.coming-soon):hover { transform: translateY(-4px); }
-  .product-card.coming-soon { opacity: 0.55; pointer-events: none; }
+  .product-card:hover { transform: translateY(-4px); }
 
-  .product-art {
-    width: 100%;
-    aspect-ratio: 1;
-    overflow: hidden;
-    position: relative;
-    background: #111110;
-  }
-  .product-art img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-  }
-  .product-card:not(.coming-soon):hover .product-art img {
-    transform: scale(1.03);
-  }
-
-  .coming-soon-badge {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(13,13,11,0.85);
-    border: 1px solid rgba(232,184,75,0.3);
-    font-family: 'Special Elite', cursive;
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    color: var(--gold);
-    text-transform: uppercase;
-    padding: 0.3rem 0.6rem;
-  }
+  .product-art { width: 100%; aspect-ratio: 1; overflow: hidden; position: relative; background: #111110; }
+  .product-art img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+  .product-card:hover .product-art img { transform: scale(1.03); }
 
   .product-info { padding: 1.25rem 1.5rem 1.5rem; border-top: 1px solid rgba(232,184,75,0.1); }
-  .product-album { font-family: 'Special Elite', cursive; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.4rem; }
+  .product-category { font-family: 'Special Elite', cursive; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.4rem; }
   .product-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--parchment); margin-bottom: 0.5rem; }
   .product-credit { font-family: 'IM Fell English', serif; font-style: italic; font-size: 0.78rem; color: var(--muted); margin-bottom: 1.1rem; line-height: 1.5; }
   .product-credit a { color: var(--amber); text-decoration: none; border-bottom: 1px solid rgba(200,135,42,0.3); transition: color 0.2s; }
@@ -105,7 +52,6 @@
 
   .btn-buy { display: block; width: 100%; padding: 0.75rem 1rem; background: transparent; border: 1px solid var(--gold); color: var(--gold); font-family: 'Special Elite', cursive; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; text-align: center; text-decoration: none; cursor: pointer; transition: background 0.2s, color 0.2s; }
   .btn-buy:hover { background: var(--gold); color: var(--ink); }
-  .btn-coming-soon { display: block; width: 100%; padding: 0.75rem 1rem; background: transparent; border: 1px solid rgba(138,128,112,0.3); color: var(--muted); font-family: 'Special Elite', cursive; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; text-align: center; }
 
   .merch-footer { text-align: center; padding: 2rem 2rem 4rem; border-top: 1px solid rgba(232,184,75,0.1); }
   .merch-footer p { font-family: 'IM Fell English', serif; font-style: italic; font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem; }
@@ -140,69 +86,101 @@
 
 <div class="merch-grid">
 
-  <!-- LIVE: Able to Enable -->
   <div class="product-card">
     <div class="product-art">
-      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/Able%20to%20Enable%20-%20Cover%20Art%20Master.jpg" alt="Able to Enable">
+      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20able%20to%20enable%20tee.webp" alt="Able to Enable Tee">
     </div>
     <div class="product-info">
-      <p class="product-album">Able to Enable EP — 2015</p>
+      <p class="product-category">Able to Enable EP — 2015</p>
       <p class="product-name">Able to Enable T-Shirt</p>
       <p class="product-credit">Art by <a href="https://www.facebook.com/jennifer.giammatteo" target="_blank">Jennifer Giammatteo</a></p>
-      <p class="product-price">From $26</p>
-      <a href="https://www.etsy.com/listing/4483495887/able-to-enable-t-shirt" target="_blank" class="btn-buy">Shop on Etsy →</a>
+      <p class="product-price">$34.50</p>
+      <a href="https://www.etsy.com/listing/4511294273/able-to-enable-t-shirt" target="_blank" class="btn-buy">Shop on Etsy →</a>
     </div>
   </div>
 
-  <!-- COMING SOON: Pilgrim's Progress -->
-  <div class="product-card coming-soon">
+  <div class="product-card">
     <div class="product-art">
-      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/Pilgrims%20Progress%20Album%20Art%20-%20Font.JPG" alt="Pilgrim's Progress">
-      <span class="coming-soon-badge">Coming Soon</span>
+      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20pilgrims%20progress%20tee.webp" alt="Pilgrim's Progress Tee">
     </div>
     <div class="product-info">
-      <p class="product-album">Pilgrim's Progress — 2023</p>
+      <p class="product-category">Pilgrim's Progress — 2023</p>
       <p class="product-name">Pilgrim's Progress T-Shirt</p>
       <p class="product-credit">Art by <a href="https://www.instagram.com/jennycsweeneyart/" target="_blank">Jenny C. Sweeney</a></p>
-      <p class="product-price">&nbsp;</p>
-      <span class="btn-coming-soon">Coming Soon</span>
+      <p class="product-price">$31.00</p>
+      <a href="https://www.etsy.com/listing/4511202733/pilgrims-progress-tee" target="_blank" class="btn-buy">Shop on Etsy →</a>
     </div>
   </div>
 
-  <!-- COMING SOON: Great Peace -->
-  <div class="product-card coming-soon">
+  <div class="product-card">
     <div class="product-art">
-      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/Great%20Peace%20-%20Original%20Art%20-%20No%20Text%207.17.24.JPEG" alt="Great Peace">
-      <span class="coming-soon-badge">Coming Soon</span>
+      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20great%20peace%20tee.webp" alt="Great Peace Tee">
     </div>
     <div class="product-info">
-      <p class="product-album">Great Peace EP — 2025</p>
+      <p class="product-category">Great Peace EP — 2025</p>
       <p class="product-name">Great Peace T-Shirt</p>
       <p class="product-credit">Art by <a href="https://www.instagram.com/jennycsweeneyart/" target="_blank">Jenny C. Sweeney</a></p>
-      <p class="product-price">&nbsp;</p>
-      <span class="btn-coming-soon">Coming Soon</span>
+      <p class="product-price">$41.50</p>
+      <a href="https://www.etsy.com/listing/4511320601/great-peace-tee" target="_blank" class="btn-buy">Shop on Etsy →</a>
     </div>
   </div>
 
-  <!-- COMING SOON: Prodigal Pulpits -->
-  <div class="product-card coming-soon">
+  <div class="product-card">
     <div class="product-art">
-      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/PRODIGAL%20PULPITS-album%20art.jpg" alt="Prodigal Pulpits">
-      <span class="coming-soon-badge">Coming Soon</span>
+      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20sanc%20tee.webp" alt="SANC Tee">
     </div>
     <div class="product-info">
-      <p class="product-album">Prodigal Pulpits — 2025</p>
-      <p class="product-name">Prodigal Pulpits T-Shirt</p>
-      <p class="product-credit">Art by <a href="https://www.instagram.com/sowerproject/" target="_blank">Eric — Sower</a> · Collab with Sower</p>
-      <p class="product-price">&nbsp;</p>
-      <span class="btn-coming-soon">Coming Soon</span>
+      <p class="product-category">Logo</p>
+      <p class="product-name">SANC T-Shirt</p>
+      <p class="product-credit">Official SANC logo tee</p>
+      <p class="product-price">$23.00</p>
+      <a href="https://www.etsy.com/listing/4511345620/sanc-tee" target="_blank" class="btn-buy">Shop on Etsy →</a>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <div class="product-art">
+      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20sank%20tanks.webp" alt="SANC Tank">
+    </div>
+    <div class="product-info">
+      <p class="product-category">Logo</p>
+      <p class="product-name">SANC Tank</p>
+      <p class="product-credit">Official SANC logo tank</p>
+      <p class="product-price">$26.50</p>
+      <a href="https://www.etsy.com/listing/4511343563/sanc-tank" target="_blank" class="btn-buy">Shop on Etsy →</a>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <div class="product-art">
+      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20hat.webp" alt="SANC Trucker Cap">
+    </div>
+    <div class="product-info">
+      <p class="product-category">Headwear</p>
+      <p class="product-name">SANC Trucker Cap</p>
+      <p class="product-credit">Embroidered SANC logo</p>
+      <p class="product-price">$23.50</p>
+      <a href="https://www.etsy.com/listing/4511326298/trucker-cap" target="_blank" class="btn-buy">Shop on Etsy →</a>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <div class="product-art">
+      <img src="https://raw.githubusercontent.com/SANC-LPS/sanc-website/main/mock-up%20abletoenable%20cd.webp" alt="Able to Enable CD">
+    </div>
+    <div class="product-info">
+      <p class="product-category">Able to Enable EP — 2015</p>
+      <p class="product-name">Able to Enable — Physical CD</p>
+      <p class="product-credit">Limited stock · Ships from Poughkeepsie, NY</p>
+      <p class="product-price">$10.00</p>
+      <a href="https://www.etsy.com/listing/4511338015/able-to-enable-physical-cd" target="_blank" class="btn-buy">Shop on Etsy →</a>
     </div>
   </div>
 
 </div>
 
 <div class="merch-footer">
-  <p>All orders fulfilled through Etsy via Printful print-on-demand.</p>
+  <p>Apparel fulfilled through Printful print-on-demand.</p>
   <a href="https://etsy.com/shop/SANCMERCH" target="_blank">Visit the full shop at SANCMERCH ↗</a>
 </div>
 
