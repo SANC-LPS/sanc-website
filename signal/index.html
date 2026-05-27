@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SANC → BIR → TØP → Hunt — Second Adam & the New Creations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #0a0a0f;
+      --surface:  #111118;
+      --gold:     #c8a84b;
+      --gold-dim: #c49535;
+      --white:    #e9e5dd;
+      --muted:    #c8c2b8;
+      --border:   rgba(200,168,75,0.15);
+      --red:      #cc2200;
+      --red-dim:  rgba(204,34,0,0.18);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: 'Lato', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+    body::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1000;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(200,168,75,0.012) 3px, rgba(200,168,75,0.012) 4px);
+    }
+
+    /* TICKET ALERT BANNER — top of page, red, high contrast */
+    .ticket-banner {
+      background: var(--red);
+      text-align: center;
+      padding: 10px 24px;
+      font-family: 'Cinzel', serif;
+      font-size: .68rem;
+      letter-spacing: .3em;
+      color: #fff;
+      font-weight: 700;
+      position: relative;
+      z-index: 200;
+    }
+    .ticket-banner span { color: rgba(255,255,255,0.7); font-weight: 400; }
+
+    /* CHAIN BANNER */
+    .top-banner {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      padding: 9px 24px;
+      font-family: 'Cinzel', serif;
+      font-size: .66rem;
+      letter-spacing: .28em;
+      color: var(--muted);
+      position: relative;
+      z-index: 200;
+    }
+    .chain { display: inline-flex; align-items: center; gap: 10px; }
+    .ch-sanc { color: var(--gold); }
+    .ch-arr  { color: var(--gold-dim); font-weight: 700; }
+    .ch-bir  { color: var(--white); }
+    .ch-top  { color: var(--white); }
+    .ch-zero { color: var(--red); font-style: normal; }
+    .ch-hunt { color: var(--gold); }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 68px; /* ticket banner + chain banner height */
+      left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 40px;
+      background: rgba(10,10,15,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Cinzel', serif; font-size: .8rem; font-weight: 700; letter-spacing: .14em; color: var(--gold); text-decoration: none; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-family: 'Cinzel', serif; font-size: .64rem; letter-spacing: .18em; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-zero { color: var(--red); }
+    @media (max-width: 640px) {
+      .ticket-banner { font-size: .5rem; letter-spacing: .14em; padding: 8px 12px; }
+      nav { top: 62px; padding: 12px 16px; }
+      .nav-links { gap: 12px; }
+      .nav-links a { font-size: .56rem; }
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 180px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 55% at 50% 0%, rgba(204,34,0,0.09) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 50% 30%, rgba(200,168,75,0.06) 0%, transparent 65%);
+    }
+    .rings { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
+    .ring { position: absolute; border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%,-50%); animation: rp 5s ease-in-out infinite; }
+    .ring:nth-child(1) { width: 180px; height: 180px; border: 1px solid rgba(204,34,0,0.08); }
+    .ring:nth-child(2) { width: 400px; height: 400px; border: 1px solid rgba(200,168,75,0.05); animation-delay: 1.2s; }
+    .ring:nth-child(3) { width: 660px; height: 660px; border: 1px solid rgba(200,168,75,0.03); animation-delay: 2.4s; }
+    @keyframes rp { 0%,100%{opacity:0;transform:translate(-50%,-50%) scale(.95)} 50%{opacity:1;transform:translate(-50%,-50%) scale(1)} }
+
+    .hero-content { position: relative; z-index: 2; max-width: 680px; }
+    .eyebrow {
+      font-weight: 700; font-size: .6rem; letter-spacing: .45em; color: var(--gold-dim); font-weight: 700; margin-bottom: 18px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .dot { width: 5px; height: 5px; background: var(--red); border-radius: 50%; animation: dp 2s infinite; }
+    @keyframes dp { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(204,34,0,.5)} 50%{opacity:.6;box-shadow:0 0 0 8px rgba(204,34,0,0)} }
+
+    .hero-chain {
+      font-family: 'Cinzel', serif; font-weight: 900; letter-spacing: .1em;
+      font-size: clamp(2rem, 7vw, 4.4rem); line-height: 1.1; margin-bottom: 10px;
+      display: flex; align-items: center; justify-content: center; gap: .3em; flex-wrap: wrap;
+    }
+    .hc-sanc { color: var(--gold); }
+    .hc-arr  { color: var(--gold-dim); font-weight: 700; font-weight: 400; font-size: .65em; }
+    .hc-bir  { color: var(--white); }
+    .hc-top  { color: var(--white); }
+    .hc-zero { color: var(--red); }
+    .hc-hunt { color: var(--gold); }
+
+    .hero-ticket-line {
+      font-weight: 700;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(.72rem, 2vw, .9rem);
+      letter-spacing: .22em;
+      color: var(--red);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+    .hero-sub {
+      font-weight: 700;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(.62rem, 1.8vw, .78rem);
+      letter-spacing: .26em;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+    .rule { width: 50px; height: 1px; background: linear-gradient(90deg, transparent, var(--red), transparent); margin: 0 auto 30px; }
+    .hero-cta {
+      display: inline-block; font-family: 'Cinzel', serif; font-size: .76rem; font-weight: 700;
+      letter-spacing: .2em; color: #fff; background: var(--red); padding: 14px 40px;
+      text-decoration: none; clip-path: polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+      transition: background .2s; margin-right: 10px;
+    }
+    .hero-cta:hover { background: #a81800; }
+    .hero-cta-secondary {
+      display: inline-block; font-family: 'Cinzel', serif; font-size: .76rem; font-weight: 700;
+      letter-spacing: .2em; color: var(--bg); background: var(--gold); padding: 14px 40px;
+      text-decoration: none; clip-path: polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+      transition: background .2s;
+    }
+    .hero-cta-secondary:hover { background: var(--white); }
+
+    /* SECTIONS */
+    .section { max-width: 760px; margin: 0 auto; padding: 72px 24px; border-top: 1px solid var(--border); }
+    .section-wide { max-width: 1140px; margin: 0 auto; padding: 72px 24px; border-top: 1px solid var(--border); }
+    .label {
+      font-weight: 700; font-size: .56rem; letter-spacing: .4em; color: var(--gold-dim); font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
+    .label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    h2 { font-family: 'Cinzel', serif; font-size: clamp(1rem,3vw,1.4rem); font-weight: 700; color: var(--white); letter-spacing: .06em; margin-bottom: 18px; }
+    p { color: var(--muted); font-size: .88rem; margin-bottom: 12px; line-height: 1.8; }
+    p strong { color: var(--white); font-weight: 400; }
+
+    /* PRIZE BLOCK — red bordered, high emphasis */
+    .prize-block {
+      border: 2px solid var(--red);
+      background: var(--red-dim);
+      padding: 28px 32px;
+      margin: 24px 0;
+      position: relative;
+    }
+    .prize-block::before {
+      content: '🎟 FREE TICKET GIVEAWAY';
+      position: absolute; top: -10px; left: 18px;
+      font-family: 'Cinzel', serif; font-size: .52rem; letter-spacing: .3em;
+      color: var(--red); background: var(--bg); padding: 0 10px; font-weight: 700;
+    }
+    .prize-date { font-family: 'Cinzel', serif; font-size: clamp(1.5rem,4vw,2.2rem); font-weight: 900; color: var(--red); letter-spacing: .06em; margin-bottom: 6px; }
+    .prize-venue { font-family: 'Cinzel', serif; font-size: clamp(.88rem,2.5vw,1.05rem); color: var(--white); letter-spacing: .05em; margin-bottom: 8px; }
+    .prize-detail {
+      font-weight: 700; font-size: .76rem; letter-spacing: .08em; color: var(--muted); line-height: 2.1; }
+    .prize-detail strong { color: var(--gold); }
+
+    /* CHAIN EXPLAINER */
+    .chain-explainer {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 24px 28px;
+      margin: 24px 0;
+    }
+    .chain-flow {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; flex-wrap: wrap;
+      font-family: 'Cinzel', serif; font-size: clamp(.9rem, 3vw, 1.3rem);
+      font-weight: 900; letter-spacing: .06em; margin-bottom: 12px;
+    }
+    .cf-sanc { color: var(--gold); }
+    .cf-arr  { color: var(--gold-dim); font-weight: 700; font-size: .8em; }
+    .cf-bir  { color: var(--white); }
+    .cf-top  { color: var(--white); }
+    .cf-zero { color: var(--red); }
+    .chain-desc {
+      font-weight: 700; font-size: .78rem; color: var(--muted); text-align: center; line-height: 1.9; }
+    .chain-desc strong { color: var(--white); }
+
+    /* STEPS */
+    .steps { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+    .steps li { display: grid; grid-template-columns: 26px 1fr; gap: 16px; padding: 16px 20px; border: 1px solid var(--border); background: var(--surface); transition: border-color .2s; }
+    .steps li:hover {
+      font-weight: 700; border-color: var(--gold-dim); font-weight: 700; }
+    .sn {
+      font-weight: 700; font-family: 'Cinzel', serif; font-size: .64rem; color: var(--gold); padding-top: 2px; }
+    .st { font-size: .84rem; color: var(--muted); line-height: 1.75; }
+    .st strong { display: block; font-family: 'Cinzel', serif; font-size: .78rem; font-weight: 700; color: var(--white); letter-spacing: .04em; margin-bottom: 3px; }
+
+    /* ARTIST GRID */
+    .artist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 12px; margin-top: 24px; }
+    @media (max-width: 620px) { .artist-grid { grid-template-columns: 1fr; } }
+
+    .artist-card {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 22px 20px;
+      display: flex; flex-direction: column;
+      transition: border-color .2s, background .2s;
+    }
+    .artist-card:hover { border-color: var(--gold-dim); font-weight: 700; background: rgba(200,168,75,0.04); }
+    .artist-card.initiating { border-color: rgba(200,168,75,0.35); }
+
+    .ac-badge {
+      font-weight: 700; font-size: .46rem; letter-spacing: .28em; color: var(--gold-dim); font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
+    .ac-badge.red { color: var(--red); }
+    .ac-name { font-family: 'Cinzel', serif; font-size: .9rem; font-weight: 700; color: var(--white); letter-spacing: .04em; margin-bottom: 3px; line-height: 1.3; }
+    .ac-handle {
+      font-weight: 700; font-size: .64rem; letter-spacing: .12em; color: var(--gold); margin-bottom: 6px; }
+    .ac-location { font-size: .64rem; letter-spacing: .08em; color: var(--muted); margin-bottom: 9px; }
+    .ac-bio { font-size: .78rem; color: var(--muted); line-height: 1.65; margin-bottom: 10px; flex-grow: 1; }
+    .ac-meta {
+      font-weight: 700; font-size: .68rem; color: var(--muted); line-height: 1.65; margin-bottom: 10px; }
+    .ac-meta strong {
+      font-weight: 700; display: block; font-size: .56rem; letter-spacing: .1em; color: var(--gold-dim); font-weight: 700; margin-bottom: 2px; text-transform: uppercase; }
+    .ac-link {
+      display: inline-block; font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700;
+      letter-spacing: .16em; color: var(--bg); background: var(--gold-dim); padding: 8px 18px;
+      text-decoration: none; clip-path: polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+      transition: background .2s; margin-top: auto;
+    }
+    .ac-link:hover { background: var(--gold); }
+
+    /* DM ENTRY */
+    .dm {
+      border: 1px solid var(--red);
+      background: var(--red-dim);
+      padding: 32px; margin-top: 20px; text-align: center; position: relative;
+    }
+    .dm::before { content: 'Enter'; position: absolute; top: -8px; left: 16px; font-size: .52rem; letter-spacing: .3em; color: var(--red); background: var(--bg); padding: 0 8px; font-family: 'Cinzel', serif; }
+    .dm-main { font-family: 'Cinzel', serif; font-size: clamp(.9rem,2.5vw,1.05rem); color: var(--white); letter-spacing: .06em; margin-bottom: 12px; }
+    .dm-sub {
+      font-weight: 700; font-size: .76rem; color: var(--muted); letter-spacing: .06em; margin-bottom: 24px; line-height: 1.9; }
+    .dm-btn {
+      display: inline-block; font-family: 'Cinzel', serif; font-size: .76rem; font-weight: 700;
+      letter-spacing: .2em; color: #fff; background: var(--red); padding: 14px 42px;
+      text-decoration: none; clip-path: polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+      transition: background .2s;
+    }
+    .dm-btn:hover { background: #a81800; }
+    .dm-note {
+      font-weight: 700; font-size: .6rem; color: var(--gold-dim); font-weight: 700; letter-spacing: .06em; margin-top: 18px; line-height: 1.9; }
+
+    /* FOOTER */
+    .divider { text-align: center; color: var(--border); font-size: 1rem; letter-spacing: .8em; padding: 16px 0; }
+    footer { border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; }
+    .fl { font-family: 'Cinzel', serif; font-size: .82rem; font-weight: 700; letter-spacing: .16em; color: var(--gold); text-decoration: none; display: block; margin-bottom: 10px; }
+    .fn { display: flex; justify-content: center; gap: 24px; list-style: none; margin-bottom: 16px; flex-wrap: wrap; }
+    .fn a { font-size: .62rem; letter-spacing: .18em; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .fn a:hover { color: var(--gold); }
+    .fd {
+      font-weight: 700; font-size: .56rem; color: rgba(110,107,101,.35); letter-spacing: .08em; margin-top: 12px; line-height: 1.9; }
+  </style>
+</head>
+<body>
+
+<!-- TICKET ALERT BANNER -->
+<div class="ticket-banner">
+  🎟 FREE TØP FLOOR TICKET GIVEAWAY &nbsp;·&nbsp; <span>Ohio Stadium · Columbus, OH · October 17, 2026</span>
+</div>
+
+<!-- CHAIN BANNER -->
+<div class="top-banner">
+  <span class="chain">
+    <span class="ch-sanc">SANC</span>
+    <span class="ch-arr">→</span>
+    <span class="ch-bir">BIR</span>
+    <span class="ch-arr">→</span>
+    <span class="ch-top">T<span class="ch-zero">Ø</span>P</span>
+    <span class="ch-arr">→</span>
+    <span class="ch-hunt">HUNT</span>
+  </span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="https://secondadamnewcreations.com" class="nav-logo">SANC</a>
+  <ul class="nav-links">
+    <li><a href="https://secondadamnewcreations.com/#music">Music</a></li>
+    <li><a href="https://secondadamnewcreations.com/merch">Merch</a></li>
+    <li><a href="https://secondadamnewcreations.com/#connect">Connect</a></li>
+    <li><a href="/signal" class="active">SANC → BIR → T<span class="nav-zero">Ø</span>P → Hunt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="rings"><div class="ring"></div><div class="ring"></div><div class="ring"></div></div>
+  <div class="hero-content">
+    <div class="eyebrow"><span class="dot"></span> #SANCBIRTOPHunt · @secondadam_nc</div>
+    <div class="hero-chain">
+      <span class="hc-sanc">SANC</span>
+      <span class="hc-arr">→</span>
+      <span class="hc-bir">BIR</span>
+      <span class="hc-arr">→</span>
+      <span class="hc-top">T<span class="hc-zero">Ø</span>P</span>
+      <span class="hc-arr">→</span>
+      <span class="hc-hunt">HUNT</span>
+    </div>
+    <p class="hero-ticket-line">Free Floor Ticket · Twenty One Pilots · Ohio Stadium · 10.17.26</p>
+    <p class="hero-sub">@secondadam_nc × #biblicalindierock</p>
+    <div class="rule"></div>
+    <a href="#prize" class="hero-cta">See the Prize</a>
+    <a href="#how" class="hero-cta-secondary">How It Works</a>
+  </div>
+</section>
+
+<!-- PRIZE -->
+<section class="section" id="prize">
+  <div class="label">The Prize</div>
+  <h2>A Free Ticket to TØP</h2>
+
+  <div class="prize-block">
+    <div class="prize-date">10.17.26</div>
+    <div class="prize-venue">Ohio Stadium — Columbus, Ohio</div>
+    <div class="prize-detail">
+      <strong>Twenty One Pilots</strong> · with Death Cab for Cutie · TØ HERE · 6:00 PM<br>
+      <strong>Floor Ticket — Section FLRD, Row 18, Seat 8</strong><br>
+      One winner · Live draw on @secondadam_nc · Close of final week<br>
+      Verified Resale · Ticketmaster Transfer · Completed live on stream
+    </div>
+  </div>
+
+  <div class="chain-explainer">
+    <div class="chain-flow">
+      <span class="cf-sanc">SANC</span>
+      <span class="cf-arr">→</span>
+      <span class="cf-bir">BIR</span>
+      <span class="cf-arr">→</span>
+      <span class="cf-top">T<span class="cf-zero">Ø</span>P</span>
+    </div>
+    <p class="chain-desc">
+      <strong>Second Adam &amp; the New Creations</strong> initiates the hunt.<br>
+      The <strong>#biblicalindierock</strong> collective amplifies it week by week.<br>
+      <strong>Twenty One Pilots</strong> — Ohio Stadium — is the destination.
+    </p>
+  </div>
+
+
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="label">How It Works</div>
+  <h2>The Hunt</h2>
+  <ol class="steps">
+    <li>
+      <span class="sn">01</span>
+      <div class="st"><strong>Follow @secondadam_nc on Instagram</strong>Every week a carousel drops spotlighting one artist from the #biblicalindierock collective. Pay close attention to each artist's name.</div>
+    </li>
+    <li>
+      <span class="sn">02</span>
+      <div class="st"><strong>Collect the Letters</strong>Letters are hidden across the campaign in the names of the artists being spotlighted. The sequence is deliberately scrambled. Collecting them all is only the beginning — the phrase must be unscrambled. Hints may follow.</div>
+    </li>
+    <li>
+      <span class="sn">03</span>
+      <div class="st"><strong>Follow Every Artist</strong>Each post spotlights a different #biblicalindierock artist. Follow them. Stream their music.</div>
+    </li>
+    <li>
+      <span class="sn">04</span>
+      <div class="st"><strong>Unscramble the Phrase</strong>Collect every letter from every week. Then unscramble. The phrase is not obvious — that's the challenge. Hints may drop later in the campaign if needed.</div>
+    </li>
+    <li>
+      <span class="sn">05</span>
+      <div class="st"><strong>DM @secondadam_nc on Instagram</strong>Send the solved phrase by direct message. Include your email address. One submission per person. Correct phrase only.</div>
+    </li>
+    <li>
+      <span class="sn">06</span>
+      <div class="st"><strong>Watch the Live Draw</strong>@secondadam_nc goes live at the close of the final week. One winner drawn on screen. Winner joins live, confirms attendance at the Columbus show, and receives the Ticketmaster transfer on stream. 10-minute window to respond — no response means an immediate redraw.</div>
+    </li>
+  </ol>
+</section>
+
+<!-- THE COLLECTIVE -->
+<section class="section-wide" id="artists">
+  <div class="label">The Collective</div>
+  <h2>#biblicalindierock</h2>
+  <p>Every week one artist from this collective is spotlighted. Follow them all. Stream their music. Letters hidden across the campaign in the artist names will need to be collected and unscrambled to solve the phrase.</p>
+
+  <div class="artist-grid">
+
+    <!-- SANC -->
+    <div class="artist-card initiating">
+      <div class="ac-badge red">Initiating Artist</div>
+      <div class="ac-name">Second Adam &amp; the New Creations</div>
+      <div class="ac-handle">@secondadam_nc</div>
+      <div class="ac-meta">
+        <strong>Top Tracks on Spotify</strong>
+        Shout Your Amen · Kiss the Son · Let Sinners Fly · Eyes to see, but do not see
+      </div>
+      <div class="ac-meta">
+        <strong>Key Releases</strong>
+        Able to Enable EP (2015) · Pilgrim's Progress (2023) · Prodigal Pulpits w/ Sower (2025) · Great Peace EP (2025)
+      </div>
+      
+      <div class="ac-meta">
+        <strong>Genre</strong>
+        Indie Rock
+      </div>
+      <div class="ac-meta">
+        <strong>Influences</strong>
+        My Epic, Jimmy Eat World, Further Seems Forever
+      </div>
+      <a class="ac-link" href="https://instagram.com/secondadam_nc" target="_blank" rel="noopener">Follow on Instagram →</a>
+    </div>
+
+    <!-- SOWER -->
+    <div class="artist-card">
+      <div class="ac-badge">Featured Artist</div>
+      <div class="ac-name">Sower</div>
+      <div class="ac-handle">@sowerproject</div>
+      <div class="ac-meta">
+        <strong>Top Tracks on Spotify</strong>
+        REDEMPTION (45K) · Born Again (31K) · CREATION (26K) · Courage
+      </div>
+      <div class="ac-meta">
+        <strong>Key Releases</strong>
+        The Soil EP (2024) · The Seed EP (2024) · I Want to See Clearly (2025) · Psalms 6–10 w/ Out of the Graves (2026)
+      </div>
+      
+      <div class="ac-meta">
+        <strong>Genre</strong>
+        Indie Rock
+      </div>
+      <div class="ac-meta">
+        <strong>Influences</strong>
+        Manchester Orchestra, Death Cab, Weezer
+      </div>
+      <a class="ac-link" href="https://instagram.com/sowerproject" target="_blank" rel="noopener">Follow on Instagram →</a>
+    </div>
+
+    <!-- GRAND MOTEL -->
+    <div class="artist-card">
+      <div class="ac-badge">Featured Artist</div>
+      <div class="ac-name">Grand Motel</div>
+      <div class="ac-handle">@grandmotel.band</div>
+      <div class="ac-meta">
+        <strong>Top Tracks on Spotify</strong>
+        A Ghost Doesn't Have Muscle and Bone Like This (13K) · Not to Bring Peace, but a Sword (11K) · I Can Count All My Bones (10K) · Wept
+      </div>
+      <div class="ac-meta">
+        <strong>Key Releases</strong>
+        All the Trees in All the Forests (2025) · I Can Count All My Bones (2026) · Tooth of the Lion: A Spring Perennial (2026)
+      </div>
+      
+      <div class="ac-meta">
+        <strong>Genre</strong>
+        Midwest Emo
+      </div>
+      <div class="ac-meta">
+        <strong>Influences</strong>
+        Macseal, Modern Baseball, The Promise Ring
+      </div>
+      <a class="ac-link" href="https://instagram.com/grandmotel.band" target="_blank" rel="noopener">Follow on Instagram →</a>
+    </div>
+
+    <!-- ZAMBROA -->
+    <div class="artist-card">
+      <div class="ac-badge">Featured Artist</div>
+      <div class="ac-name">Zambroa</div>
+      <div class="ac-handle">@zambroa</div>
+      <div class="ac-meta">
+        <strong>Top Tracks on Spotify</strong>
+        Sabbath (678K) · Persevere (591K) · Conquest — a Romans 7:15 kind of thing (206K) · Repent (176K) · Believe
+      </div>
+      <div class="ac-meta">
+        <strong>Key Releases</strong>
+        Battles (2018) · Zambroa (2022) · a glass, darkly EP (2023) · A Brook Beside the Way (2024)
+      </div>
+      
+      <div class="ac-meta">
+        <strong>Genre</strong>
+        Indie
+      </div>
+      <div class="ac-meta">
+        <strong>Influences</strong>
+        Hovvdy, Bon Iver, Mac DeMarco
+      </div>
+      <a class="ac-link" href="https://instagram.com/zambroa" target="_blank" rel="noopener">Follow on Instagram →</a>
+    </div>
+
+    <!-- DESCRIPTOR -->
+    <div class="artist-card">
+      <div class="ac-badge">Featured Artist</div>
+      <div class="ac-name">Descriptor</div>
+      <div class="ac-handle">@descriptor_</div>
+      <div class="ac-meta">
+        <strong>Top Tracks on Spotify</strong>
+        Gifter (224K) · Vainglory (59K) · Exploiter (48K) · Sustainer (44K) · Christ the Lord Is Risen Today (37K)
+      </div>
+      <div class="ac-meta">
+        <strong>Key Releases</strong>
+        Vainglory (2024) · Sustainer (2025) · Antivenin (2025) · Sins of Man (2026)
+      </div>
+      
+      <div class="ac-meta">
+        <strong>Genre</strong>
+        Rock
+      </div>
+      <div class="ac-meta">
+        <strong>Influences</strong>
+        As Cities Burn, My Epic, Underoath
+      </div>
+      <a class="ac-link" href="https://instagram.com/descriptor_" target="_blank" rel="noopener">Follow on Instagram →</a>
+    </div>
+
+    <!-- THE CARDINAL BLUES -->
+    <div class="artist-card">
+      <div class="ac-badge">Featured Artist</div>
+      <div class="ac-name">The Cardinal Blues</div>
+      <div class="ac-handle">@thecardinalblues</div>
+      <div class="ac-meta">
+        <strong>Top Songs</strong>
+        Hit a Wall · Razor Thin · In God's Country (Child of Nature)
+      </div>
+      <div class="ac-meta">
+        <strong>Key Releases</strong>
+        In God's Country (Child of Nature) — Single (2025) · Razor Thin — Single (2025) · Hit a Wall — Single (2026)
+      </div>
+      
+      <div class="ac-meta">
+        <strong>Genre</strong>
+        Indie Rock / Heartland Rock / Post Punk Revival
+      </div>
+      <div class="ac-meta">
+        <strong>Influences</strong>
+        The Killers, Bruce Springsteen, Theo Katzman
+      </div>
+      <a class="ac-link" href="https://instagram.com/thecardinalblues" target="_blank" rel="noopener">Follow on Instagram →</a>
+    </div>
+
+    <!-- WONDELONE -->
+    <div class="artist-card">
+      <div class="ac-badge">Featured Artist</div>
+      <div class="ac-name">Wondelone</div>
+      <div class="ac-handle">@wondelone.band</div>
+      <div class="ac-meta">
+        <strong>Key Releases</strong>
+        Treadle &amp; Loom (2025) · Igneous (2025)
+      </div>
+      
+      <div class="ac-meta">
+        <strong>Genre</strong>
+        Prog Rock
+      </div>
+      <div class="ac-meta">
+        <strong>Influences</strong>
+        Dream Theater, Theocracy, Neal Morse
+      </div>
+      <a class="ac-link" href="https://instagram.com/wondelone.band" target="_blank" rel="noopener">Follow on Instagram →</a>
+    </div>
+
+    <!-- FURY & SOLACE -->
+    <div class="artist-card">
+      <div class="ac-badge">Featured Artist</div>
+      <div class="ac-name">Fury &amp; Solace</div>
+      <div class="ac-handle">@furysolace</div>
+      <div class="ac-meta">
+        <strong>Key Releases</strong>
+        For Our Sons (2023) · By Endurance (2026)
+      </div>
+      
+      <div class="ac-meta">
+        <strong>Genre</strong>
+        Post Rock / Ambient / Instrumental
+      </div>
+      <div class="ac-meta">
+        <strong>Influences</strong>
+        Russian Circles, This Will Destroy You, Explosions in the Sky
+      </div>
+      <a class="ac-link" href="https://instagram.com/furysolace" target="_blank" rel="noopener">Follow on Instagram →</a>
+    </div>
+
+    <!-- OUT OF THE GRAVES -->
+    <div class="artist-card">
+      <div class="ac-badge">Featured Artist</div>
+      <div class="ac-name">Out of the Graves</div>
+      <div class="ac-handle">@outofthegravesmusic</div>
+      <div class="ac-meta">
+        <strong>Top Tracks on Spotify</strong>
+        Past and Gone (12K) · Psalm 6 (8K) · Psalm 7 (7K) · Psalm 9 (6K) · Psalm 8
+      </div>
+      <div class="ac-meta">
+        <strong>Key Releases</strong>
+        Songs for Building EP (2022) · The Waiting World EP (2024) · Past and Gone (2025) · Psalms 6–10 w/ Sower (2026)
+      </div>
+      
+      <div class="ac-meta">
+        <strong>Genre</strong>
+        Post Hardcore / Indie Rock
+      </div>
+      <div class="ac-meta">
+        <strong>Influences</strong>
+        Thrice, As Cities Burn, My Epic
+      </div>
+      <a class="ac-link" href="https://instagram.com/outofthegravesmusic" target="_blank" rel="noopener">Follow on Instagram →</a>
+    </div>
+
+    <!-- KELIY -->
+    <div class="artist-card">
+      <div class="ac-badge">Featured Artist</div>
+      <div class="ac-name">KELIY</div>
+      <div class="ac-handle">@keliymusic</div>
+      <div class="ac-meta">
+        <strong>Top Tracks on Spotify</strong>
+        Digital Drugs · We'll Be Alright · Light pollution · bandaid · Little Grey Cloud
+      </div>
+      <div class="ac-meta">
+        <strong>Key Releases</strong>
+        This Life Is a War EP (2024) · 99 EP (2025) · Light pollution (2025) · To Remember How It Goes EP (2026)
+      </div>
+      
+      <div class="ac-meta">
+        <strong>Genre</strong>
+        Indie Rock
+      </div>
+      <div class="ac-meta">
+        <strong>Influences</strong>
+        Switchfoot, TØP, Colony House
+      </div>
+      <a class="ac-link" href="https://instagram.com/keliymusic" target="_blank" rel="noopener">Follow on Instagram →</a>
+    </div>
+
+    <!-- CHASE TREMAINE -->
+    <div class="artist-card">
+      <div class="ac-badge">Featured Artist</div>
+      <div class="ac-name">Chase Tremaine</div>
+      <div class="ac-handle">@chasetremaine</div>
+      <div class="ac-meta">
+        <strong>Top Tracks on Spotify</strong>
+        Tired Side of Content (11K) · New Creation Gray · One Day · Flood My Heart
+      </div>
+      <div class="ac-meta">
+        <strong>Key Releases</strong>
+        Unfall (2020) · Development &amp; Compromise (2021) · Accidental Days (2023) · Latitudes EP (2026)
+      </div>
+      
+      <div class="ac-meta">
+        <strong>Genre</strong>
+        Alt-Rock & Emo-Pop
+      </div>
+      <div class="ac-meta">
+        <strong>Influences</strong>
+        Mae, Thrice, The Dear Hunter
+      </div>
+      <a class="ac-link" href="https://instagram.com/chasetremaine" target="_blank" rel="noopener">Follow on Instagram →</a>
+    </div>
+
+    <!-- MELONCOLLIE -->
+    <div class="artist-card">
+      <div class="ac-badge">Featured Artist</div>
+      <div class="ac-name">MelonCollie</div>
+      <div class="ac-handle">@justmeloncollie</div>
+      <div class="ac-meta">
+        <strong>Top Tracks on Spotify</strong>
+        Search my heart (129K) · It is personal (90K) · Lay my life down (27K) · know Jesus (20K) · World Deceived
+      </div>
+      <div class="ac-meta">
+        <strong>Key Releases</strong>
+        It is personal (2024) · Search my heart (2025) · Our Salvation EP (2025) · Lay my life down (2026)
+      </div>
+      
+      <div class="ac-meta">
+        <strong>Genre</strong>
+        Emo / Pop Punk
+      </div>
+      <div class="ac-meta">
+        <strong>Influences</strong>
+        Story So Far, Mom Jeans, Hot Mulligan
+      </div>
+      <a class="ac-link" href="https://instagram.com/justmeloncollie" target="_blank" rel="noopener">Follow on Instagram →</a>
+    </div>
+
+    <!-- JACOB BROUWER -->
+    <div class="artist-card">
+      <div class="ac-badge">Featured Artist</div>
+      <div class="ac-name">Jacob Brouwer</div>
+      <div class="ac-handle">@jbrouwer_music</div>
+      <div class="ac-meta">
+        <strong>Debut Release</strong>
+        All My Days — debut single
+      </div>
+      
+      <div class="ac-meta">
+        <strong>Genre</strong>
+        Indie Rock
+      </div>
+      <div class="ac-meta">
+        <strong>Influences</strong>
+        Switchfoot, Smashing Pumpkins, Citizens
+      </div>
+      <a class="ac-link" href="https://instagram.com/jbrouwer_music" target="_blank" rel="noopener">Follow on Instagram →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ENTER -->
+<section class="section" id="enter">
+  <div class="label">Enter</div>
+  <h2>Have You Solved the Phrase?</h2>
+  <div class="dm">
+    <p class="dm-main">DM the phrase to @secondadam_nc on Instagram</p>
+    <p class="dm-sub">Solved phrase + email address · We'll reply to confirm<br>One submission per person · Correct phrase only</p>
+    <a href="https://www.instagram.com/secondadam_nc/" target="_blank" rel="noopener" class="dm-btn">Open Instagram →</a>
+    <p class="dm-note">// live draw · close of final week · @secondadam_nc · #SANCBIRTOPHunt · #TOHere · #SANCBIRTØPhunt</p>
+  </div>
+</section>
+
+<!-- RULES -->
+<section class="section" id="rules">
+  <div class="label">Rules</div>
+  <h2>Rules</h2>
+  <p>Open worldwide. No purchase necessary. Entry by Instagram DM only. One submission per person. Correct phrase only.</p>
+  <p>Live draw at the close of the final week on @secondadam_nc. Winner drawn on screen using a visible randomizer. Winner must join live within 10 minutes and confirm attendance at the October 17, 2026 Columbus show. Ticketmaster transfer completed live on stream. No response within 10 minutes results in an immediate redraw. Prize non-transferable after confirmed transfer.</p>
+  <p>#SANCBIRTOPHunt is a campaign by Second Adam &amp; the New Creations. Not affiliated with or endorsed by Twenty One Pilots, Fueled by Ramen, or Elektra Records.</p>
+</section>
+
+<div class="divider">· #biblicalindierock ·</div>
+
+<footer>
+  <a href="https://secondadamnewcreations.com" class="fl">Second Adam &amp; the New Creations</a>
+  <ul class="fn">
+    <li><a href="https://secondadamnewcreations.com/#music">Music</a></li>
+    <li><a href="https://secondadamnewcreations.com/merch">Merch</a></li>
+    <li><a href="https://secondadamnewcreations.com/#connect">Connect</a></li>
+    <li><a href="https://instagram.com/secondadam_nc" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="https://twitter.com/SecondAdam_NC" target="_blank" rel="noopener">Twitter/X</a></li>
+  </ul>
+  <p class="fd">#SANCBIRTOPHunt is a campaign by Second Adam &amp; the New Creations.<br>Not affiliated with or endorsed by Twenty One Pilots, Fueled by Ramen, or Elektra Records.</p>
+</footer>
+
+</body>
+</html>
