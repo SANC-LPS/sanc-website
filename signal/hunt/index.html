@@ -172,13 +172,30 @@
   </div>
 
   <!-- WEEK 2 -->
-  <div class="week-card">
+  <div class="week-card" id="week2-card">
     <div class="week-header">
       <span class="week-num">Week 2</span>
-      <span class="week-status locked">Locked</span>
+      <span class="week-status locked" id="week2-status">Locked</span>
     </div>
-    <div class="future-week">
-      <div class="future-label">Unlocks with Week 2 post. Stay tuned.</div>
+    <div class="letter-gate" id="week2-gate">
+      <div class="gate-label">Enter this week&#39;s letter to unlock</div>
+      <div class="letter-inputs">
+        <input class="letter-input" id="w2-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      </div>
+      <button class="gate-btn" onclick="checkWeek2Letters()">Unlock</button>
+      <div class="gate-error" id="week2-gate-error">Incorrect. Keep looking.</div>
+    </div>
+    <div class="trivia" id="week2-trivia">
+      <div class="trivia-divider"></div>
+      <p class="trivia-q">The letters of Scaled and Icy contain a hidden message about the TØP lore. What do they spell?</p>
+      <input class="trivia-input" id="w2-trivia-input" placeholder="Your answer..." autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <br/>
+      <button class="trivia-btn" onclick="checkWeek2Trivia()">Submit</button>
+      <div class="trivia-error" id="week2-trivia-error">Try again.</div>
+    </div>
+    <div class="phrase-reveal" id="week2-phrase">
+      <div class="phrase-label">Letter Collected</div>
+      <div class="phrase-lore"><strong>Ultimate allegiance</strong><br><br>Because Christ has my ultimate allegiance, I can love my family well.<br>Because Christ has my ultimate allegiance, I can love and do the work he has given me well.<br>Because Christ has my ultimate allegiance, I can serve his church and people well.<br>Because Christ has my ultimate allegiance, I can serve patriotically within the boundaries of land he has placed me in well.<br>Because Christ has my ultimate allegiance, I can enjoy his creation well.<br><br>However, if any of these things were to replace Christ as my ultimate allegiance, no matter how well I do them, I have nothing. For all things in creation pale in comparison to having a right relationship with the Maker of heaven and earth. We must order Him first in our hearts before all things, even good things; He must come before all, because He is above all. Indeed, all good things come from Him so why should it be any other way?<br><br>If you have not learned this truth yet, it is because sin is blinding you from its reality. May Christ in His kindness lead you to repentance; that you may see His glory and desire Him above all. If you would rather save your life for yourself, you will lose it; but he who gives his life for Christ's sake, receives eternal life.</div>
     </div>
   </div>
 
@@ -318,7 +335,8 @@
 
   // Week 1 letters in order (left to right as collected)
   var weekLetters = {
-    1: ['R','M']
+    1: ['R','M'],
+    2: ['C']
   };
 
   function buildTracker() {
@@ -362,7 +380,51 @@
     if (this.value.length === 1) document.getElementById('w1-l2').focus();
   });
 
-  window.addEventListener('load', function() {
+  function checkWeek2Letters() {
+    var l1 = document.getElementById('w2-l1').value.trim().toUpperCase();
+    if (l1 === 'C') {
+      document.getElementById('w2-l1').classList.add('correct');
+      document.getElementById('week2-gate-error').style.display = 'none';
+      localStorage.setItem('w2_letters','true');
+      showWeek2Trivia();
+    } else {
+      document.getElementById('week2-gate-error').style.display = 'block';
+    }
+  }
+
+  function showWeek2Trivia() {
+    document.getElementById('week2-trivia').style.display = 'block';
+    document.getElementById('week2-status').textContent = 'Unlocked';
+    document.getElementById('week2-status').className = 'week-status unlocked';
+    document.getElementById('week2-gate').style.display = 'none';
+  }
+
+  function checkWeek2Trivia() {
+    var answer = document.getElementById('w2-trivia-input').value.trim().toLowerCase();
+    if (answer === 'clancy is dead') {
+      localStorage.setItem('w2_trivia','true');
+      showWeek2Phrase();
+    } else {
+      document.getElementById('week2-trivia-error').style.display = 'block';
+    }
+  }
+
+  function showWeek2Phrase() {
+    document.getElementById('week2-phrase').style.display = 'block';
+    document.getElementById('week2-status').textContent = 'Solved';
+    document.getElementById('week2-status').className = 'week-status solved';
+    document.getElementById('week2-trivia-error').style.display = 'none';
+    buildTracker();
+  }
+
+  document.getElementById('w2-l1').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkWeek2Letters();
+  });
+  document.getElementById('w2-trivia-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkWeek2Trivia();
+  });
+
+    window.addEventListener('load', function() {
     if (localStorage.getItem('w1_letters') === 'true') {
       showWeek1Trivia();
       document.getElementById('w1-l1').classList.add('correct');
@@ -371,6 +433,14 @@
     if (localStorage.getItem('w1_trivia') === 'true') {
       showWeek1Trivia();
       showWeek1Phrase();
+    }
+    if (localStorage.getItem('w2_letters') === 'true') {
+      showWeek2Trivia();
+      document.getElementById('w2-l1').classList.add('correct');
+    }
+    if (localStorage.getItem('w2_trivia') === 'true') {
+      showWeek2Trivia();
+      showWeek2Phrase();
     }
     buildTracker();
   });
