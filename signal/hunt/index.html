@@ -401,8 +401,7 @@
 
   function checkWeek2Trivia() {
     var answer = document.getElementById('w2-trivia-input').value.trim().toLowerCase();
-    var valid2 = ['clancy is dead', 'clancy is dead.', 'scaled and icy', 'scaled & icy'];
-    if (valid2.includes(answer)) {
+    if (answer === 'clancy is dead') {
       localStorage.setItem('w2_trivia','true');
       showWeek2Phrase();
     } else {
