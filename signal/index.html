@@ -368,6 +368,23 @@
     .fn a:hover { color: var(--gold); }
     .fd {
       font-weight: 700; font-size: .56rem; color: rgba(110,107,101,.35); letter-spacing: .08em; margin-top: 12px; line-height: 1.9; }
+
+    /* GOT LETTERS CTAs */
+    .cta-banner { width: 100%; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); background: rgba(200,168,75,0.07); padding: 14px 24px; text-align: center; }
+    .cta-banner-link { font-family: 'Cinzel', serif; font-size: .72rem; font-weight: 700; letter-spacing: .24em; color: var(--gold); text-decoration: none; transition: color .2s; }
+    .cta-banner-link:hover { color: var(--white); }
+    .cta-block { text-align: center; padding: 40px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: rgba(200,168,75,0.04); }
+    .cta-block-sub { font-family: 'Lato', sans-serif; font-size: .84rem; font-weight: 300; color: var(--muted); line-height: 1.8; max-width: 480px; margin: 0 auto 20px; }
+    .cta-block-btn { display: inline-block; font-family: 'Cinzel', serif; font-size: .72rem; font-weight: 700; letter-spacing: .2em; color: var(--bg); background: var(--gold-dim); padding: 12px 32px; text-decoration: none; clip-path: polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); transition: background .2s; }
+    .cta-block-btn:hover { background: var(--gold); }
+    .cta-inline { font-family: 'Cinzel', serif; font-size: .68rem; font-weight: 700; letter-spacing: .12em; color: var(--muted); text-align: center; padding: 20px 24px; border-top: 1px solid var(--border); }
+    .cta-inline a { color: var(--gold); text-decoration: none; transition: color .2s; }
+    .cta-inline a:hover { color: var(--white); }
+    .cta-ready-btn { display: inline-block; font-family: 'Cinzel', serif; font-size: .72rem; font-weight: 700; letter-spacing: .2em; color: var(--bg); background: var(--gold-dim); padding: 12px 32px; text-decoration: none; clip-path: polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); transition: background .2s; margin-top: 28px; }
+    .cta-ready-btn:hover { background: var(--gold); }
+    .cta-footer-line { text-align: center; padding: 20px 24px; border-top: 1px solid var(--border); }
+    .cta-footer-line a { font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; letter-spacing: .28em; color: var(--gold-dim); text-decoration: none; transition: color .2s; }
+    .cta-footer-line a:hover { color: var(--gold); }
   </style>
 </head>
 <body>
@@ -375,6 +392,11 @@
 <!-- TICKET ALERT BANNER -->
 <div class="ticket-banner">
   🎟 FREE TØP FLOOR TICKET GIVEAWAY &nbsp;·&nbsp; <span>Ohio Stadium · Columbus, OH · October 17, 2026</span>
+</div>
+
+<!-- GOT LETTERS BANNER -->
+<div class="cta-banner">
+  <a href="/signal/hunt" class="cta-banner-link">Got Letters? Enter Them Here →</a>
 </div>
 
 <!-- CHAIN BANNER -->
@@ -463,6 +485,12 @@
 
 
 </section>
+
+<!-- GOT LETTERS CTA — after prize -->
+<div class="cta-block">
+  <p class="cta-block-sub">Collecting letters from the hunt? Enter them here and track your progress.</p>
+  <a href="/signal/hunt" class="cta-block-btn">ENTER LETTERS</a>
+</div>
 
 <!-- MUSIC STRIP -->
 <div class="music-strip">
@@ -844,6 +872,9 @@
   </div>
 </section>
 
+<!-- GOT LETTERS CTA — after artist grid -->
+<div class="cta-inline">Got your letters from this week's artist? → <a href="/signal/hunt">Enter them at the Hunt Page</a></div>
+
 <!-- ENTER -->
 <section class="section" id="enter">
   <div class="label">Enter</div>
@@ -863,9 +894,15 @@
   <p>Open worldwide. No purchase necessary. Entry by Instagram DM only. One submission per person. Correct phrase only.</p>
   <p>Live draw at the close of the final week on @secondadam_nc. Winner drawn on screen using a visible randomizer. Winner must join live within 10 minutes and confirm attendance at the October 17, 2026 Columbus show. Ticketmaster transfer completed live on stream. No response within 10 minutes results in an immediate redraw. Prize non-transferable after confirmed transfer.</p>
   <p>#SANCBIRTOPHunt is a campaign by Second Adam &amp; the New Creations. Not affiliated with or endorsed by Twenty One Pilots, Fueled by Ramen, or Elektra Records.</p>
+  <a href="/signal/hunt" class="cta-ready-btn">Ready to Enter? Go to the Hunt Page</a>
 </section>
 
 <div class="divider">· #biblicalindierock ·</div>
+
+<!-- GOT LETTERS CTA — above footer -->
+<div class="cta-footer-line">
+  <a href="/signal/hunt">GOT LETTERS? → secondadamnewcreations.com/signal/hunt</a>
+</div>
 
 <footer>
   <a href="https://secondadamnewcreations.com" class="fl">Second Adam &amp; the New Creations</a>
