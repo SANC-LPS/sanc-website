@@ -104,6 +104,10 @@
     .ffm-cta-sub{font-family:'Lato',sans-serif;font-size:.84rem;font-weight:300;color:var(--muted);line-height:1.8;max-width:480px;margin:0 auto 24px;}
     .ffm-cta-btn{font-family:'Cinzel',serif;font-size:.62rem;font-weight:700;letter-spacing:.16em;color:var(--bg);background:var(--gold-dim);padding:9px 20px;text-decoration:none;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:background .2s;display:inline-block;}
     .ffm-cta-btn:hover{background:var(--gold);}
+
+    /* WEEK 3 YOUTUBE PLAYER */
+    .week3-player-wrap{width:100%;border:1px solid var(--gold);margin-bottom:20px;overflow:hidden;background:#000;aspect-ratio:16/9;}
+    .week3-player-wrap iframe,.week3-player-wrap>div{display:block;width:100%;height:100%;}
   </style>
 </head>
 <body>
@@ -229,6 +233,7 @@
     </div>
     <div class="phrase-reveal" id="week3-phrase">
       <div class="phrase-label">Letter Collected</div>
+      <div class="week3-player-wrap"><div id="week3-youtube"></div></div>
       <div class="phrase-lore"><strong>Heathens</strong><br><br>Do we who call ourselves Christians have any friends who are heathens? Heathens by TØP is a profound song to me. I find myself asking, how friendly am I toward unbelievers? Tyler gives me good advice; take it slow. Wait for them to ask you who you know. Who do I know? Who does Tyler know? I'm confident that person is Christ.<br><br>When you read about Christ in the Gospels (and if you haven't, you absolutely should), you see Christ befriending heathens. He is a friend to sinners and the unholy. The self-righteous get upset with Him about this all the time, but He often said that the healthy do not need a physician, but the sick.<br><br>If we are to be followers of Christ, then our circle of friends should know the categories of sin and holiness exist, but still want to hang with us. Christ did not partake in sinful behaviors — He exposed them in a way that drew people to Him. He loved them enough to give them the words of eternal life.<br><br>We need to lend our ear to the lost, to pray for them, to be friends with them, and take it slow. Invest in friendships as Christ befriended us when we were still heathens enslaved to our sins.<br><br>In Christ, no matter where you're from, a heathen enslaved to a false religion or worldview can be turned into a Christian — a Bandito — free to live unto God, to enjoy and walk alongside His people because of the finished work at the cross by His only Son.</div>
     </div>
   </div>
@@ -473,18 +478,53 @@
       document.getElementById('week3-gate-error').style.display = 'none';
       localStorage.setItem('w3_letters','true');
       localStorage.setItem('w3_unlocked','true');
-      showWeek3Phrase();
+      showWeek3Phrase(true);
     } else {
       document.getElementById('week3-gate-error').style.display = 'block';
     }
   }
 
-  function showWeek3Phrase() {
+  var week3ShouldAutoplay = false;
+
+  function showWeek3Phrase(autoplay) {
     document.getElementById('week3-phrase').style.display = 'block';
     document.getElementById('week3-status').textContent = 'Solved';
     document.getElementById('week3-status').className = 'week-status solved';
     document.getElementById('week3-gate').style.display = 'none';
     buildTracker();
+    week3ShouldAutoplay = !!autoplay;
+    initWeek3Player();
+  }
+
+  function initWeek3Player() {
+    if (typeof YT !== 'undefined' && typeof YT.Player === 'function') {
+      createWeek3Player(week3ShouldAutoplay);
+    } else if (!document.getElementById('yt-api-script')) {
+      var tag = document.createElement('script');
+      tag.id = 'yt-api-script';
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+    }
+  }
+
+  window.onYouTubeIframeAPIReady = function() {
+    if (document.getElementById('week3-youtube') &&
+        document.getElementById('week3-phrase').style.display !== 'none') {
+      createWeek3Player(week3ShouldAutoplay);
+    }
+  };
+
+  function createWeek3Player(autoplay) {
+    new YT.Player('week3-youtube', {
+      videoId: 'UprcpdwuwCg',
+      playerVars: { rel: 0, modestbranding: 1, enablejsapi: 1 },
+      events: {
+        onReady: function(e) {
+          e.target.setVolume(25);
+          if (autoplay) e.target.playVideo();
+        }
+      }
+    });
   }
 
   document.getElementById('w3-l1').addEventListener('keydown', function(e) {
@@ -511,7 +551,7 @@
     }
     if (localStorage.getItem('w3_letters') === 'true') {
       document.getElementById('w3-l1').classList.add('correct');
-      showWeek3Phrase();
+      showWeek3Phrase(false);
     }
     buildTracker();
   });
