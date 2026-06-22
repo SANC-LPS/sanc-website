@@ -213,10 +213,30 @@
     </div>
   </div>
 
-  <!-- WEEKS 3-13 -->
+  <!-- WEEK 3 -->
+  <div class="week-card" id="week3-card">
+    <div class="week-header">
+      <span class="week-num">Week 3</span>
+      <span class="week-status locked" id="week3-status">Locked</span>
+    </div>
+    <div class="letter-gate" id="week3-gate">
+      <div class="gate-label">Enter this week&#39;s letter to unlock</div>
+      <div class="letter-inputs">
+        <input class="letter-input" id="w3-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      </div>
+      <button class="gate-btn" onclick="checkWeek3Letters()">Unlock</button>
+      <div class="gate-error" id="week3-gate-error">Incorrect. Keep looking.</div>
+    </div>
+    <div class="phrase-reveal" id="week3-phrase">
+      <div class="phrase-label">Letter Collected</div>
+      <div class="phrase-lore"><strong>Heathens</strong><br><br>Do we who call ourselves Christians have any friends who are heathens? Heathens by TØP is a profound song to me. I find myself asking, how friendly am I toward unbelievers? Tyler gives me good advice; take it slow. Wait for them to ask you who you know. Who do I know? Who does Tyler know? I'm confident that person is Christ.<br><br>When you read about Christ in the Gospels (and if you haven't, you absolutely should), you see Christ befriending heathens. He is a friend to sinners and the unholy. The self-righteous get upset with Him about this all the time, but He often said that the healthy do not need a physician, but the sick.<br><br>If we are to be followers of Christ, then our circle of friends should know the categories of sin and holiness exist, but still want to hang with us. Christ did not partake in sinful behaviors — He exposed them in a way that drew people to Him. He loved them enough to give them the words of eternal life.<br><br>We need to lend our ear to the lost, to pray for them, to be friends with them, and take it slow. Invest in friendships as Christ befriended us when we were still heathens enslaved to our sins.<br><br>In Christ, no matter where you're from, a heathen enslaved to a false religion or worldview can be turned into a Christian — a Bandito — free to live unto God, to enjoy and walk alongside His people because of the finished work at the cross by His only Son.</div>
+    </div>
+  </div>
+
+  <!-- WEEKS 4-13 -->
   <div class="week-card">
     <div class="week-header">
-      <span class="week-num">Weeks 3 — 13</span>
+      <span class="week-num">Weeks 4 — 13</span>
       <span class="week-status locked">Locked</span>
     </div>
     <div class="future-week">
@@ -350,7 +370,15 @@
   // Week 1 letters in order (left to right as collected)
   var weekLetters = {
     1: ['R','M'],
-    2: ['C']
+    2: ['C'],
+    3: ['E']
+  };
+
+  // Per-week localStorage key that signals the week is fully solved
+  var weekSolveKey = {
+    1: 'w1_trivia',
+    2: 'w2_trivia',
+    3: 'w3_unlocked'
   };
 
   function buildTracker() {
@@ -359,7 +387,7 @@
     var weeks = Object.keys(weekLetters).map(Number).sort(function(a,b){return a-b;});
     for (var i = 0; i < weeks.length; i++) {
       var wk = weeks[i];
-      var key = 'w' + wk + '_trivia';
+      var key = weekSolveKey[wk] || ('w' + wk + '_trivia');
       if (localStorage.getItem(key) === 'true') {
         var letters = weekLetters[wk];
         for (var j = 0; j < letters.length; j++) {
@@ -438,6 +466,31 @@
     if (e.key === 'Enter') checkWeek2Trivia();
   });
 
+  function checkWeek3Letters() {
+    var l1 = document.getElementById('w3-l1').value.trim().toUpperCase();
+    if (l1 === 'E') {
+      document.getElementById('w3-l1').classList.add('correct');
+      document.getElementById('week3-gate-error').style.display = 'none';
+      localStorage.setItem('w3_letters','true');
+      localStorage.setItem('w3_unlocked','true');
+      showWeek3Phrase();
+    } else {
+      document.getElementById('week3-gate-error').style.display = 'block';
+    }
+  }
+
+  function showWeek3Phrase() {
+    document.getElementById('week3-phrase').style.display = 'block';
+    document.getElementById('week3-status').textContent = 'Solved';
+    document.getElementById('week3-status').className = 'week-status solved';
+    document.getElementById('week3-gate').style.display = 'none';
+    buildTracker();
+  }
+
+  document.getElementById('w3-l1').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkWeek3Letters();
+  });
+
     window.addEventListener('load', function() {
     if (localStorage.getItem('w1_letters') === 'true') {
       showWeek1Trivia();
@@ -455,6 +508,10 @@
     if (localStorage.getItem('w2_trivia') === 'true') {
       showWeek2Trivia();
       showWeek2Phrase();
+    }
+    if (localStorage.getItem('w3_letters') === 'true') {
+      document.getElementById('w3-l1').classList.add('correct');
+      showWeek3Phrase();
     }
     buildTracker();
   });
