@@ -172,8 +172,9 @@
       <p class="trivia-q">What TØP album is this symbol associated with?</p>
       <input class="trivia-input" id="w1-trivia-input" placeholder="Your answer..." autocomplete="off" autocorrect="off" spellcheck="false"/>
       <br/>
-      <button class="trivia-btn" onclick="checkWeek1Trivia()">Submit</button>
+      <button class="trivia-btn" id="week1-trivia-btn" onclick="checkWeek1Trivia()">Submit</button>
       <div class="trivia-error" id="week1-trivia-error">Try again.</div>
+      <div id="week1-trivia-success" style="display:none;font-size:.72rem;font-weight:700;letter-spacing:.1em;color:#44aa44;margin-top:10px;">✓ Correct</div>
     </div>
     <div class="phrase-reveal" id="week1-phrase">
       <div class="phrase-label">The Phrase</div>
@@ -433,10 +434,10 @@
         }
       }
     }
-    // 15 letter positions; · separator after position 4 revealed only once W4 trivia is solved
+    // 16 letter positions; · separator after position 4 revealed only once W4 trivia is solved
     var hintUnlocked = localStorage.getItem('w4_trivia') === 'true';
     var parts = [];
-    for (var k = 0; k < 15; k++) {
+    for (var k = 0; k < 16; k++) {
       if (k === 4 && hintUnlocked) parts.push('·');
       parts.push(k < collected.length ? collected[k] : '_');
     }
@@ -448,7 +449,11 @@
     document.getElementById('week1-phrase').style.display = 'block';
     document.getElementById('week1-status').textContent = 'Solved';
     document.getElementById('week1-status').className = 'week-status solved';
+    document.getElementById('week1-trivia').style.display = 'block';
+    document.getElementById('w1-trivia-input').style.display = 'none';
+    document.getElementById('week1-trivia-btn').style.display = 'none';
     document.getElementById('week1-trivia-error').style.display = 'none';
+    document.getElementById('week1-trivia-success').style.display = 'block';
     buildTracker();
   }
 
