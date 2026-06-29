@@ -108,6 +108,10 @@
     /* WEEK 3 YOUTUBE PLAYER */
     .week3-player-wrap{width:100%;border:1px solid var(--gold);margin-bottom:20px;overflow:hidden;background:#000;aspect-ratio:16/9;}
     .week3-player-wrap iframe,.week3-player-wrap>div{display:block;width:100%;height:100%;}
+
+    /* WEEK 4 YOUTUBE PLAYER */
+    .week4-player-wrap{width:100%;border:1px solid var(--gold);margin-bottom:20px;overflow:hidden;background:#000;aspect-ratio:16/9;}
+    .week4-player-wrap iframe,.week4-player-wrap>div{display:block;width:100%;height:100%;}
   </style>
 </head>
 <body>
@@ -238,10 +242,40 @@
     </div>
   </div>
 
-  <!-- WEEKS 4-13 -->
+  <!-- WEEK 4 -->
+  <div class="week-card" id="week4-card">
+    <div class="week-header">
+      <span class="week-num">Week 4</span>
+      <span class="week-status locked" id="week4-status">Locked</span>
+    </div>
+    <div class="trivia" id="week4-trivia" style="display:block;padding-top:20px;">
+      <div class="gate-label">Artist: Chase Tremaine &middot; @chasetremaine</div>
+      <div class="trivia-divider"></div>
+      <img class="trivia-image" src="ode-to-sleep.webp" alt="Ode to Sleep"/>
+      <div class="trivia-q">Who does Tyler adore?</div>
+      <input class="trivia-input" id="w4-trivia-input" placeholder="Your answer..." autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="trivia-btn" onclick="checkWeek4Trivia()">Submit</button>
+      <div class="trivia-error" id="week4-trivia-error">Try again.</div>
+    </div>
+    <div class="letter-gate" id="week4-gate" style="display:none;">
+      <div class="gate-label">Enter this week&#39;s letters to unlock</div>
+      <div class="letter-inputs">
+        <input class="letter-input" id="w4-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <input class="letter-input" id="w4-l2" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      </div>
+      <button class="gate-btn" onclick="checkWeek4Letters()">Unlock</button>
+      <div class="gate-error" id="week4-gate-error">Incorrect. Keep looking.</div>
+    </div>
+    <div class="phrase-reveal" id="week4-phrase">
+      <div class="phrase-label">Letters Collected</div>
+      <div class="week4-player-wrap"><div id="week4-youtube"></div></div>
+    </div>
+  </div>
+
+  <!-- WEEKS 5-13 -->
   <div class="week-card">
     <div class="week-header">
-      <span class="week-num">Weeks 4 — 13</span>
+      <span class="week-num">Weeks 5 — 13</span>
       <span class="week-status locked">Locked</span>
     </div>
     <div class="future-week">
@@ -376,18 +410,19 @@
   var weekLetters = {
     1: ['R','M'],
     2: ['C'],
-    3: ['E']
+    3: ['E'],
+    4: ['H','I']
   };
 
   // Per-week localStorage key that signals the week is fully solved
   var weekSolveKey = {
     1: 'w1_trivia',
     2: 'w2_trivia',
-    3: 'w3_unlocked'
+    3: 'w3_unlocked',
+    4: 'w4_unlocked'
   };
 
   function buildTracker() {
-    // Build 16-char tracker from saved letters, left to right
     var collected = [];
     var weeks = Object.keys(weekLetters).map(Number).sort(function(a,b){return a-b;});
     for (var i = 0; i < weeks.length; i++) {
@@ -400,13 +435,14 @@
         }
       }
     }
-    // Fill tracker: collected letters in positions, rest as dashes
-    var tracker = '';
+    // 16 letter positions, · word separator after position 4, space-separated
+    var parts = [];
     for (var k = 0; k < 16; k++) {
-      tracker += k < collected.length ? collected[k] : '_';
+      if (k === 4) parts.push('·');
+      parts.push(k < collected.length ? collected[k] : '_');
     }
     var el = document.getElementById('phrase-tracker');
-    if (el) el.textContent = tracker;
+    if (el) el.textContent = parts.join(' ');
   }
 
   function showWeek1Phrase() {
@@ -512,6 +548,10 @@
         document.getElementById('week3-phrase').style.display !== 'none') {
       createWeek3Player(week3ShouldAutoplay);
     }
+    if (document.getElementById('week4-youtube') &&
+        document.getElementById('week4-phrase').style.display !== 'none') {
+      createWeek4Player(week4ShouldAutoplay);
+    }
   };
 
   function createWeek3Player(autoplay) {
@@ -529,6 +569,86 @@
 
   document.getElementById('w3-l1').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') checkWeek3Letters();
+  });
+
+  function checkWeek4Trivia() {
+    var answer = document.getElementById('w4-trivia-input').value.trim();
+    if (answer === 'Jesus' || answer === 'Christ') {
+      localStorage.setItem('w4_trivia','true');
+      document.getElementById('week4-trivia-error').style.display = 'none';
+      showWeek4LetterGate();
+    } else {
+      document.getElementById('week4-trivia-error').style.display = 'block';
+    }
+  }
+
+  function showWeek4LetterGate() {
+    document.getElementById('week4-trivia').style.display = 'none';
+    document.getElementById('week4-gate').style.display = 'block';
+    document.getElementById('week4-status').textContent = 'Unlocked';
+    document.getElementById('week4-status').className = 'week-status unlocked';
+  }
+
+  function checkWeek4Letters() {
+    var l1 = document.getElementById('w4-l1').value.trim().toUpperCase();
+    var l2 = document.getElementById('w4-l2').value.trim().toUpperCase();
+    if (l1 === 'H' && l2 === 'I') {
+      document.getElementById('w4-l1').classList.add('correct');
+      document.getElementById('w4-l2').classList.add('correct');
+      document.getElementById('week4-gate-error').style.display = 'none';
+      localStorage.setItem('w4_letters','true');
+      localStorage.setItem('w4_unlocked','true');
+      showWeek4Phrase(true);
+    } else {
+      document.getElementById('week4-gate-error').style.display = 'block';
+    }
+  }
+
+  var week4ShouldAutoplay = false;
+
+  function showWeek4Phrase(autoplay) {
+    document.getElementById('week4-phrase').style.display = 'block';
+    document.getElementById('week4-status').textContent = 'Solved';
+    document.getElementById('week4-status').className = 'week-status solved';
+    document.getElementById('week4-gate').style.display = 'none';
+    document.getElementById('week4-trivia').style.display = 'none';
+    buildTracker();
+    week4ShouldAutoplay = !!autoplay;
+    initWeek4Player();
+  }
+
+  function initWeek4Player() {
+    if (typeof YT !== 'undefined' && typeof YT.Player === 'function') {
+      createWeek4Player(week4ShouldAutoplay);
+    } else if (!document.getElementById('yt-api-script')) {
+      var tag = document.createElement('script');
+      tag.id = 'yt-api-script';
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+    }
+  }
+
+  function createWeek4Player(autoplay) {
+    new YT.Player('week4-youtube', {
+      videoId: '2OnO3UXFZdE',
+      playerVars: { rel: 0, modestbranding: 1, enablejsapi: 1 },
+      events: {
+        onReady: function(e) {
+          e.target.setVolume(25);
+          if (autoplay) e.target.playVideo();
+        }
+      }
+    });
+  }
+
+  document.getElementById('w4-trivia-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkWeek4Trivia();
+  });
+  document.getElementById('w4-l1').addEventListener('input', function() {
+    if (this.value.length === 1) document.getElementById('w4-l2').focus();
+  });
+  document.getElementById('w4-l2').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkWeek4Letters();
   });
 
     window.addEventListener('load', function() {
@@ -552,6 +672,14 @@
     if (localStorage.getItem('w3_letters') === 'true') {
       document.getElementById('w3-l1').classList.add('correct');
       showWeek3Phrase(false);
+    }
+    if (localStorage.getItem('w4_trivia') === 'true') {
+      showWeek4LetterGate();
+    }
+    if (localStorage.getItem('w4_unlocked') === 'true') {
+      document.getElementById('w4-l1').classList.add('correct');
+      document.getElementById('w4-l2').classList.add('correct');
+      showWeek4Phrase(false);
     }
     buildTracker();
   });
