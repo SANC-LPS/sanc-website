@@ -263,11 +263,13 @@
       <img class="trivia-image" src="ode-to-sleep.webp" alt="Ode to Sleep"/>
       <div class="trivia-q">Who does Tyler adore?</div>
       <input class="trivia-input" id="w4-trivia-input" placeholder="Your answer..." autocomplete="off" autocorrect="off" spellcheck="false"/>
-      <button class="trivia-btn" onclick="checkWeek4Trivia()">Submit</button>
+      <button class="trivia-btn" id="week4-trivia-btn" onclick="checkWeek4Trivia()">Submit</button>
       <div class="trivia-error" id="week4-trivia-error">Try again.</div>
+      <div id="week4-trivia-success" style="display:none;font-size:.72rem;font-weight:700;letter-spacing:.1em;color:#44aa44;margin-top:10px;">&#10003; Correct</div>
     </div>
     <div class="phrase-reveal" id="week4-phrase">
       <div class="week4-player-wrap"><div id="week4-youtube"></div></div>
+      <div class="phrase-lore"><strong>The Worst Friend</strong><br><br>The worst friend tells you you have nothing to be sorry for. You have nothing to apologize to God for. You&#8217;re good just as you are. Don&#8217;t change. The concept of regret is never in his thoughts or on his lips. Are you your worst friend?<br><br>So much of Tyler&#8217;s songwriting is geared towards encouraging us to have honest conversations with God and ourselves. There is good and evil in this world and we&#8217;re all choosing sides. Refusing to think, to avoid the choice, is making a choice with the worst friend. Either it&#8217;s a lie you believed from someone else, or a lie you tell yourself. Don&#8217;t be that guy. Be honest with God and yourself. Measure yourself against His holiness and your filth. This is where love, justice, and mercy meet &#8212; in Christ, at the cross. He has risen, so there is hope.<br><br>The best friends are those willing to tell you that east is up. That there is a way out. Christ has risen!</div>
     </div>
   </div>
 
@@ -614,7 +616,11 @@
     document.getElementById('week4-phrase').style.display = 'block';
     document.getElementById('week4-status').textContent = 'Solved';
     document.getElementById('week4-status').className = 'week-status solved';
-    document.getElementById('week4-trivia').style.display = 'none';
+    document.getElementById('week4-trivia').style.display = 'block';
+    document.getElementById('w4-trivia-input').style.display = 'none';
+    document.getElementById('week4-trivia-btn').style.display = 'none';
+    document.getElementById('week4-trivia-error').style.display = 'none';
+    document.getElementById('week4-trivia-success').style.display = 'block';
     buildTracker();
     week4ShouldAutoplay = !!autoplay;
     initWeek4Player();
