@@ -112,6 +112,16 @@
     /* WEEK 4 YOUTUBE PLAYER */
     .week4-player-wrap{width:100%;border:1px solid var(--gold);margin-bottom:20px;overflow:hidden;background:#000;aspect-ratio:16/9;}
     .week4-player-wrap iframe,.week4-player-wrap>div{display:block;width:100%;height:100%;}
+
+    /* WEEK 5 YOUTUBE PLAYER */
+    .week5-player-wrap{width:100%;border:1px solid var(--gold);margin-bottom:20px;overflow:hidden;background:#000;aspect-ratio:16/9;}
+    .week5-player-wrap iframe,.week5-player-wrap>div{display:block;width:100%;height:100%;}
+    .phrase-video-note{font-size:.72rem;color:var(--muted);text-align:left;margin-top:0;margin-bottom:20px;line-height:1.8;font-style:italic;}
+    .discussion-cta{margin-top:0;padding:16px;border-left:3px solid var(--gold-dim);}
+    .discussion-text{font-size:.72rem;color:var(--white);line-height:1.9;margin-bottom:14px;}
+    .insta-dm-btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;text-decoration:none;font-family:'Cinzel',serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;}
+    .insta-dm-btn:hover{opacity:.88;}
+    .insta-icon{width:18px;height:18px;fill:#fff;flex-shrink:0;}
   </style>
 </head>
 <body>
@@ -273,10 +283,39 @@
     </div>
   </div>
 
-  <!-- WEEKS 5-13 -->
+  <!-- WEEK 5 -->
+  <div class="week-card" id="week5-card">
+    <div class="week-header">
+      <span class="week-num">Week 5</span>
+      <span class="week-status locked" id="week5-status">Locked</span>
+    </div>
+    <div class="letter-gate" id="week5-gate">
+      <div class="gate-label">Enter this week&#39;s letters to unlock</div>
+      <div class="letter-inputs">
+        <input class="letter-input" id="w5-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <input class="letter-input" id="w5-l2" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      </div>
+      <button class="gate-btn" onclick="checkWeek5Letters()">Unlock</button>
+      <div class="gate-error" id="week5-gate-error">Incorrect. Keep looking.</div>
+    </div>
+    <div class="phrase-reveal" id="week5-phrase">
+      <div class="phrase-label">Letters Collected</div>
+      <div class="week5-player-wrap"><div id="week5-youtube"></div></div>
+      <p class="phrase-video-note">Around the 2:35 mark, Tyler describes Blurryface as a kind of mirror &#8212; a seat at the table he could sit across from and really face. He talks about recognizing the things he doesn&#8217;t like about himself, then realizing it came down to &#8220;jurisdiction&#8221; &#8212; specific places, mentally or physically, where that persona held control. Staying away from those places is what started to loosen its grip. That&#8217;s what Trench represented: leaving for somewhere safer, wilder, less predictable, and refusing to keep playing by Blurryface&#8217;s rules.</p>
+      <div class="discussion-cta">
+        <p class="discussion-text">I&#8217;m curious what you think the T&Oslash;P lore is all pointing to from Tyler&#8217;s point of view. Like, why he created it. If you DM me on Instagram with your theory, I will reply with a hint on the hunt for the ticket (one of the words in the phrase).<br><br>I&#8217;ll share with you my thoughts on this question now. I&#8217;m honestly just enjoying learning about the lore still. I&#8217;m relatively new to the T&Oslash;P scene and don&#8217;t want to pretend that I have it all figured out.<br><br>But one theme I see in Tyler&#8217;s writing, going all the way back to his first album, is emotional honesty. He practices and encourages transparency in introspection. He wants us to face ourselves and confront the truth of our brokenness. To think, to ask big questions, and to cry for help.<br><br>Ultimately, I think he is writing honestly about the reality of the fallen nature of man and that there is hope. There is a Helper, a way out, but we must be honest about the problems in us. The answer is not in us, we are the problem. The answer is outside of us.<br><br>This is consistent with the scriptural narrative that sinners need a savior, and the Bible teaches us that God opposes the proud but gives grace to the humble. Tyler would have us all do business with God; to be honest with him. Look at the mirror of the law and see our brokenness and ask for mercy and help. In Christ we find it.<br><br>And even those of us in Christ, as I believe Tyler is, will find that the old man in us still tries to take control. There are places we used to go but should no longer. In Christ we overtake our former selves.</p>
+        <a class="insta-dm-btn" href="https://instagram.com/secondadam_nc" target="_blank" rel="noopener">
+          <svg class="insta-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.163 6.163 0 1 0 0 12.326 6.163 6.163 0 0 0 0-12.326zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          DM @secondadam_nc
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEKS 6-13 -->
   <div class="week-card">
     <div class="week-header">
-      <span class="week-num">Weeks 5 — 13</span>
+      <span class="week-num">Weeks 6 — 13</span>
       <span class="week-status locked">Locked</span>
     </div>
     <div class="future-week">
@@ -412,7 +451,8 @@
     1: ['R','M'],
     2: ['C'],
     3: ['E'],
-    4: ['H','I']
+    4: ['H','I'],
+    5: ['R','I']
   };
 
   // Per-week localStorage key that signals the week is fully solved
@@ -420,7 +460,8 @@
     1: 'w1_trivia',
     2: 'w2_trivia',
     3: 'w3_unlocked',
-    4: 'w4_unlocked'
+    4: 'w4_unlocked',
+    5: 'w5_unlocked'
   };
 
   function buildTracker() {
@@ -558,6 +599,10 @@
         document.getElementById('week4-phrase').style.display !== 'none') {
       createWeek4Player(week4ShouldAutoplay);
     }
+    if (document.getElementById('week5-youtube') &&
+        document.getElementById('week5-phrase').style.display !== 'none') {
+      createWeek5Player(week5ShouldAutoplay);
+    }
   };
 
   function createWeek3Player(autoplay) {
@@ -660,6 +705,64 @@
     if (e.key === 'Enter') checkWeek4Trivia();
   });
 
+  function checkWeek5Letters() {
+    var l1 = document.getElementById('w5-l1').value.trim().toUpperCase();
+    var l2 = document.getElementById('w5-l2').value.trim().toUpperCase();
+    if (l1 === 'R' && l2 === 'I') {
+      document.getElementById('w5-l1').classList.add('correct');
+      document.getElementById('w5-l2').classList.add('correct');
+      document.getElementById('week5-gate-error').style.display = 'none';
+      localStorage.setItem('w5_letters','true');
+      localStorage.setItem('w5_unlocked','true');
+      showWeek5Phrase(true);
+    } else {
+      document.getElementById('week5-gate-error').style.display = 'block';
+    }
+  }
+
+  var week5ShouldAutoplay = false;
+
+  function showWeek5Phrase(autoplay) {
+    document.getElementById('week5-phrase').style.display = 'block';
+    document.getElementById('week5-status').textContent = 'Solved';
+    document.getElementById('week5-status').className = 'week-status solved';
+    document.getElementById('week5-gate').style.display = 'none';
+    buildTracker();
+    week5ShouldAutoplay = !!autoplay;
+    initWeek5Player();
+  }
+
+  function initWeek5Player() {
+    if (typeof YT !== 'undefined' && typeof YT.Player === 'function') {
+      createWeek5Player(week5ShouldAutoplay);
+    } else if (!document.getElementById('yt-api-script')) {
+      var tag = document.createElement('script');
+      tag.id = 'yt-api-script';
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+    }
+  }
+
+  function createWeek5Player(autoplay) {
+    new YT.Player('week5-youtube', {
+      videoId: 'dqxpUcPP4uk',
+      playerVars: { rel: 0, modestbranding: 1, enablejsapi: 1 },
+      events: {
+        onReady: function(e) {
+          e.target.setVolume(25);
+          if (autoplay) e.target.playVideo();
+        }
+      }
+    });
+  }
+
+  document.getElementById('w5-l1').addEventListener('input', function() {
+    if (this.value.length === 1) document.getElementById('w5-l2').focus();
+  });
+  document.getElementById('w5-l2').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkWeek5Letters();
+  });
+
     window.addEventListener('load', function() {
     if (localStorage.getItem('w1_letters') === 'true') {
       showWeek1Trivia();
@@ -690,6 +793,11 @@
     if (localStorage.getItem('w4_trivia') === 'true') {
       showWeek4Trivia();
       showWeek4Phrase(false);
+    }
+    if (localStorage.getItem('w5_letters') === 'true') {
+      document.getElementById('w5-l1').classList.add('correct');
+      document.getElementById('w5-l2').classList.add('correct');
+      showWeek5Phrase(false);
     }
     buildTracker();
   });
