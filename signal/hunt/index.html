@@ -129,6 +129,7 @@
     .week6-video-wrap iframe{display:block;width:100%;height:100%;}
     .share-cta{margin-top:0;margin-bottom:20px;padding:16px;border-left:3px solid var(--gold-dim);}
     .share-cta-text{font-size:.72rem;color:var(--white);line-height:1.9;margin:0;}
+    .hint-recap{font-size:.66rem;color:var(--muted);text-align:center;margin-top:14px;letter-spacing:.05em;line-height:1.9;padding:14px 4px 0;border-top:1px solid var(--border);}
   </style>
 </head>
 <body>
@@ -303,9 +304,6 @@
       <div class="gate-error" id="week5-gate-error">Incorrect. Keep looking.</div>
     </div>
     <div class="phrase-reveal" id="week5-phrase">
-      <div class="phrase-label">The Phrase</div>
-      <div class="phrase-dashes" id="phrase-tracker">________________</div>
-      <p class="phrase-note">16 letters. Collect them all. Unscramble.<br>DM @secondadam_nc when you have the answer.</p>
       <div class="week5-player-wrap"><div id="week5-youtube"></div></div>
       <p class="phrase-video-note">Around the 2:35 mark, Tyler describes Blurryface as a kind of mirror &#8212; a seat at the table he could sit across from and really face. He talks about recognizing the things he doesn&#8217;t like about himself, then realizing it came down to &#8220;jurisdiction&#8221; &#8212; specific places, mentally or physically, where that persona held control. Staying away from those places is what started to loosen its grip. That&#8217;s what Trench represented: leaving for somewhere safer, wilder, less predictable, and refusing to keep playing by Blurryface&#8217;s rules.</p>
       <div class="discussion-cta">
@@ -343,10 +341,32 @@
     </div>
   </div>
 
-  <!-- WEEKS 7-13 -->
+  <!-- WEEK 7 -->
+  <div class="week-card" id="week7-card">
+    <div class="week-header">
+      <span class="week-num">Week 7</span>
+      <span class="week-status locked" id="week7-status">Locked</span>
+    </div>
+    <div class="letter-gate" id="week7-gate">
+      <div class="gate-label">Enter this week&#39;s letter to unlock</div>
+      <div class="letter-inputs">
+        <input class="letter-input" id="w7-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      </div>
+      <button class="gate-btn" onclick="checkWeek7Letters()">Unlock</button>
+      <div class="gate-error" id="week7-gate-error">Incorrect. Keep looking.</div>
+    </div>
+    <div class="phrase-reveal" id="week7-phrase">
+      <div class="phrase-label">The Phrase</div>
+      <div class="phrase-dashes" id="phrase-tracker">________________</div>
+      <p class="phrase-note">16 letters. Collect them all. Unscramble.<br>DM @secondadam_nc when you have the answer.</p>
+      <p class="hint-recap">Need a hint? A couple of words are already out — DM @secondadam_nc if you caught the Week 5 discussion prompt, or check whether you shared the Week 6 video to your Story and tagged us. New hint opportunities keep coming as the hunt continues.</p>
+    </div>
+  </div>
+
+  <!-- WEEKS 8-13 -->
   <div class="week-card">
     <div class="week-header">
-      <span class="week-num">Weeks 7 — 13</span>
+      <span class="week-num">Weeks 8 — 13</span>
       <span class="week-status locked">Locked</span>
     </div>
     <div class="future-week">
@@ -484,7 +504,8 @@
     3: ['E'],
     4: ['H','I'],
     5: ['R','I'],
-    6: ['T']
+    6: ['T'],
+    7: ['R']
   };
 
   // Per-week localStorage key that signals the week is fully solved
@@ -494,7 +515,8 @@
     3: 'w3_unlocked',
     4: 'w4_unlocked',
     5: 'w5_unlocked',
-    6: 'w6_unlocked'
+    6: 'w6_unlocked',
+    7: 'w7_unlocked'
   };
 
   function buildTracker() {
@@ -821,6 +843,31 @@
     if (e.key === 'Enter') checkWeek6Letters();
   });
 
+  function checkWeek7Letters() {
+    var l1 = document.getElementById('w7-l1').value.trim().toUpperCase();
+    if (l1 === 'R') {
+      document.getElementById('w7-l1').classList.add('correct');
+      document.getElementById('week7-gate-error').style.display = 'none';
+      localStorage.setItem('w7_letters','true');
+      localStorage.setItem('w7_unlocked','true');
+      showWeek7Phrase();
+    } else {
+      document.getElementById('week7-gate-error').style.display = 'block';
+    }
+  }
+
+  function showWeek7Phrase() {
+    document.getElementById('week7-phrase').style.display = 'block';
+    document.getElementById('week7-status').textContent = 'Solved';
+    document.getElementById('week7-status').className = 'week-status solved';
+    document.getElementById('week7-gate').style.display = 'none';
+    buildTracker();
+  }
+
+  document.getElementById('w7-l1').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkWeek7Letters();
+  });
+
     window.addEventListener('load', function() {
     if (localStorage.getItem('w1_letters') === 'true') {
       showWeek1Trivia();
@@ -860,6 +907,10 @@
     if (localStorage.getItem('w6_letters') === 'true') {
       document.getElementById('w6-l1').classList.add('correct');
       showWeek6Phrase();
+    }
+    if (localStorage.getItem('w7_letters') === 'true') {
+      document.getElementById('w7-l1').classList.add('correct');
+      showWeek7Phrase();
     }
     buildTracker();
   });
