@@ -130,6 +130,7 @@
     .share-cta{margin-top:0;margin-bottom:20px;padding:16px;border-left:3px solid var(--gold-dim);}
     .share-cta-text{font-size:.72rem;color:var(--white);line-height:1.9;margin:0;}
     .hint-recap{font-size:.66rem;color:var(--muted);text-align:center;margin-top:14px;letter-spacing:.05em;line-height:1.9;padding:14px 4px 0;border-top:1px solid var(--border);}
+    .week8-lyric-image{width:100%;max-width:480px;display:block;margin:20px auto;border-radius:8px;border:1px solid var(--border);}
   </style>
 </head>
 <body>
@@ -356,17 +357,36 @@
       <div class="gate-error" id="week7-gate-error">Incorrect. Keep looking.</div>
     </div>
     <div class="phrase-reveal" id="week7-phrase">
-      <div class="phrase-label">The Phrase</div>
-      <div class="phrase-dashes" id="phrase-tracker">________________</div>
-      <p class="phrase-note">16 letters. Collect them all. Unscramble.<br>DM @secondadam_nc when you have the answer.</p>
       <p class="hint-recap">Need a hint? A couple of words are already out — DM @secondadam_nc if you caught the Week 5 discussion prompt, or check whether you shared the Week 6 video to your Story and tagged us. New hint opportunities keep coming as the hunt continues.</p>
     </div>
   </div>
 
-  <!-- WEEKS 8-13 -->
+  <!-- WEEK 8 -->
+  <div class="week-card" id="week8-card">
+    <div class="week-header">
+      <span class="week-num">Week 8</span>
+      <span class="week-status locked" id="week8-status">Locked</span>
+    </div>
+    <div class="letter-gate" id="week8-gate">
+      <div class="gate-label">Enter this week&#39;s letter to unlock</div>
+      <div class="letter-inputs">
+        <input class="letter-input" id="w8-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      </div>
+      <button class="gate-btn" onclick="checkWeek8Letters()">Unlock</button>
+      <div class="gate-error" id="week8-gate-error">Incorrect. Keep looking.</div>
+    </div>
+    <div class="phrase-reveal" id="week8-phrase">
+      <div class="phrase-label">The Phrase</div>
+      <div class="phrase-dashes" id="phrase-tracker">________________</div>
+      <p class="phrase-note">16 letters. Collect them all. Unscramble.<br>DM @secondadam_nc when you have the answer.</p>
+      <div class="phrase-lore">Have you ever heard someone say they are a born again Christian and thought that seems weird? They talk that way because the scripture talks that way. Jesus taught that one must be born again to enter his kingdom in John 3. Christ is the first to literally defeat death and when a person is gifted the ability to trust in Christ, they taste the hope of resurrection life for the first time. We too will come out of the graves and now walk in Christ&#8217;s resurrection power by faith with great hope, great joy and great peace.<br><br>&#8220;Blessed be the God and Father of our Lord Jesus Christ! According to his great mercy, he has caused us to be born again to a living hope through the resurrection of Jesus Christ from the dead, to an inheritance that is imperishable, undefiled, and unfading, kept in heaven for you, who by God&#8217;s power are being guarded through faith for a salvation ready to be revealed in the last time.&#8221; 1 Peter 1:3&#8211;5<br><br><img class="week8-lyric-image" src="week8-bandito.jpg" alt="Bandito lyrics, twenty one pilots"><br><br>I see Tyler talking honestly here. Knowing he needs help to make it to the other side. In City he is trapped and needs rescue. He only gets out by asking for help. Sahlo Folina is a prayer. Let me not destroy myself. I&#8217;ve built this world so I can have control. I wanted the apple in the garden because I didn&#8217;t trust you and wanted power I wasn&#8217;t supposed to have. I was deceived. I&#8217;m fallen. Sahlo Folina, help me. Don&#8217;t let me destroy myself before I get help. Send help quick. I need a birth from above. Save me.</div>
+    </div>
+  </div>
+
+  <!-- WEEKS 9-13 -->
   <div class="week-card">
     <div class="week-header">
-      <span class="week-num">Weeks 8 — 13</span>
+      <span class="week-num">Weeks 9 — 13</span>
       <span class="week-status locked">Locked</span>
     </div>
     <div class="future-week">
@@ -505,7 +525,8 @@
     4: ['H','I'],
     5: ['R','I'],
     6: ['T'],
-    7: ['R']
+    7: ['R'],
+    8: ['F']
   };
 
   // Per-week localStorage key that signals the week is fully solved
@@ -516,7 +537,8 @@
     4: 'w4_unlocked',
     5: 'w5_unlocked',
     6: 'w6_unlocked',
-    7: 'w7_unlocked'
+    7: 'w7_unlocked',
+    8: 'w8_unlocked'
   };
 
   function buildTracker() {
@@ -868,6 +890,31 @@
     if (e.key === 'Enter') checkWeek7Letters();
   });
 
+  function checkWeek8Letters() {
+    var l1 = document.getElementById('w8-l1').value.trim().toUpperCase();
+    if (l1 === 'F') {
+      document.getElementById('w8-l1').classList.add('correct');
+      document.getElementById('week8-gate-error').style.display = 'none';
+      localStorage.setItem('w8_letters','true');
+      localStorage.setItem('w8_unlocked','true');
+      showWeek8Phrase();
+    } else {
+      document.getElementById('week8-gate-error').style.display = 'block';
+    }
+  }
+
+  function showWeek8Phrase() {
+    document.getElementById('week8-phrase').style.display = 'block';
+    document.getElementById('week8-status').textContent = 'Solved';
+    document.getElementById('week8-status').className = 'week-status solved';
+    document.getElementById('week8-gate').style.display = 'none';
+    buildTracker();
+  }
+
+  document.getElementById('w8-l1').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkWeek8Letters();
+  });
+
     window.addEventListener('load', function() {
     if (localStorage.getItem('w1_letters') === 'true') {
       showWeek1Trivia();
@@ -911,6 +958,10 @@
     if (localStorage.getItem('w7_letters') === 'true') {
       document.getElementById('w7-l1').classList.add('correct');
       showWeek7Phrase();
+    }
+    if (localStorage.getItem('w8_letters') === 'true') {
+      document.getElementById('w8-l1').classList.add('correct');
+      showWeek8Phrase();
     }
     buildTracker();
   });
