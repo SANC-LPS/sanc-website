@@ -136,10 +136,13 @@
     .week10-trivia-input{width:100%;padding:12px;background:var(--charcoal);border:1px solid var(--border);border-radius:6px;color:var(--white);font-size:.85rem;margin-bottom:10px;}
     .week10-trivia-btn{width:100%;padding:12px;background:var(--gold);color:var(--ink);border:none;border-radius:6px;font-weight:700;letter-spacing:.05em;cursor:pointer;}
     .week10-trivia-error{display:none;color:var(--red);font-size:.72rem;margin-top:8px;text-align:center;}
-    .week10-hangman-wrap{display:flex;flex-direction:column;align-items:center;margin:28px 0;}
-    .week10-hangman-line{width:2px;height:36px;background:var(--gold-dim);}
-    .week10-hangman-cover{width:180px;max-width:60%;border:2px solid var(--red);box-shadow:0 10px 24px rgba(0,0,0,0.5);transform:rotate(-2deg);}
-    .week10-hangman-caption{font-size:.7rem;color:var(--red);letter-spacing:.1em;margin-top:12px;text-align:center;}
+    .week10-hangman-wrap{display:flex;justify-content:center;margin:28px 0;}
+    .week10-gallows{position:relative;width:220px;height:230px;}
+    .week10-gallows-post{position:absolute;left:24px;top:0;width:4px;height:200px;background:var(--gold-dim);}
+    .week10-gallows-base{position:absolute;left:4px;top:196px;width:44px;height:4px;background:var(--gold-dim);}
+    .week10-gallows-beam{position:absolute;left:24px;top:0;width:160px;height:4px;background:var(--gold-dim);}
+    .week10-gallows-rope{position:absolute;left:182px;top:4px;width:2px;height:34px;background:var(--gold-dim);}
+    .week10-gallows-cover{position:absolute;left:112px;top:38px;width:140px;max-width:60vw;border:2px solid var(--red);box-shadow:0 10px 24px rgba(0,0,0,0.5);transform:rotate(-2deg);}
   </style>
 </head>
 <body>
@@ -424,9 +427,6 @@
       <div class="gate-error" id="week10-gate-error">Incorrect. Keep looking.</div>
     </div>
     <div class="phrase-reveal" id="week10-phrase">
-      <div class="phrase-label">The Phrase</div>
-      <div class="phrase-dashes" id="phrase-tracker">________________</div>
-      <p class="phrase-note">16 letters. Collect them all. Unscramble.<br>DM @secondadam_nc when you have the answer.</p>
       <div class="phrase-lore">There is a battle within the heart of every man and woman. The clash is between what one ought be and with what one is. The tension is in knowing that both poles exists and both can win, forcing change one way or the other.<br><br>Galatians 5:17 &#8220;For the desires of the flesh are against the Spirit, and the desires of the Spirit are against the flesh, for these are opposed to each other, to keep you from doing the things you want to do.&#8221;<br><br>Galatians 5:24 &#8220;And those who belong to Christ Jesus have crucified the flesh with its passions and desires.&#8221;<br><br>Revelation from heaven reveals a path that denies self by taking up a cross. A way that kills the old man in us so that the new man, the man that ought, lives.<br><br>I see this truth built into the fabric of so many T&Oslash;P songs &#8212; the Old Man in us who wars against the Spirit of God&#8230; what name does Tyler give him? Answer correctly below for a big reveal.<br><br>John Owen once said, &#8220;Be killing sin, or it will be killing you.&#8221; Go and &#8220;overtake your former selves&#8221; my fellow banditos.</div>
       <div class="week10-trivia-wrap" id="week10-trivia-wrap">
         <div class="week10-trivia-label">Name the album:</div>
@@ -435,10 +435,17 @@
         <div class="week10-trivia-error" id="week10-trivia-error">Not quite. Think about who wars against the Spirit.</div>
       </div>
       <div class="week10-hangman-wrap" id="week10-hangman-wrap" style="display:none;">
-        <div class="week10-hangman-line"></div>
-        <img class="week10-hangman-cover" src="week10-blurryface.png" alt="Blurryface album cover">
-        <div class="week10-hangman-caption">THE OLD MAN IS HANGED</div>
+        <div class="week10-gallows">
+          <div class="week10-gallows-post"></div>
+          <div class="week10-gallows-base"></div>
+          <div class="week10-gallows-beam"></div>
+          <div class="week10-gallows-rope"></div>
+          <img class="week10-gallows-cover" src="week10-blurryface.png" alt="Blurryface album cover">
+        </div>
       </div>
+      <div class="phrase-label">The Phrase</div>
+      <div class="phrase-dashes" id="phrase-tracker">________________</div>
+      <p class="phrase-note">16 letters. Collect them all. Unscramble.<br>DM @secondadam_nc when you have the answer.</p>
     </div>
   </div>
 
