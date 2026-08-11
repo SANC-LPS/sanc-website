@@ -131,6 +131,15 @@
     .share-cta-text{font-size:.72rem;color:var(--white);line-height:1.9;margin:0;}
     .hint-recap{font-size:.66rem;color:var(--muted);text-align:center;margin-top:14px;letter-spacing:.05em;line-height:1.9;padding:14px 4px 0;border-top:1px solid var(--border);}
     .week8-lyric-image{width:100%;max-width:480px;display:block;margin:20px auto;border-radius:8px;border:1px solid var(--border);}
+    .week10-trivia-wrap{margin-top:20px;}
+    .week10-trivia-label{font-size:.72rem;color:var(--muted);letter-spacing:.05em;margin-bottom:10px;}
+    .week10-trivia-input{width:100%;padding:12px;background:var(--charcoal);border:1px solid var(--border);border-radius:6px;color:var(--white);font-size:.85rem;margin-bottom:10px;}
+    .week10-trivia-btn{width:100%;padding:12px;background:var(--gold);color:var(--ink);border:none;border-radius:6px;font-weight:700;letter-spacing:.05em;cursor:pointer;}
+    .week10-trivia-error{display:none;color:var(--red);font-size:.72rem;margin-top:8px;text-align:center;}
+    .week10-hangman-wrap{display:flex;flex-direction:column;align-items:center;margin:28px 0;}
+    .week10-hangman-line{width:2px;height:36px;background:var(--gold-dim);}
+    .week10-hangman-cover{width:180px;max-width:60%;border:2px solid var(--red);box-shadow:0 10px 24px rgba(0,0,0,0.5);transform:rotate(-2deg);}
+    .week10-hangman-caption{font-size:.7rem;color:var(--red);letter-spacing:.1em;margin-top:12px;text-align:center;}
   </style>
 </head>
 <body>
@@ -396,17 +405,47 @@
       <div class="gate-error" id="week9-gate-error">Incorrect. Keep looking.</div>
     </div>
     <div class="phrase-reveal" id="week9-phrase">
-      <div class="phrase-label">The Phrase</div>
-      <div class="phrase-dashes" id="phrase-tracker">________________</div>
-      <p class="phrase-note">16 letters. Collect them all. Unscramble.<br>DM @secondadam_nc when you have the answer.</p>
       <div class="phrase-lore">Self identification that ignores revelation is a sinful self deception. Male and Female is a created order, an inescapable reality that even biology forces boundaries upon us in the chromosomal makeup of our DNA.<br><br>We are human creatures, not accidents by random chance. Created order matters because there is a Creator. History also matters. We are here because of the created order that Male and Female becoming one flesh produces offspring. History also matters because the Creator has revealed Himself in what His hands have made and in what He has spoken in scripture. There are boundaries He has placed for us and they are good, right and holy.<br><br>Any idea that would encourage the breaking of boundaries given to us creatures by God our Creator, is liken to the apple offered Eve in the garden. We are told the lie that we will not surely die; there is no harm if someone wants to express themselves however they choose. But God said they would die, and the devil is a liar and we have been dying ever since.<br><br>Same is true with sexual identification. God has said marriage is for one man and woman, from the beginning He made it so that they should become one flesh. Let man not separate what God has designed. If we go beyond the boundaries He has given us, we do not trust or love Him, but sin in disobedience.<br><br>Do not believe the lies of the culture that you are an autonomous accident able to live detached from God&#8217;s revelation without consequence. Your flesh wants to believe there is no God but He Is, and He loves you enough to send His Son to save you from sin. Self identification into anything other than God&#8217;s design for male and female is sin, sin that God went to the cross to forgive us for. Let us not separate what God has joined together. Let us turn from the sins that sent the Lord of glory to the cross.<br><br>&#8220;He answered, &#8220;Have you not read that he who created them from the beginning made them male and female, 5 and said, &#8216;Therefore a man shall leave his father and his mother and hold fast to his wife, and the two shall become one flesh&#8217;? 6 So they are no longer two but one flesh. What therefore God has joined together, let not man separate.&#8221; (Matthew 19:4&#8211;6, ESV)<br><br>Or do you not know that the unrighteous will not inherit the kingdom of God? Do not be deceived: neither the sexually immoral, nor idolaters, nor adulterers, nor men who practice homosexuality, 10 nor thieves, nor the greedy, nor drunkards, nor revilers, nor swindlers will inherit the kingdom of God. 11 And such were some of you. But you were washed, you were sanctified, you were justified in the name of the Lord Jesus Christ and by the Spirit of our God. (1 Corinthians 6:9&#8211;11, ESV)<br><br>Perhaps your flesh is reeling that such constraints should be put on us. What does this ancient text have to say to me that should have any value? Consider how Jesus viewed the ancient texts of the Old Testament&#8230;<br><br>&#8220;And as for the resurrection of the dead, have you not read what was said to you by God: 32 &#8216;I am the God of Abraham, and the God of Isaac, and the God of Jacob&#8217;? He is not God of the dead, but of the living.&#8221; 33 And when the crowd heard it, they were astonished at his teaching.&#8221; (Matthew 22:31&#8211;33, ESV)<br><br>Jesus taught that reading scripture was God speaking to us. Jesus held them accountable to what God has spoken. We will be held accountable to what God has spoken. Read His word, trust in Christ and obey Him. If you claim to love Christ but do not desire to obey Him, check yourselves. God will not be mocked and all will give an account for how we live in these bodies He has given us. We are His creatures and we owe Him our every breath. It is good that He is loving, kind and patient, wanting us to reach repentance and faith. May we come to Him with humble hearts and turn from sin and trust in His good designs.</div>
     </div>
   </div>
 
-  <!-- WEEKS 10-13 -->
+  <!-- WEEK 10 -->
+  <div class="week-card" id="week10-card">
+    <div class="week-header">
+      <span class="week-num">Week 10</span>
+      <span class="week-status locked" id="week10-status">Locked</span>
+    </div>
+    <div class="letter-gate" id="week10-gate">
+      <div class="gate-label">Enter this week&#39;s letter to unlock</div>
+      <div class="letter-inputs">
+        <input class="letter-input" id="w10-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      </div>
+      <button class="gate-btn" onclick="checkWeek10Letters()">Unlock</button>
+      <div class="gate-error" id="week10-gate-error">Incorrect. Keep looking.</div>
+    </div>
+    <div class="phrase-reveal" id="week10-phrase">
+      <div class="phrase-label">The Phrase</div>
+      <div class="phrase-dashes" id="phrase-tracker">________________</div>
+      <p class="phrase-note">16 letters. Collect them all. Unscramble.<br>DM @secondadam_nc when you have the answer.</p>
+      <div class="phrase-lore">There is a battle within the heart of every man and woman. The clash is between what one ought be and with what one is. The tension is in knowing that both poles exists and both can win, forcing change one way or the other.<br><br>Galatians 5:17 &#8220;For the desires of the flesh are against the Spirit, and the desires of the Spirit are against the flesh, for these are opposed to each other, to keep you from doing the things you want to do.&#8221;<br><br>Galatians 5:24 &#8220;And those who belong to Christ Jesus have crucified the flesh with its passions and desires.&#8221;<br><br>Revelation from heaven reveals a path that denies self by taking up a cross. A way that kills the old man in us so that the new man, the man that ought, lives.<br><br>I see this truth built into the fabric of so many T&Oslash;P songs. Big hint: Type in the T&Oslash;P album name that best captures the name of the Old Man in us, the one that wars against the Spirit of God who would have us overtake our former self.</div>
+      <div class="week10-trivia-wrap" id="week10-trivia-wrap">
+        <div class="week10-trivia-label">Name the album:</div>
+        <input class="week10-trivia-input" id="week10-trivia-input" type="text" placeholder="Album name" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <button class="week10-trivia-btn" onclick="checkWeek10Trivia()">Submit</button>
+        <div class="week10-trivia-error" id="week10-trivia-error">Not quite. Think about who wars against the Spirit.</div>
+      </div>
+      <div class="week10-hangman-wrap" id="week10-hangman-wrap" style="display:none;">
+        <div class="week10-hangman-line"></div>
+        <img class="week10-hangman-cover" src="week10-blurryface.png" alt="Blurryface album cover">
+        <div class="week10-hangman-caption">THE OLD MAN IS HANGED</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEKS 11-13 -->
   <div class="week-card">
     <div class="week-header">
-      <span class="week-num">Weeks 10 — 13</span>
+      <span class="week-num">Weeks 11 — 13</span>
       <span class="week-status locked">Locked</span>
     </div>
     <div class="future-week">
@@ -547,7 +586,8 @@
     6: ['T'],
     7: ['R'],
     8: ['F'],
-    9: ['N']
+    9: ['N'],
+    10: ['E']
   };
 
   // Per-week localStorage key that signals the week is fully solved
@@ -560,7 +600,8 @@
     6: 'w6_unlocked',
     7: 'w7_unlocked',
     8: 'w8_unlocked',
-    9: 'w9_unlocked'
+    9: 'w9_unlocked',
+    10: 'w10_unlocked'
   };
 
   function buildTracker() {
@@ -579,12 +620,27 @@
     // 16 letter positions; · separator after position 4 revealed only once W4 trivia is solved
     var hintUnlocked = localStorage.getItem('w4_trivia') === 'true';
     var parts = [];
+    var chars = [];
     for (var k = 0; k < 16; k++) {
-      if (k === 4 && hintUnlocked) parts.push('·');
-      parts.push(k < collected.length ? collected[k] : '_');
+      if (k === 4 && hintUnlocked) parts.push('\u00b7');
+      var ch = k < collected.length ? collected[k] : '_';
+      parts.push(ch);
+      chars.push(ch);
     }
     var el = document.getElementById('phrase-tracker');
-    if (el) el.textContent = parts.join(' ');
+    if (!el) return;
+    // Week 10: once the Blurryface answer lands, the tracker regroups into the
+    // phrase's word shape - FROM(4) HERE(4) IN(2) CHRIST(6). Same per-position
+    // characters computed above; only the grouping changes. This takes
+    // precedence over the position-4 separator, which is omitted here.
+    // Non-breaking spaces between blocks: .phrase-dashes has no white-space:pre,
+    // so plain runs of spaces would collapse and the grouping would not show.
+    if (localStorage.getItem('w10_hangman') === 'true') {
+      var groups = [chars.slice(0,4), chars.slice(4,8), chars.slice(8,10), chars.slice(10,16)];
+      el.textContent = groups.map(function(g){ return g.join(' '); }).join('\u00a0\u00a0\u00a0');
+      return;
+    }
+    el.textContent = parts.join(' ');
   }
 
   function showWeek1Phrase() {
@@ -962,6 +1018,62 @@
     if (e.key === 'Enter') checkWeek9Letters();
   });
 
+  function checkWeek10Letters() {
+    var l1 = document.getElementById('w10-l1').value.trim().toUpperCase();
+    if (l1 === 'E') {
+      document.getElementById('w10-l1').classList.add('correct');
+      document.getElementById('week10-gate-error').style.display = 'none';
+      localStorage.setItem('w10_letters','true');
+      localStorage.setItem('w10_unlocked','true');
+      showWeek10Phrase();
+    } else {
+      document.getElementById('week10-gate-error').style.display = 'block';
+    }
+  }
+
+  function showWeek10Phrase() {
+    document.getElementById('week10-phrase').style.display = 'block';
+    document.getElementById('week10-status').textContent = 'Solved';
+    document.getElementById('week10-status').className = 'week-status solved';
+    document.getElementById('week10-gate').style.display = 'none';
+    if (localStorage.getItem('w10_hangman') === 'true') {
+      revealHangman(true);
+    }
+    buildTracker();
+  }
+
+  document.getElementById('w10-l1').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkWeek10Letters();
+  });
+
+  function checkWeek10Trivia() {
+    var raw = document.getElementById('week10-trivia-input').value;
+    var normalized = raw.toLowerCase().replace(/\s+/g, '');
+    if (normalized === 'blurryface') {
+      document.getElementById('week10-trivia-error').style.display = 'none';
+      localStorage.setItem('w10_hangman','true');
+      revealHangman(false);
+      buildTracker();
+    } else {
+      document.getElementById('week10-trivia-error').style.display = 'block';
+    }
+  }
+
+  function revealHangman(skipHideInput) {
+    document.getElementById('week10-hangman-wrap').style.display = 'flex';
+    if (!skipHideInput) {
+      document.getElementById('week10-trivia-input').disabled = true;
+      document.getElementById('week10-trivia-input').value = 'Blurryface';
+    } else {
+      document.getElementById('week10-trivia-input').disabled = true;
+      document.getElementById('week10-trivia-input').value = 'Blurryface';
+    }
+  }
+
+  document.getElementById('week10-trivia-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkWeek10Trivia();
+  });
+
     window.addEventListener('load', function() {
     if (localStorage.getItem('w1_letters') === 'true') {
       showWeek1Trivia();
@@ -1013,6 +1125,10 @@
     if (localStorage.getItem('w9_letters') === 'true') {
       document.getElementById('w9-l1').classList.add('correct');
       showWeek9Phrase();
+    }
+    if (localStorage.getItem('w10_letters') === 'true') {
+      document.getElementById('w10-l1').classList.add('correct');
+      showWeek10Phrase();
     }
     buildTracker();
   });
