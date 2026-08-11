@@ -1037,7 +1037,7 @@
     document.getElementById('week10-status').className = 'week-status solved';
     document.getElementById('week10-gate').style.display = 'none';
     if (localStorage.getItem('w10_hangman') === 'true') {
-      revealHangman(true);
+      revealHangman();
     }
     buildTracker();
   }
@@ -1052,22 +1052,17 @@
     if (normalized === 'blurryface') {
       document.getElementById('week10-trivia-error').style.display = 'none';
       localStorage.setItem('w10_hangman','true');
-      revealHangman(false);
+      revealHangman();
       buildTracker();
     } else {
       document.getElementById('week10-trivia-error').style.display = 'block';
     }
   }
 
-  function revealHangman(skipHideInput) {
+  function revealHangman() {
     document.getElementById('week10-hangman-wrap').style.display = 'flex';
-    if (!skipHideInput) {
-      document.getElementById('week10-trivia-input').disabled = true;
-      document.getElementById('week10-trivia-input').value = 'Blurryface';
-    } else {
-      document.getElementById('week10-trivia-input').disabled = true;
-      document.getElementById('week10-trivia-input').value = 'Blurryface';
-    }
+    document.getElementById('week10-trivia-input').disabled = true;
+    document.getElementById('week10-trivia-input').value = 'Blurryface';
   }
 
   document.getElementById('week10-trivia-input').addEventListener('keydown', function(e) {
