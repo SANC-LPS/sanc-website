@@ -443,16 +443,34 @@
           <img class="week10-gallows-cover" src="week10-blurryface.png" alt="Blurryface album cover">
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- WEEK 11 -->
+  <div class="week-card" id="week11-card">
+    <div class="week-header">
+      <span class="week-num">Week 11</span>
+      <span class="week-status locked" id="week11-status">Locked</span>
+    </div>
+    <div class="letter-gate" id="week11-gate">
+      <div class="gate-label">Enter this week&#39;s letter to unlock</div>
+      <div class="letter-inputs">
+        <input class="letter-input" id="w11-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      </div>
+      <button class="gate-btn" onclick="checkWeek11Letters()">Unlock</button>
+      <div class="gate-error" id="week11-gate-error">Incorrect. Keep looking.</div>
+    </div>
+    <div class="phrase-reveal" id="week11-phrase">
       <div class="phrase-label">The Phrase</div>
       <div class="phrase-dashes" id="phrase-tracker">________________</div>
       <p class="phrase-note">16 letters. Collect them all. Unscramble.<br>DM @secondadam_nc when you have the answer.</p>
     </div>
   </div>
 
-  <!-- WEEKS 11-13 -->
+  <!-- WEEKS 12-13 -->
   <div class="week-card">
     <div class="week-header">
-      <span class="week-num">Weeks 11 — 13</span>
+      <span class="week-num">Weeks 12 — 13</span>
       <span class="week-status locked">Locked</span>
     </div>
     <div class="future-week">
@@ -594,7 +612,8 @@
     7: ['R'],
     8: ['F'],
     9: ['N'],
-    10: ['E']
+    10: ['E'],
+    11: ['O']
   };
 
   // Per-week localStorage key that signals the week is fully solved
@@ -608,7 +627,8 @@
     7: 'w7_unlocked',
     8: 'w8_unlocked',
     9: 'w9_unlocked',
-    10: 'w10_unlocked'
+    10: 'w10_unlocked',
+    11: 'w11_unlocked'
   };
 
   function buildTracker() {
@@ -1076,6 +1096,31 @@
     if (e.key === 'Enter') checkWeek10Trivia();
   });
 
+  function checkWeek11Letters() {
+    var l1 = document.getElementById('w11-l1').value.trim().toUpperCase();
+    if (l1 === 'O') {
+      document.getElementById('w11-l1').classList.add('correct');
+      document.getElementById('week11-gate-error').style.display = 'none';
+      localStorage.setItem('w11_letters','true');
+      localStorage.setItem('w11_unlocked','true');
+      showWeek11Phrase();
+    } else {
+      document.getElementById('week11-gate-error').style.display = 'block';
+    }
+  }
+
+  function showWeek11Phrase() {
+    document.getElementById('week11-phrase').style.display = 'block';
+    document.getElementById('week11-status').textContent = 'Solved';
+    document.getElementById('week11-status').className = 'week-status solved';
+    document.getElementById('week11-gate').style.display = 'none';
+    buildTracker();
+  }
+
+  document.getElementById('w11-l1').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkWeek11Letters();
+  });
+
     window.addEventListener('load', function() {
     if (localStorage.getItem('w1_letters') === 'true') {
       showWeek1Trivia();
@@ -1131,6 +1176,10 @@
     if (localStorage.getItem('w10_letters') === 'true') {
       document.getElementById('w10-l1').classList.add('correct');
       showWeek10Phrase();
+    }
+    if (localStorage.getItem('w11_letters') === 'true') {
+      document.getElementById('w11-l1').classList.add('correct');
+      showWeek11Phrase();
     }
     buildTracker();
   });
