@@ -143,6 +143,15 @@
     .week10-gallows-beam{position:absolute;left:24px;top:0;width:160px;height:4px;background:var(--gold-dim);}
     .week10-gallows-rope{position:absolute;left:182px;top:4px;width:2px;height:34px;background:var(--gold-dim);}
     .week10-gallows-cover{position:absolute;left:112px;top:38px;width:140px;max-width:60vw;border:2px solid var(--red);box-shadow:0 10px 24px rgba(0,0,0,0.5);transform:rotate(-2deg);}
+    .week12-playlist-cta{margin-top:20px;padding:16px;border:1px solid var(--gold);border-radius:8px;text-align:center;}
+    .week12-playlist-cta a{color:var(--gold);text-decoration:underline;}
+    .week12-playlist-text{font-size:.72rem;color:var(--white);line-height:1.9;margin:0;}
+    .week11-progress-label{font-size:.72rem;color:var(--muted);letter-spacing:.05em;margin-top:20px;margin-bottom:10px;text-align:center;}
+    .week11-hint-checklist{margin-top:24px;border-top:1px solid var(--border);padding-top:16px;}
+    .week11-hint-checklist-label{font-size:.7rem;color:var(--gold-dim);letter-spacing:.1em;margin-bottom:12px;text-align:center;}
+    .week11-hint-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;}
+    .week11-hint-row input[type="checkbox"]{margin-top:3px;flex-shrink:0;}
+    .week11-hint-row label{font-size:.72rem;color:var(--white);line-height:1.7;}
   </style>
 </head>
 <body>
@@ -461,20 +470,59 @@
       <div class="gate-error" id="week11-gate-error">Incorrect. Keep looking.</div>
     </div>
     <div class="phrase-reveal" id="week11-phrase">
-      <div class="phrase-label">The Phrase</div>
-      <div class="phrase-dashes" id="phrase-tracker">________________</div>
+      <div class="week11-progress-label">Letters Collected So Far</div>
+      <div class="phrase-dashes phrase-tracker">________________</div>
       <p class="phrase-note">16 letters. Collect them all. Unscramble.<br>DM @secondadam_nc when you have the answer.</p>
+      <div class="week11-hint-checklist">
+        <div class="week11-hint-checklist-label">HINTS AVAILABLE — HAVE YOU GOTTEN THESE?</div>
+        <div class="week11-hint-row">
+          <input type="checkbox" id="hint-w5-check">
+          <label for="hint-w5-check">Week 5 — DM @secondadam_nc about the Week 5 discussion post for a word</label>
+        </div>
+        <div class="week11-hint-row">
+          <input type="checkbox" id="hint-w6-check">
+          <label for="hint-w6-check">Week 6 — Share the Week 6 video to your Story + tag @secondadam_nc for a word</label>
+        </div>
+        <div class="week11-hint-row">
+          <input type="checkbox" id="hint-w12-check">
+          <label for="hint-w12-check">Week 12 — Follow the Biblical Indie Rock playlist, share it, and tag @sowerproject + @secondadam_nc for a word</label>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- WEEKS 12-13 -->
+  <!-- WEEK 12 -->
+  <div class="week-card" id="week12-card">
+    <div class="week-header">
+      <span class="week-num">Week 12</span>
+      <span class="week-status locked" id="week12-status">Locked</span>
+    </div>
+    <div class="letter-gate" id="week12-gate">
+      <div class="gate-label">Enter this week&#39;s letter to unlock</div>
+      <div class="letter-inputs">
+        <input class="letter-input" id="w12-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      </div>
+      <button class="gate-btn" onclick="checkWeek12Letters()">Unlock</button>
+      <div class="gate-error" id="week12-gate-error">Incorrect. Keep looking.</div>
+    </div>
+    <div class="phrase-reveal" id="week12-phrase">
+      <div class="phrase-label">The Phrase</div>
+      <div class="phrase-dashes phrase-tracker">________________</div>
+      <p class="phrase-note">16 letters. Collect them all. Unscramble.<br>DM @secondadam_nc when you have the answer.</p>
+      <div class="week12-playlist-cta">
+        <p class="week12-playlist-text">Follow Eric&#39;s <a href="https://open.spotify.com/playlist/2aGzQCL2lWxGJlc5rHi8nL" target="_blank" rel="noopener">Biblical Indie Rock</a> playlist on Spotify. Share it to your Instagram Story and tag both @sowerproject and @secondadam_nc &#8212; you&#39;ll get sent a word from the phrase.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 13 -->
   <div class="week-card">
     <div class="week-header">
-      <span class="week-num">Weeks 12 — 13</span>
+      <span class="week-num">Week 13</span>
       <span class="week-status locked">Locked</span>
     </div>
     <div class="future-week">
-      <div class="future-label">More unlocks coming. Keep collecting.</div>
+      <div class="future-label">The final unlock. Keep collecting.</div>
     </div>
   </div>
 
@@ -613,7 +661,8 @@
     8: ['F'],
     9: ['N'],
     10: ['E'],
-    11: ['O']
+    11: ['O'],
+    12: ['S']
   };
 
   // Per-week localStorage key that signals the week is fully solved
@@ -628,7 +677,8 @@
     8: 'w8_unlocked',
     9: 'w9_unlocked',
     10: 'w10_unlocked',
-    11: 'w11_unlocked'
+    11: 'w11_unlocked',
+    12: 'w12_unlocked'
   };
 
   function buildTracker() {
@@ -654,8 +704,8 @@
       parts.push(ch);
       chars.push(ch);
     }
-    var el = document.getElementById('phrase-tracker');
-    if (!el) return;
+    var els = document.querySelectorAll('.phrase-tracker');
+    if (!els.length) return;
     // Week 10: once the Blurryface answer lands, the tracker regroups into the
     // phrase's word shape - FROM(4) HERE(4) IN(2) CHRIST(6). Same per-position
     // characters computed above; only the grouping changes. This takes
@@ -664,10 +714,10 @@
     // so plain runs of spaces would collapse and the grouping would not show.
     if (localStorage.getItem('w10_hangman') === 'true') {
       var groups = [chars.slice(0,4), chars.slice(4,8), chars.slice(8,10), chars.slice(10,16)];
-      el.textContent = groups.map(function(g){ return g.join(' '); }).join('\u00a0\u00a0\u00a0');
+      els.forEach(function(e){ e.textContent = groups.map(function(g){ return g.join(' '); }).join('\u00a0\u00a0\u00a0'); });
       return;
     }
-    el.textContent = parts.join(' ');
+    els.forEach(function(e){ e.textContent = parts.join(' '); });
   }
 
   function showWeek1Phrase() {
@@ -1121,6 +1171,31 @@
     if (e.key === 'Enter') checkWeek11Letters();
   });
 
+  function checkWeek12Letters() {
+    var l1 = document.getElementById('w12-l1').value.trim().toUpperCase();
+    if (l1 === 'S') {
+      document.getElementById('w12-l1').classList.add('correct');
+      document.getElementById('week12-gate-error').style.display = 'none';
+      localStorage.setItem('w12_letters','true');
+      localStorage.setItem('w12_unlocked','true');
+      showWeek12Phrase();
+    } else {
+      document.getElementById('week12-gate-error').style.display = 'block';
+    }
+  }
+
+  function showWeek12Phrase() {
+    document.getElementById('week12-phrase').style.display = 'block';
+    document.getElementById('week12-status').textContent = 'Solved';
+    document.getElementById('week12-status').className = 'week-status solved';
+    document.getElementById('week12-gate').style.display = 'none';
+    buildTracker();
+  }
+
+  document.getElementById('w12-l1').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkWeek12Letters();
+  });
+
     window.addEventListener('load', function() {
     if (localStorage.getItem('w1_letters') === 'true') {
       showWeek1Trivia();
@@ -1180,6 +1255,10 @@
     if (localStorage.getItem('w11_letters') === 'true') {
       document.getElementById('w11-l1').classList.add('correct');
       showWeek11Phrase();
+    }
+    if (localStorage.getItem('w12_letters') === 'true') {
+      document.getElementById('w12-l1').classList.add('correct');
+      showWeek12Phrase();
     }
     buildTracker();
   });
