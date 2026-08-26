@@ -152,6 +152,7 @@
     .week11-hint-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;}
     .week11-hint-row input[type="checkbox"]{margin-top:3px;flex-shrink:0;}
     .week11-hint-row label{font-size:.72rem;color:var(--white);line-height:1.7;}
+    .week13-closure-image{width:100%;max-width:520px;display:block;margin:24px auto 0;border-radius:8px;border:1px solid var(--border);}
   </style>
 </head>
 <body>
@@ -516,13 +517,25 @@
   </div>
 
   <!-- WEEK 13 -->
-  <div class="week-card">
+  <div class="week-card" id="week13-card">
     <div class="week-header">
       <span class="week-num">Week 13</span>
-      <span class="week-status locked">Locked</span>
+      <span class="week-status locked" id="week13-status">Locked</span>
     </div>
-    <div class="future-week">
-      <div class="future-label">The final unlock. Keep collecting.</div>
+    <div class="letter-gate" id="week13-gate">
+      <div class="gate-label">Enter this week&#39;s letter to unlock</div>
+      <div class="letter-inputs">
+        <input class="letter-input" id="w13-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      </div>
+      <button class="gate-btn" onclick="checkWeek13Letters()">Unlock</button>
+      <div class="gate-error" id="week13-gate-error">Incorrect. Keep looking.</div>
+    </div>
+    <div class="phrase-reveal" id="week13-phrase">
+      <div class="phrase-label">The Phrase</div>
+      <div class="phrase-dashes phrase-tracker">________________</div>
+      <p class="phrase-note">16 letters. Collect them all. Unscramble.<br>DM @secondadam_nc when you have the answer.</p>
+      <div class="phrase-lore">Thank you to everyone who&#8217;s followed along with the hunt these past 13 weeks. This is the final letter &#8212; no more hints will be given from here.<br><br>A few of you have already solved the phrase, some even before this week&#8217;s letter dropped. If you&#8217;ve been paying close attention, you already know the pool of potential winners is small.<br><br>You&#8217;re welcome to send your guess as many times as you&#8217;d like &#8212; I&#8217;ll only respond if you get it right. Entries close 7:00 PM Tuesday, September 8th.<br><br>Missed a hint along the way? Three hint opportunities have already gone out: Week 5, Week 6, and Week 12 each had one. If you haven&#8217;t caught them yet, go back and check what each week asked for &#8212; there&#8217;s still time before the window closes.<br><br>Christianity rightly answers foundational questions we all have; ones like: who God is, and who man is. The 66 books of the Bible are self-attesting revelation from heaven, historically tested and proven true time and again, giving words to us through God&#8217;s appointed mouthpieces that we can know answers to these foundational questions and so much more.<br><br>God in scripture is revealed as sovereign and free to do whatever he pleases. There are none like Him, none before or after him, none who control his freedom to do as he pleases. He is holy and set apart from all creatures as the only uncreated one. He calls himself I Am when speaking to His creatures. He is the one who decided to form man from the dust of the ground for His own purposes and pleasure.<br><br>Man in scripture is from here. He is from dust and to dust he returns because of the fall of the 1st Adam. The good news is that the 2nd Adam, also known as Christ Jesus, came to overturn the curse of the 1st Adam. Jesus&#8217;s victory over sin and death, testified to in his resurrection, is a historical proclamation of the greatest news ever, relevant right now to whoever is reading this. Because He is risen there is great news for us cursed to the grave. The sinless Christ willingly died for sins he didn&#8217;t commit because he loves us, those who would believe this gospel (good news) he came to redeem us! To save us from our sins! If you believe this good news, do not harden your heart, turn from the sin and confess it now to him and be free from those chains. Come into the light and honor Him as you were made to do.<br><br>So man is From Here, from the earth, but as Christ teaches Nicodemus in John 3, a man must be born again to enter His kingdom. Christ is from above. He came from heaven to the earth to save sinners and then went back after his resurrection. Those who are born from above share the same testimony, that they are saved from the consequences of their sins In Christ and In Christ alone. Christ alone is the one who restores the relationship with God his Father that our father Adam lost in the garden. This is why I named my musical project Second Adam &amp; the New Creations, the Second Adam restores all things, even giving this sinner a new heart, one that beats for Him. Even though I am From Here, In Christ I am a new creation, full of love, hope, peace, gratitude and joy. I have received grace I didn&#8217;t deserve. You can too. Believe upon him today. Be honest and ask him to lead you to turn from sinful desires. Turn to the holy one. Whom the Son sets free is free indeed.<br><br>&#8220;Our God is in the heavens; he does all that he pleases.&#8221; (Psalm 115:3, ESV)<br><br>&#8220;then the Lord God formed the man of dust from the ground and breathed into his nostrils the breath of life, and the man became a living creature.&#8221; (Genesis 2:7, ESV)<br><br>&#8220;By the sweat of your face you shall eat bread, till you return to the ground, for out of it you were taken; for you are dust, and to dust you shall return.&#8221; (Genesis 3:19, ESV)<br><br>&#8220;Therefore, if anyone is in Christ, he is a new creation.&#8221; (2 Corinthians 5:17, ESV)<br><br>&#8220;He who comes from above is above all. He who is of the earth belongs to the earth and speaks in an earthly way. He who comes from heaven is above all. He bears witness to what he has seen and heard, yet no one receives his testimony. Whoever receives his testimony sets his seal to this, that God is true. For he whom God has sent utters the words of God, for he gives the Spirit without measure. The Father loves the Son and has given all things into his hand. Whoever believes in the Son has eternal life; whoever does not obey the Son shall not see life, but the wrath of God remains on him.&#8221; (John 3:31&#8211;36, ESV)<br><br>&#8220;I have given them your word, and the world has hated them because they are not of the world, just as I am not of the world. 15 I do not ask that you take them out of the world, but that you keep them from the evil one. 16 They are not of the world, just as I am not of the world. 17 Sanctify them in the truth; your word is truth&#8221; (John 17:14&#8211;17, ESV)<br><br>&#8220;And you were dead in the trespasses and sins in which you once walked, following the course of this world, following the prince of the power of the air, the spirit that is now at work in the sons of disobedience&#8212;among whom we all once lived in the passions of our flesh, carrying out the desires of the flesh and the mind, and were by nature children of wrath, like the rest of mankind. But God, being rich in mercy, because of the great love with which he loved us, even when we were dead in our trespasses, made us alive together with Christ&#8212;by grace you have been saved&#8212;and raised us up with him and seated us with him in the heavenly places in Christ Jesus, so that in the coming ages he might show the immeasurable riches of his grace in kindness toward us in Christ Jesus. For by grace you have been saved through faith. And this is not your own doing; it is the gift of God, not a result of works, so that no one may boast. For we are his workmanship, created in Christ Jesus for good works, which God prepared beforehand, that we should walk in them.&#8221; (Ephesians 2:1&#8211;10, ESV)</div>
+      <img class="week13-closure-image" src="week13-fromhere.jpg" alt="From Here — Twenty One Pilots, Ohio Stadium">
     </div>
   </div>
 
@@ -662,7 +675,8 @@
     9: ['N'],
     10: ['E'],
     11: ['O'],
-    12: ['S']
+    12: ['S'],
+    13: ['H']
   };
 
   // Per-week localStorage key that signals the week is fully solved
@@ -678,7 +692,8 @@
     9: 'w9_unlocked',
     10: 'w10_unlocked',
     11: 'w11_unlocked',
-    12: 'w12_unlocked'
+    12: 'w12_unlocked',
+    13: 'w13_unlocked'
   };
 
   function buildTracker() {
@@ -1196,6 +1211,31 @@
     if (e.key === 'Enter') checkWeek12Letters();
   });
 
+  function checkWeek13Letters() {
+    var l1 = document.getElementById('w13-l1').value.trim().toUpperCase();
+    if (l1 === 'H') {
+      document.getElementById('w13-l1').classList.add('correct');
+      document.getElementById('week13-gate-error').style.display = 'none';
+      localStorage.setItem('w13_letters','true');
+      localStorage.setItem('w13_unlocked','true');
+      showWeek13Phrase();
+    } else {
+      document.getElementById('week13-gate-error').style.display = 'block';
+    }
+  }
+
+  function showWeek13Phrase() {
+    document.getElementById('week13-phrase').style.display = 'block';
+    document.getElementById('week13-status').textContent = 'Solved';
+    document.getElementById('week13-status').className = 'week-status solved';
+    document.getElementById('week13-gate').style.display = 'none';
+    buildTracker();
+  }
+
+  document.getElementById('w13-l1').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkWeek13Letters();
+  });
+
     window.addEventListener('load', function() {
     if (localStorage.getItem('w1_letters') === 'true') {
       showWeek1Trivia();
@@ -1259,6 +1299,10 @@
     if (localStorage.getItem('w12_letters') === 'true') {
       document.getElementById('w12-l1').classList.add('correct');
       showWeek12Phrase();
+    }
+    if (localStorage.getItem('w13_letters') === 'true') {
+      document.getElementById('w13-l1').classList.add('correct');
+      showWeek13Phrase();
     }
     buildTracker();
   });
