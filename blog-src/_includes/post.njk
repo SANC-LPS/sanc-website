@@ -30,7 +30,6 @@ layout: base.njk
          Instagram appears there alongside every other installed app. -->
     <div class="post-share">
       <span class="post-share-label">Share this</span>
-      <a class="post-share-btn" href="https://www.facebook.com/sharer/sharer.php?u={{ PAGE_URL | urlencode }}" target="_blank" rel="noopener">Facebook</a>
       <a class="post-share-btn" href="https://twitter.com/intent/tweet?url={{ PAGE_URL | urlencode }}&amp;text={{ SHARE_TITLE | urlencode }}" target="_blank" rel="noopener">X / Twitter</a>
       <a class="post-share-btn" href="mailto:?subject={{ SHARE_TITLE | urlencode }}&amp;body={{ PAGE_URL | urlencode }}">Email</a>
       <button class="post-share-btn" id="post-copy-link" type="button" data-url="{{ PAGE_URL }}">Copy Link</button>
