@@ -3,6 +3,13 @@ backend:
   repo: SANC-LPS/sanc-website
   branch: main
 
+# Global slug rules. Keeps non-ASCII characters (curly quotes, em-dashes,
+# accents) out of generated URLs; applies to every future post.
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
 media_folder: "blog-src/images"
 public_folder: "/blog/images"
 
