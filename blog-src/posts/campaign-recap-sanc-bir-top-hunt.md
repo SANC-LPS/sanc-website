@@ -77,11 +77,15 @@ The best friends are those willing to tell you that east is up. That there is a 
 
 Watch: [Tyler on Blurryface (interview clip)](https://www.youtube.com/watch?v=dqxpUcPP4uk)
 
+Those who sent a DM with their theory about where Tyler’s lore was pointing got a word from the phrase back: **Christ**.
+
 ### Week 6 &mdash; Grand Motel
 **Letter contributed:** T  
 [@grandmotel.band](https://www.instagram.com/grandmotel.band/)
 
 Watch: [Grand Motel](https://www.youtube.com/watch?v=cOrKRU-Rc70)
+
+Sharing the waterfall video to your Story and tagging @secondadam_nc earned the word **Here**.
 
 **Confession/Heavy-Dirty-Soul**
 
@@ -170,6 +174,8 @@ John Owen once said, “Be killing sin, or it will be killing you.” Go and “
 **Letter contributed:** S  
 [@sowerproject](https://www.instagram.com/sowerproject/)
 
+Following Eric’s Biblical Indie Rock playlist on Spotify, sharing it to your Story, and tagging both @sowerproject and @secondadam_nc earned the word **In**.
+
 ### Week 13 &mdash; Second Adam & the New Creations
 **Letter contributed:** H  
 [@secondadam_nc](https://www.instagram.com/secondadam_nc/)
@@ -205,6 +211,8 @@ So man is From Here, from the earth, but as Christ teaches Nicodemus in John 3, 
 Sixteen letters, collected one week at a time, unscrambled to:
 
 **FROM HERE IN CHRIST**
+
+Three of those sixteen letters only reached people through the hints above — without them, almost nobody solved it unaided.
 
 ## The Winner
 
