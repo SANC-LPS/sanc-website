@@ -212,7 +212,7 @@ Sixteen letters, collected one week at a time, unscrambled to:
 
 **FROM HERE IN CHRIST**
 
-Three of those sixteen letters only reached people through the hints above — without them, almost nobody solved it unaided.
+Twelve of those sixteen letters only reached people through the hints above — without them, almost nobody solved it unaided.
 
 ## The Winner
 
