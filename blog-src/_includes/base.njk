@@ -3,8 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{% if title %}{{ title }} &mdash; Second Adam &amp; the New Creations{% else %}Second Adam &amp; the New Creations{% endif %}</title>
-<meta name="description" content="{% if description %}{{ description }}{% else %}New writing on theology, music, and culture from Second Adam &amp; the New Creations.{% endif %}">
+{#- Canonical origin for absolute URLs in share cards. OG/Twitter require
+    absolute URLs -- relative paths are silently ignored by most scrapers. -#}
+{%- set SITE_URL  = "https://secondadamnewcreations.com" -%}
+{%- set SITE_NAME = "Second Adam & the New Creations" -%}
+
+{#- page.url is relative to dir.output ("blog"), so it lacks the /blog
+    segment. Prepend it to build the real public URL. -#}
+{%- set PAGE_URL = SITE_URL + "/blog" + page.url -%}
+
+{%- set OG_TITLE = title if title else SITE_NAME -%}
+{#- Posts carry `excerpt` (that is the Decap field); the index and category
+    pages carry `description`. Fall back through both, then to the site blurb. -#}
+{%- set OG_DESC  = description if description else (excerpt if excerpt else "New writing on theology, music, and culture from Second Adam & the New Creations.") -%}
+{%- set OG_TYPE  = ogType if ogType else "website" -%}
+{%- set OG_IMAGE = SITE_URL + image if image else "" -%}
+
+<title>{% if title %}{{ title }} &mdash; {{ SITE_NAME }}{% else %}{{ SITE_NAME }}{% endif %}</title>
+<meta name="description" content="{{ OG_DESC }}">
+<link rel="canonical" href="{{ PAGE_URL }}">
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="{{ SITE_NAME }}">
+<meta property="og:type" content="{{ OG_TYPE }}">
+<meta property="og:title" content="{{ OG_TITLE }}">
+<meta property="og:description" content="{{ OG_DESC }}">
+<meta property="og:url" content="{{ PAGE_URL }}">
+{%- if OG_IMAGE %}
+<meta property="og:image" content="{{ OG_IMAGE }}">
+<meta property="og:image:alt" content="{{ OG_TITLE }}">
+{%- endif %}
+{%- if OG_TYPE == "article" and date %}
+<meta property="article:published_time" content="{{ date.toISOString() }}">
+{%- endif %}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="{% if OG_IMAGE %}summary_large_image{% else %}summary{% endif %}">
+<meta name="twitter:title" content="{{ OG_TITLE }}">
+<meta name="twitter:description" content="{{ OG_DESC }}">
+{%- if OG_IMAGE %}
+<meta name="twitter:image" content="{{ OG_IMAGE }}">
+{%- endif %}
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Special+Elite&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/blog/assets/blog.css">
