@@ -1,0 +1,20 @@
+backend:
+  name: github
+  repo: SANC-LPS/sanc-website
+  branch: main
+
+media_folder: "blog/images"
+public_folder: "/blog/images"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "blog-src/posts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Cover Image", name: "image", widget: "image", required: false}
+      - {label: "Excerpt", name: "excerpt", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
