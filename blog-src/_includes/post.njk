@@ -1,6 +1,12 @@
 ---
 layout: base.njk
 ---
+{#- Same values base.njk computes for canonical/OG, duplicated here because
+    this template's own share markup needs them independently.
+    page.url is relative to dir.output ("blog"), so prepend the /blog segment. -#}
+{%- set SITE_URL = "https://secondadamnewcreations.com" -%}
+{%- set PAGE_URL = SITE_URL + "/blog" + page.url -%}
+{%- set SHARE_TITLE = title -%}
 <article class="post-page">
   <div class="post-page-inner">
 
@@ -19,7 +25,106 @@ layout: base.njk
       {{ content | safe }}
     </div>
 
+    <!-- Instagram publishes no web share-intent URL, so it cannot get an
+         explicit button. The native share sheet below covers it on phones:
+         Instagram appears there alongside every other installed app. -->
+    <div class="post-share">
+      <span class="post-share-label">Share this</span>
+      <a class="post-share-btn" href="https://www.facebook.com/sharer/sharer.php?u={{ PAGE_URL | urlencode }}" target="_blank" rel="noopener">Facebook</a>
+      <a class="post-share-btn" href="https://twitter.com/intent/tweet?url={{ PAGE_URL | urlencode }}&amp;text={{ SHARE_TITLE | urlencode }}" target="_blank" rel="noopener">X / Twitter</a>
+      <a class="post-share-btn" href="mailto:?subject={{ SHARE_TITLE | urlencode }}&amp;body={{ PAGE_URL | urlencode }}">Email</a>
+      <button class="post-share-btn" id="post-copy-link" type="button" data-url="{{ PAGE_URL }}">Copy Link</button>
+      <button class="post-share-btn" id="post-native-share" type="button" style="display:none;" data-url="{{ PAGE_URL }}" data-title="{{ SHARE_TITLE }}">Share&#8230;</button>
+    </div>
+
     <a class="post-back" href="/blog">&larr; All posts</a>
 
   </div>
 </article>
+
+<script>
+  /* Share controls. Runs in the reader's browser, so it follows the same
+     rules as the hunt page's JS: no template literals, ASCII source only,
+     plain function declarations. The post title reaches this code through a
+     data attribute rather than a baked-in string literal, which keeps every
+     non-ASCII character out of the script entirely. */
+  (function () {
+    var copyBtn = document.getElementById('post-copy-link');
+    var shareBtn = document.getElementById('post-native-share');
+
+    function flash(btn, message) {
+      if (!btn.getAttribute('data-label')) {
+        btn.setAttribute('data-label', btn.textContent);
+      }
+      btn.textContent = message;
+      setTimeout(function () {
+        btn.textContent = btn.getAttribute('data-label');
+      }, 2000);
+    }
+
+    /* No Clipboard API: select the URL in a temporary field and try the
+       legacy copy command. If that is unavailable too, show the URL in a
+       prompt so the reader can copy it by hand instead of nothing happening. */
+    function copyFallback(url, btn) {
+      var field = document.createElement('input');
+      field.setAttribute('type', 'text');
+      field.value = url;
+      field.style.position = 'fixed';
+      field.style.left = '0';
+      field.style.top = '0';
+      field.style.opacity = '0';
+      document.body.appendChild(field);
+      field.focus();
+      field.select();
+      var copied = false;
+      try {
+        copied = document.execCommand('copy');
+      } catch (err) {
+        copied = false;
+      }
+      document.body.removeChild(field);
+      if (copied) {
+        flash(btn, 'Copied');
+      } else if (typeof window.prompt === 'function') {
+        window.prompt('Copy this link:', url);
+      }
+    }
+
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function () {
+        var url = copyBtn.getAttribute('data-url');
+        if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+          navigator.clipboard.writeText(url).then(function () {
+            flash(copyBtn, 'Copied');
+          }, function () {
+            copyFallback(url, copyBtn);
+          });
+        } else {
+          copyFallback(url, copyBtn);
+        }
+      });
+    }
+
+    /* Only reveal the native share button where the API actually exists --
+       on desktop browsers without it the button stays hidden. */
+    if (shareBtn && typeof navigator.share === 'function') {
+      shareBtn.style.display = '';
+      shareBtn.addEventListener('click', function () {
+        var payload = {
+          title: shareBtn.getAttribute('data-title'),
+          url: shareBtn.getAttribute('data-url')
+        };
+        try {
+          var result = navigator.share(payload);
+          /* Dismissing the sheet rejects the promise; swallow it so it does
+             not surface as an unhandled rejection. */
+          if (result && typeof result.then === 'function') {
+            result.then(function () {}, function () {});
+          }
+        } catch (err) {
+          /* Nothing useful to do if the sheet cannot open. */
+        }
+      });
+    }
+  })();
+</script>
