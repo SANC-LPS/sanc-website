@@ -126,6 +126,28 @@ footer p {
    index.html gets away without this because its hero is 100vh. */
 .blog-main { padding-top: 5.5rem; }
 
+/* --- Footer social row ---
+   The footer rule above (lifted from index.html) is a space-between flex row
+   holding the two copyright paragraphs. flex-basis:100% makes this a full
+   width first row so the paragraphs keep their existing left/right split
+   underneath, with no change to the inherited footer rule.
+   Typography follows `footer p` (Special Elite, 0.58rem, 0.2em) rather than
+   index.html's larger .social-link, so it sits at the footer's own scale. */
+.footer-social {
+  flex-basis: 100%;
+  display: flex; justify-content: center;
+  gap: 1.2rem; flex-wrap: wrap;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid rgba(200,135,42,0.1);
+}
+.footer-social a {
+  font-family: 'Special Elite', cursive; font-size: 0.58rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  transition: color 0.2s, opacity 0.2s;
+}
+.footer-social a:hover { color: var(--gold); }
+
 /* --- Category filter row --- */
 .category-nav {
   display: flex; gap: 0.6rem; flex-wrap: wrap;
@@ -223,4 +245,5 @@ footer p {
   .post-page { padding: 3rem 1.5rem; }
   .post-item { grid-template-columns: 44px 1fr; gap: 1rem; }
   .post-number { font-size: 1.9rem; }
+  .footer-social { gap: 0.7rem 1rem; }
 }
