@@ -3,7 +3,7 @@ backend:
   repo: SANC-LPS/sanc-website
   branch: main
 
-media_folder: "blog/images"
+media_folder: "blog-src/images"
 public_folder: "/blog/images"
 
 collections:
@@ -16,5 +16,6 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Cover Image", name: "image", widget: "image", required: false}
+      - {label: "Category", name: "tags", widget: "select", options: ["theology", "music", "culture"], multiple: true}
       - {label: "Excerpt", name: "excerpt", widget: "text"}
       - {label: "Body", name: "body", widget: "markdown"}

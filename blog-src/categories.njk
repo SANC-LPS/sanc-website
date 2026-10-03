@@ -1,0 +1,57 @@
+---
+layout: base.njk
+categories:
+  - theology
+  - music
+  - culture
+pagination:
+  data: categories
+  size: 1
+  alias: category
+permalink: "/{{ category }}/index.html"
+eleventyComputed:
+  title: "{{ category | capitalize }}"
+  description: "Posts filed under {{ category }} from Second Adam & the New Creations."
+---
+<section id="writings">
+  <div class="writings-inner">
+
+    <span class="section-label">Writings</span>
+    <h2 class="section-title">{{ category | capitalize }}</h2>
+    <div class="divider"></div>
+
+    <div class="category-nav">
+      <a href="/blog">All</a>
+      <a href="/blog/theology/"{% if category == "theology" %} class="active"{% endif %}>Theology</a>
+      <a href="/blog/music/"{% if category == "music" %} class="active"{% endif %}>Music</a>
+      <a href="/blog/culture/"{% if category == "culture" %} class="active"{% endif %}>Culture</a>
+    </div>
+
+    {%- set matched = [] %}
+    {%- for post in collections.post | reverse %}
+      {%- if category in post.data.tags %}{% set _ = matched.push(post) %}{% endif %}
+    {%- endfor %}
+
+    {%- if matched.length %}
+    <div class="post-list">
+      {%- for post in matched %}
+      {%- set cats = [] %}
+      {%- for tag in post.data.tags %}{% if tag != "post" %}{% set _ = cats.push(tag) %}{% endif %}{% endfor %}
+      <a class="post-item" href="/blog{{ post.url }}">
+        <div class="post-number">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</div>
+        <div>
+          <div class="post-title">{{ post.data.title }}</div>
+          <div class="post-excerpt">{{ post.data.excerpt }}</div>
+          {%- if cats.length %}
+          <span class="post-tag">{{ cats[0] }}</span>
+          {%- endif %}
+        </div>
+      </a>
+      {%- endfor %}
+    </div>
+    {%- else %}
+    <p class="blog-empty">New posts coming soon.</p>
+    {%- endif %}
+
+  </div>
+</section>

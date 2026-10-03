@@ -1,0 +1,25 @@
+---
+layout: base.njk
+---
+<article class="post-page">
+  <div class="post-page-inner">
+
+    <h1 class="post-page-title">{{ title }}</h1>
+
+    <div class="post-page-meta">
+      {%- if date %}<span>{{ date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" }) }}</span>{% endif -%}
+      {%- for tag in tags %}{% if tag != "post" %}<span class="post-tag">{{ tag }}</span>{% endif %}{% endfor -%}
+    </div>
+
+    {%- if image %}
+    <img class="post-page-cover" src="{{ image }}" alt="{{ title }}">
+    {%- endif %}
+
+    <div class="post-body">
+      {{ content | safe }}
+    </div>
+
+    <a class="post-back" href="/blog">&larr; All posts</a>
+
+  </div>
+</article>

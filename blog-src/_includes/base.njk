@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if title %}{{ title }} &mdash; Second Adam &amp; the New Creations{% else %}Second Adam &amp; the New Creations{% endif %}</title>
+<meta name="description" content="{% if description %}{{ description }}{% else %}New writing on theology, music, and culture from Second Adam &amp; the New Creations.{% endif %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Special+Elite&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/blog/assets/blog.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <span class="nav-brand-logo">SANC</span>
+    <span class="nav-brand-full">Second Adam &amp; the New Creations</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#music">Music</a></li>
+    <!-- Every page produced by this build lives under /blog, so Blog is always the active nav item. -->
+    <li><a href="/blog" class="active">Blog</a></li>
+    <li><a href="/#connect">Connect</a></li>
+    <li><a href="/merch">Merch</a></li>
+  </ul>
+</nav>
+
+<main class="blog-main">
+{{ content | safe }}
+</main>
+
+<footer>
+  <p>&copy; 2025 Second Adam &amp; the New Creations &mdash; All music &amp; writings by Abram Germano</p>
+  <p>Poughkeepsie, New York &nbsp;&bull;&nbsp; #biblicalindierock</p>
+</footer>
+
+</body>
+</html>
