@@ -1,0 +1,31 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+{#- Output dir is "blog", so this lands at blog/sitemap.xml and is reachable
+    at https://secondadamnewcreations.com/blog/sitemap.xml -- referenced from
+    the root sitemap index. The blog index and category pages have no reliable
+    lastmod, so only posts carry one. feed.xml and this sitemap are not listed. -#}
+{%- set SITE_URL = "https://secondadamnewcreations.com" -%}
+{%- set posts = collections.post | reverse -%}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{{ SITE_URL }}/blog/</loc>
+  </url>
+  <url>
+    <loc>{{ SITE_URL }}/blog/theology/</loc>
+  </url>
+  <url>
+    <loc>{{ SITE_URL }}/blog/music/</loc>
+  </url>
+  <url>
+    <loc>{{ SITE_URL }}/blog/culture/</loc>
+  </url>
+{%- for post in posts %}
+  <url>
+    <loc>{{ SITE_URL }}/blog{{ post.url }}</loc>
+    <lastmod>{{ post.date.toISOString() }}</lastmod>
+  </url>
+{%- endfor %}
+</urlset>
