@@ -18,10 +18,15 @@
 {%- set OG_DESC  = description if description else (excerpt if excerpt else "New writing on theology, music, and culture from Second Adam & the New Creations.") -%}
 {%- set OG_TYPE  = ogType if ogType else "website" -%}
 {#- A post's own image wins. Failing that, a YouTube video supplies a
-    thumbnail; Rumble has no predictable thumbnail URL, so a Rumble post
-    with no image stays image-less and gets a summary card. -#}
+    thumbnail. Anything still without one -- the blog index, the category
+    pages, a text-only post, a Rumble post with no cover -- falls back to the
+    site share image so every blog URL unfurls with a large card. -#}
 {%- set OG_VIDEO = video | videoEmbed -%}
-{%- set OG_IMAGE = SITE_URL + image if image else (OG_VIDEO.thumb if OG_VIDEO and OG_VIDEO.thumb else "") -%}
+{%- set OG_FALLBACK = SITE_URL + "/site-img/og-sanc.jpg" -%}
+{%- set OG_IMAGE = SITE_URL + image if image else (OG_VIDEO.thumb if OG_VIDEO and OG_VIDEO.thumb else OG_FALLBACK) -%}
+{#- Only the fallback has known dimensions (1200x630); a post's own image or a
+    YouTube thumbnail does not, so width/height are emitted only for it. -#}
+{%- set OG_IMAGE_IS_FALLBACK = OG_IMAGE == OG_FALLBACK -%}
 
 <title>{% if title %}{{ title }} &mdash; {{ SITE_NAME }}{% else %}{{ SITE_NAME }}{% endif %}</title>
 <meta name="description" content="{{ OG_DESC }}">
@@ -36,6 +41,10 @@
 {%- if OG_IMAGE %}
 <meta property="og:image" content="{{ OG_IMAGE }}">
 <meta property="og:image:alt" content="{{ OG_TITLE }}">
+{%- if OG_IMAGE_IS_FALLBACK %}
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+{%- endif %}
 {%- endif %}
 {%- if OG_TYPE == "article" and date %}
 <meta property="article:published_time" content="{{ date.toISOString() }}">

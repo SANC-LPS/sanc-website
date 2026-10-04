@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /site-img/ticketmaster-screenshot.jpg
+Disallow: /site-img/ticket-proof.jpg
 
 Sitemap: https://secondadamnewcreations.com/sitemap.xml
