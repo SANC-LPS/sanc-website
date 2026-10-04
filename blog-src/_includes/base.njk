@@ -17,7 +17,11 @@
     pages carry `description`. Fall back through both, then to the site blurb. -#}
 {%- set OG_DESC  = description if description else (excerpt if excerpt else "New writing on theology, music, and culture from Second Adam & the New Creations.") -%}
 {%- set OG_TYPE  = ogType if ogType else "website" -%}
-{%- set OG_IMAGE = SITE_URL + image if image else "" -%}
+{#- A post's own image wins. Failing that, a YouTube video supplies a
+    thumbnail; Rumble has no predictable thumbnail URL, so a Rumble post
+    with no image stays image-less and gets a summary card. -#}
+{%- set OG_VIDEO = video | videoEmbed -%}
+{%- set OG_IMAGE = SITE_URL + image if image else (OG_VIDEO.thumb if OG_VIDEO and OG_VIDEO.thumb else "") -%}
 
 <title>{% if title %}{{ title }} &mdash; {{ SITE_NAME }}{% else %}{{ SITE_NAME }}{% endif %}</title>
 <meta name="description" content="{{ OG_DESC }}">
@@ -48,6 +52,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Special+Elite&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/blog/assets/blog.css">
+<link rel="alternate" type="application/atom+xml" title="Second Adam &amp; the New Creations Blog" href="/blog/feed.xml">
 </head>
 <body>
 

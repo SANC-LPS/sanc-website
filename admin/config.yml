@@ -22,7 +22,9 @@ collections:
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Cover Image", name: "image", widget: "image", required: false}
+      - {label: "Cover Image", name: "image", widget: "image", required: false, hint: "Shown at the top of text-only posts. On video posts it is not displayed, but it is used as the share-preview image (required for good Rumble previews)."}
+      - {label: "Video (YouTube link or Rumble embed URL)", name: "video", widget: "string", required: false, hint: "YouTube: paste the normal link. Rumble: use the Embed button under the video and paste the Embed IFRAME URL (rumble.com/embed/...). A regular Rumble page link will NOT work. Leave blank for a text-only post."}
+      - {label: "Transcript", name: "transcript", widget: "markdown", required: false, hint: "Optional. Shown under the video in a collapsible section."}
       - {label: "Category", name: "tags", widget: "select", options: ["theology", "music", "culture"], multiple: true}
       - {label: "Excerpt", name: "excerpt", widget: "text"}
       - {label: "Body", name: "body", widget: "markdown"}

@@ -1,0 +1,47 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+{#- Atom 1.0, hand-rolled (no plugin). Output dir is "blog", so this lands at
+    blog/feed.xml -> https://secondadamnewcreations.com/blog/feed.xml
+
+    Escaping: Nunjucks autoescaping turns & into &amp; and quotes into
+    entities, which is exactly what Atom needs for text constructs, so every
+    interpolation below is left unfiltered on purpose. Existing titles contain
+    both "&" and a curly apostrophe.
+
+    `updated` must be the newest post's date; computed by walking the reversed
+    collection rather than with a plugin-only date filter. -#}
+{%- set SITE_URL = "https://secondadamnewcreations.com" -%}
+{%- set BLOG_URL = SITE_URL + "/blog/" -%}
+{%- set posts = collections.post | reverse -%}
+{%- set newest = "" -%}
+{%- for post in posts -%}
+  {%- if loop.first -%}{%- set newest = post.date.toISOString() -%}{%- endif -%}
+{%- endfor -%}
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Second Adam &amp; the New Creations - Blog</title>
+  <subtitle>New writing on theology, music, and culture from Second Adam &amp; the New Creations.</subtitle>
+  <link rel="self" type="application/atom+xml" href="{{ BLOG_URL }}feed.xml"/>
+  <link rel="alternate" type="text/html" href="{{ BLOG_URL }}"/>
+  <id>{{ BLOG_URL }}</id>
+  <updated>{{ newest }}</updated>
+  <author>
+    <name>Abram Germano</name>
+  </author>
+{%- for post in posts %}
+  {%- set POST_URL = SITE_URL + "/blog" + post.url %}
+  <entry>
+    <title>{{ post.data.title }}</title>
+    <link rel="alternate" type="text/html" href="{{ POST_URL }}"/>
+    <id>{{ POST_URL }}</id>
+    <published>{{ post.date.toISOString() }}</published>
+    <updated>{{ post.date.toISOString() }}</updated>
+    <author>
+      <name>Abram Germano</name>
+    </author>
+    <summary>{{ post.data.excerpt }}</summary>
+  </entry>
+{%- endfor %}
+</feed>

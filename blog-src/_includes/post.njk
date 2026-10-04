@@ -7,6 +7,9 @@ layout: base.njk
 {%- set SITE_URL = "https://secondadamnewcreations.com" -%}
 {%- set PAGE_URL = SITE_URL + "/blog" + page.url -%}
 {%- set SHARE_TITLE = title -%}
+{#- null unless `video` parses as a known provider. An unparseable value
+    yields null here (and a build warning) so nothing is rendered. -#}
+{%- set VIDEO = video | videoEmbed -%}
 <article class="post-page">
   <div class="post-page-inner">
 
@@ -17,13 +20,28 @@ layout: base.njk
       {%- for tag in tags %}{% if tag != "post" %}<span class="post-tag">{{ tag }}</span>{% endif %}{% endfor -%}
     </div>
 
-    {%- if image %}
+    {#- A video replaces the cover image in the page. The image field is still
+        used for og:image (see base.njk), which is what Rumble posts rely on. -#}
+    {%- if VIDEO %}
+    <div class="post-video">
+      <iframe src="{{ VIDEO.src }}" title="{{ title }}" loading="lazy"{% if VIDEO.provider == "youtube" %} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"{% endif %} allowfullscreen></iframe>
+    </div>
+    {%- elif image %}
     <img class="post-page-cover" src="{{ image }}" alt="{{ title }}">
     {%- endif %}
 
     <div class="post-body">
       {{ content | safe }}
     </div>
+
+    {%- if transcript %}
+    <details class="post-transcript">
+      <summary>Read the transcript</summary>
+      <div class="post-transcript-body">
+        {{ transcript | markdownify | safe }}
+      </div>
+    </details>
+    {%- endif %}
 
     <!-- Instagram publishes no web share-intent URL, so it cannot get an
          explicit button. The native share sheet below covers it on phones:

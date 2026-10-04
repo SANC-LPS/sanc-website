@@ -196,6 +196,61 @@ footer p {
   margin: 2.5rem 0;
   border: 1px solid rgba(200,135,42,0.18);
 }
+/* --- Video embed ---
+   Replaces the cover image on video posts, so it carries the same margins
+   as .post-page-cover. aspect-ratio keeps the 16:9 box without a padding hack. */
+.post-video {
+  width: 100%; aspect-ratio: 16 / 9;
+  margin: 2.5rem 0;
+  background: var(--ink);
+  border: 1px solid rgba(200,135,42,0.18);
+}
+.post-video iframe {
+  width: 100%; height: 100%;
+  display: block; border: 0;
+}
+
+/* --- Collapsible transcript ---
+   Closed summary reads as a pill control like .post-share-btn; the body
+   inside uses the same IM Fell English as .post-body. */
+.post-transcript {
+  margin-top: 2.5rem;
+  border-top: 1px solid rgba(200,135,42,0.18);
+  padding-top: 1.6rem;
+}
+.post-transcript summary {
+  display: inline-block;
+  font-family: 'Special Elite', cursive; font-size: 0.58rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--amber);
+  border: 1px solid rgba(200,135,42,0.28);
+  padding: 0.4rem 1rem; border-radius: 999px;
+  cursor: pointer; line-height: 1;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.post-transcript summary:hover {
+  background: rgba(200,135,42,0.15);
+  border-color: var(--amber);
+  color: var(--gold);
+}
+.post-transcript summary::-webkit-details-marker { display: none; }
+.post-transcript[open] summary { margin-bottom: 1.6rem; }
+.post-transcript-body {
+  font-family: 'IM Fell English', serif;
+  font-size: 1rem; line-height: 1.8; color: var(--parchment);
+}
+.post-transcript-body p { margin-bottom: 1.5rem; }
+.post-transcript-body p:last-child { margin-bottom: 0; }
+.post-transcript-body a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(232,184,75,0.35); }
+.post-transcript-body a:hover { border-color: var(--gold); }
+.post-transcript-body ul, .post-transcript-body ol { margin: 0 0 1.5rem 1.5rem; }
+.post-transcript-body li { margin-bottom: 0.5rem; }
+.post-transcript-body blockquote {
+  border-left: 2px solid var(--amber);
+  padding-left: 1.4rem; margin: 0 0 1.5rem;
+  font-style: italic; color: var(--muted);
+}
+
 .post-body {
   font-family: 'IM Fell English', serif;
   font-size: 1rem; line-height: 1.8; color: var(--parchment);
@@ -279,4 +334,6 @@ footer p {
   .footer-social { gap: 0.7rem 1rem; }
   .post-share { gap: 0.5rem; }
   .post-share-label { margin-right: 0; flex-basis: 100%; }
+  .post-video { margin: 1.6rem 0; }
+  .post-transcript { margin-top: 2rem; }
 }
