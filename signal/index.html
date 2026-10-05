@@ -182,7 +182,7 @@
     .label {
       font-weight: 700; font-size: .56rem; letter-spacing: .4em; color: var(--gold-dim); font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
     .label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-    h2 { font-family: 'Cinzel', serif; font-size: clamp(1rem,3vw,1.4rem); font-weight: 700; color: var(--white); letter-spacing: .06em; margin-bottom: 18px; }
+    h1, h2 { font-family: 'Cinzel', serif; font-size: clamp(1rem,3vw,1.4rem); font-weight: 700; color: var(--white); letter-spacing: .06em; margin-bottom: 18px; }
     p { color: var(--muted); font-size: .88rem; margin-bottom: 12px; line-height: 1.8; }
     p strong { color: var(--white); font-weight: 400; }
 
@@ -195,7 +195,7 @@
       position: relative;
     }
     .prize-block::before {
-      content: '🎟 FREE TICKET GIVEAWAY';
+      content: 'FREE TICKET GIVEAWAY - CLOSED';
       position: absolute; top: -10px; left: 18px;
       font-family: 'Cinzel', serif; font-size: .52rem; letter-spacing: .3em;
       color: var(--red); background: var(--bg); padding: 0 10px; font-weight: 700;
@@ -403,18 +403,25 @@
     .cta-footer-line { text-align: center; padding: 20px 24px; border-top: 1px solid var(--border); }
     .cta-footer-line a { font-family: 'Cinzel', serif; font-size: .6rem; font-weight: 700; letter-spacing: .28em; color: var(--gold-dim); text-decoration: none; transition: color .2s; }
     .cta-footer-line a:hover { color: var(--gold); }
+    /* CAMPAIGN ENDED NOTICE */
+    .ended-notice { border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); background: rgba(200,168,75,0.07); padding: 18px 24px; text-align: center; }
+    .ended-notice-head { display: block; font-family: 'Cinzel', serif; font-size: .78rem; font-weight: 700; letter-spacing: .24em; color: var(--gold); margin-bottom: 8px; }
+    .ended-notice-body { display: block; font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 300; color: var(--muted); line-height: 1.8; margin-bottom: 10px; }
+    .ended-notice-link { font-family: 'Cinzel', serif; font-size: .7rem; font-weight: 700; letter-spacing: .18em; color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(200,168,75,0.4); padding-bottom: 2px; transition: color .2s; }
+    .ended-notice-link:hover { color: var(--white); }
+    @media (max-width: 640px) { .ended-notice-head { font-size: .64rem; letter-spacing: .16em; } .ended-notice-body { font-size: .76rem; } }
   </style>
 </head>
 <body>
 
 <!-- TICKET ALERT BANNER -->
 <div class="ticket-banner">
-  🎟 FREE TØP FLOOR TICKET GIVEAWAY &nbsp;·&nbsp; <span>Ohio Stadium · Columbus, OH · October 17, 2026</span>
+  THE #SANCBIRTOPHUNT HAS ENDED &nbsp;·&nbsp; <span>The free TØP floor ticket has been awarded</span>
 </div>
 
 <!-- GOT LETTERS BANNER -->
 <div class="cta-banner">
-  <a href="/signal/hunt" class="cta-banner-link">Got Letters? Enter Them Here →</a>
+  <a href="/blog/campaign-recap-sanc-bir-top-hunt/" class="cta-banner-link">Read the full story &rarr;</a>
 </div>
 
 <!-- CHAIN BANNER -->
@@ -440,6 +447,13 @@
     <li><a href="/signal" class="active">SANC → BIR → T<span class="nav-zero">Ø</span>P → Hunt</a></li>
   </ul>
 </nav>
+
+<!-- CAMPAIGN ENDED NOTICE -->
+<div class="ended-notice">
+  <span class="ended-notice-head">THE HUNT HAS ENDED.</span>
+  <span class="ended-notice-body">The #SANCBIRTOPhunt giveaway is over and the ticket has been awarded.</span>
+  <a class="ended-notice-link" href="/blog/campaign-recap-sanc-bir-top-hunt/">Read the full story &rarr;</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -468,7 +482,7 @@
 <!-- PRIZE -->
 <section class="section" id="prize">
   <div class="label">The Prize</div>
-  <h2>A Free Ticket to TØP</h2>
+  <h1>A Free Ticket to TØP</h1>
 
   <div class="prize-img-wrap">
     <img class="prize-venue-img" src="/site-img/ohio-stadium.jpg" alt="Ohio Stadium venue view" width="1204" height="790">
@@ -506,8 +520,8 @@
 
 <!-- GOT LETTERS CTA — after prize -->
 <div class="cta-block">
-  <p class="cta-block-sub">Collecting letters from the hunt? Enter them here and track your progress.</p>
-  <a href="/signal/hunt" class="cta-block-btn">ENTER LETTERS</a>
+  <p class="cta-block-sub">The hunt ran for 13 weeks across the #biblicalindierock collective. Every letter, every artist and every reflection is collected in one place.</p>
+  <a href="/blog/campaign-recap-sanc-bir-top-hunt/" class="cta-block-btn">READ THE FULL STORY</a>
 </div>
 
 <!-- MUSIC STRIP -->
@@ -548,7 +562,7 @@
     </li>
     <li>
       <span class="sn">06</span>
-      <div class="st"><strong>Watch the Live Draw</strong>@secondadam_nc goes live at the close of the final week. One winner drawn on screen. Winner joins live, confirms attendance at the Columbus show, and receives the Ticketmaster transfer on stream. 10-minute window to respond — no response means an immediate redraw.</div>
+      <div class="st"><strong>The Live Draw</strong>@secondadam_nc went live at the close of the final week. One winner was drawn on screen, joined live, confirmed attendance at the Columbus show, and received the Ticketmaster transfer on stream.</div>
     </li>
   </ol>
 </section>
@@ -884,24 +898,24 @@
         Switchfoot, Smashing Pumpkins, Citizens
       </div>
       <a class="ac-link" href="https://instagram.com/jbrouwer_music" target="_blank" rel="noopener">Follow on Instagram →</a>
-      <a class="ac-link" href="https://jacobbrouwermusic.my.canva.site/" target="_blank" rel="noopener">Visit</a>
+      <a class="ac-link" href="https://www.instagram.com/jbrouwer_music/" target="_blank" rel="noopener">Visit</a>
     </div>
 
   </div>
 </section>
 
 <!-- GOT LETTERS CTA — after artist grid -->
-<div class="cta-inline">Got your letters from this week's artist? → <a href="/signal/hunt">Enter them at the Hunt Page</a></div>
+<div class="cta-inline">Every artist, letter and reflection from the 13 weeks &rarr; <a href="/blog/campaign-recap-sanc-bir-top-hunt/">Read the full story</a></div>
 
 <!-- ENTER -->
 <section class="section" id="enter">
-  <div class="label">Enter</div>
-  <h2>Have You Solved the Phrase?</h2>
+  <div class="label">Entries</div>
+  <h2>Entries Are Closed</h2>
   <div class="dm">
-    <p class="dm-main">DM the phrase to @secondadam_nc on Instagram</p>
-    <p class="dm-sub">Solved phrase + email address · We'll reply to confirm<br>One submission per person · Correct phrase only</p>
-    <a href="https://www.instagram.com/secondadam_nc/" target="_blank" rel="noopener" class="dm-btn">Open Instagram →</a>
-    <p class="dm-note">// live draw · close of final week · @secondadam_nc · #SANCBIRTOPHunt · #TOHere · #SANCBIRTØPhunt</p>
+    <p class="dm-main">The phrase was solved and the ticket has been awarded</p>
+    <p class="dm-sub">Entries closed at the end of Week 13 and the winner was drawn live on Instagram.<br>No further submissions are being accepted.</p>
+    <a href="/blog/campaign-recap-sanc-bir-top-hunt/" class="dm-btn">Read the full story &rarr;</a>
+    <p class="dm-note">// winner drawn live · @secondadam_nc · #SANCBIRTOPHunt · #TOHere · #SANCBIRTØPhunt</p>
   </div>
 </section>
 
@@ -909,17 +923,17 @@
 <section class="section" id="rules">
   <div class="label">Rules</div>
   <h2>Rules</h2>
-  <p>Open worldwide. No purchase necessary. Entry by Instagram DM only. One submission per person. Correct phrase only.</p>
+  <p>These were the rules while the hunt ran. Open worldwide. No purchase necessary. Entry by Instagram DM only. One submission per person. Correct phrase only.</p>
   <p>Live draw at the close of the final week on @secondadam_nc. Winner drawn on screen using a visible randomizer. Winner must join live within 10 minutes and confirm attendance at the October 17, 2026 Columbus show. Ticketmaster transfer completed live on stream. No response within 10 minutes results in an immediate redraw. Prize non-transferable after confirmed transfer.</p>
   <p>#SANCBIRTOPHunt is a campaign by Second Adam &amp; the New Creations. Not affiliated with or endorsed by Twenty One Pilots, Fueled by Ramen, or Elektra Records.</p>
-  <a href="/signal/hunt" class="cta-ready-btn">Ready to Enter? Go to the Hunt Page</a>
+  <a href="/blog/campaign-recap-sanc-bir-top-hunt/" class="cta-ready-btn">Read the full story &rarr;</a>
 </section>
 
 <div class="divider">· #biblicalindierock ·</div>
 
 <!-- GOT LETTERS CTA — above footer -->
 <div class="cta-footer-line">
-  <a href="/signal/hunt">GOT LETTERS? → secondadamnewcreations.com/signal/hunt</a>
+  <a href="/blog/campaign-recap-sanc-bir-top-hunt/">THE HUNT HAS ENDED &rarr; READ THE FULL STORY</a>
 </div>
 
 <footer>

@@ -171,6 +171,13 @@
     .week11-hint-row input[type="checkbox"]{margin-top:3px;flex-shrink:0;}
     .week11-hint-row label{font-size:.72rem;color:var(--white);line-height:1.7;}
     .week13-closure-image{width:100%;max-width:520px;display:block;margin:24px auto 0;border-radius:8px;border:1px solid var(--border);}
+    /* CAMPAIGN ENDED NOTICE */
+    .ended-notice{border-top:2px solid var(--gold);border-bottom:2px solid var(--gold);background:rgba(200,168,75,0.07);padding:18px 24px;text-align:center;}
+    .ended-notice-head{display:block;font-family:'Cinzel',serif;font-size:.78rem;font-weight:700;letter-spacing:.24em;color:var(--gold);margin-bottom:8px;}
+    .ended-notice-body{display:block;font-family:'Lato',sans-serif;font-size:.82rem;font-weight:300;color:var(--muted);line-height:1.8;margin-bottom:10px;}
+    .ended-notice-link{font-family:'Cinzel',serif;font-size:.7rem;font-weight:700;letter-spacing:.18em;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(200,168,75,0.4);padding-bottom:2px;transition:color .2s;}
+    .ended-notice-link:hover{color:var(--white);}
+    @media (max-width:640px){.ended-notice-head{font-size:.64rem;letter-spacing:.16em;}.ended-notice-body{font-size:.76rem;}}
   </style>
 </head>
 <body>
@@ -183,28 +190,35 @@
     <li><a href="/merch">Merch</a></li>
     <li><a href="/#connect">Connect</a></li>
     <li><a href="/signal">Signal</a></li>
-    <li><a href="https://ffm.link/top-ticket-giveaway" target="_blank" rel="noopener">T<span class="nav-zero">Ø</span>P Hunt</a></li>
+    <li><a href="/blog/campaign-recap-sanc-bir-top-hunt/">Hunt Recap</a></li>
   </ul>
 </nav>
+
+<!-- CAMPAIGN ENDED NOTICE -->
+<div class="ended-notice">
+  <span class="ended-notice-head">THE HUNT HAS ENDED.</span>
+  <span class="ended-notice-body">The #SANCBIRTOPhunt giveaway is over and the ticket has been awarded. The weekly puzzles below are left up to play through.</span>
+  <a class="ended-notice-link" href="/blog/campaign-recap-sanc-bir-top-hunt/">Read the full story &rarr;</a>
+</div>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-eye">#SANCBIRTOPHunt</div>
   <h1 class="hero-title">T<span class="zero">Ø</span>P x SANC<br>The Hunt</h1>
-  <p class="hero-sub">Each week a letter is hidden in the spotlight artist's name. Enter the correct letters below to unlock that week's challenge. Collect all the letters. Unscramble the phrase. Win the ticket.</p>
+  <p class="hero-sub">Each week a letter was hidden in the spotlight artist's name. Enter the correct letters below to unlock that week's challenge and reflection. The giveaway has ended, but the puzzles still work.</p>
   <div class="hero-links">
     <a href="/signal" class="hero-link">Hunt Details</a>
     <a href="/#music" class="hero-link">Music</a>
     <a href="/merch" class="hero-link">Merch</a>
-    <a href="https://ffm.link/top-ticket-giveaway" class="hero-link red" target="_blank" rel="noopener">Free T<span style="color:#ffaaaa;">Ø</span>P Ticket</a>
+    <a href="/blog/campaign-recap-sanc-bir-top-hunt/" class="hero-link red">Read the full story</a>
   </div>
 </div>
 
 <!-- FFM CTA -->
 <div class="ffm-cta">
-  <div class="ffm-cta-title">Got Letters?</div>
-  <p class="ffm-cta-sub">Input them here — solve trivia, unlock hints and narratives inspired by TØP lore.</p>
-  <a href="https://ffm.link/abjm9lv" class="ffm-cta-btn" target="_blank" rel="noopener">ENTER THE HUNT</a>
+  <div class="ffm-cta-title">The Hunt Has Ended</div>
+  <p class="ffm-cta-sub">The ticket has been awarded. Every artist, letter and reflection from the 13 weeks is collected in one place.</p>
+  <a href="/blog/campaign-recap-sanc-bir-top-hunt/" class="ffm-cta-btn">READ THE FULL STORY</a>
 </div>
 
 <!-- WEEKS -->
@@ -219,8 +233,8 @@
     <div class="letter-gate" id="week1-gate">
       <div class="gate-label">Enter this week's letters to unlock</div>
       <div class="letter-inputs">
-        <input class="letter-input" id="w1-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
-        <input class="letter-input" id="w1-l2" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <input class="letter-input" id="w1-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 1 letter 1"/>
+        <input class="letter-input" id="w1-l2" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 1 letter 2"/>
       </div>
       <button class="gate-btn" onclick="checkWeek1Letters()">Unlock</button>
       <div class="gate-error" id="week1-gate-error">Incorrect. Keep looking.</div>
@@ -229,7 +243,7 @@
       <div class="trivia-divider"></div>
       <img class="trivia-image" src="/site-img/top-symbol.png" alt="TØP Symbol" width="480" height="480" loading="lazy" decoding="async"/>
       <p class="trivia-q">What TØP album is this symbol associated with?</p>
-      <input class="trivia-input" id="w1-trivia-input" placeholder="Your answer..." autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <input class="trivia-input" id="w1-trivia-input" placeholder="Your answer..." autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 1 trivia answer"/>
       <br/>
       <button class="trivia-btn" id="week1-trivia-btn" onclick="checkWeek1Trivia()">Submit</button>
       <div class="trivia-error" id="week1-trivia-error">Try again.</div>
@@ -259,7 +273,7 @@
     <div class="letter-gate" id="week2-gate">
       <div class="gate-label">Enter this week&#39;s letter to unlock</div>
       <div class="letter-inputs">
-        <input class="letter-input" id="w2-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <input class="letter-input" id="w2-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 2 letter 1"/>
       </div>
       <button class="gate-btn" onclick="checkWeek2Letters()">Unlock</button>
       <div class="gate-error" id="week2-gate-error">Incorrect. Keep looking.</div>
@@ -267,7 +281,7 @@
     <div class="trivia" id="week2-trivia">
       <div class="trivia-divider"></div>
       <p class="trivia-q">What anagram is tied to the Scaled and Icy album title?</p>
-      <input class="trivia-input" id="w2-trivia-input" placeholder="Your answer..." autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <input class="trivia-input" id="w2-trivia-input" placeholder="Your answer..." autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 2 trivia answer"/>
       <br/>
       <button class="trivia-btn" onclick="checkWeek2Trivia()">Submit</button>
       <div class="trivia-error" id="week2-trivia-error">Try again.</div>
@@ -287,7 +301,7 @@
     <div class="letter-gate" id="week3-gate">
       <div class="gate-label">Enter this week&#39;s letter to unlock</div>
       <div class="letter-inputs">
-        <input class="letter-input" id="w3-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <input class="letter-input" id="w3-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 3 letter 1"/>
       </div>
       <button class="gate-btn" onclick="checkWeek3Letters()">Unlock</button>
       <div class="gate-error" id="week3-gate-error">Incorrect. Keep looking.</div>
@@ -308,8 +322,8 @@
     <div class="letter-gate" id="week4-gate">
       <div class="gate-label">Enter this week&#39;s letters to unlock</div>
       <div class="letter-inputs">
-        <input class="letter-input" id="w4-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
-        <input class="letter-input" id="w4-l2" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <input class="letter-input" id="w4-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 4 letter 1"/>
+        <input class="letter-input" id="w4-l2" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 4 letter 2"/>
       </div>
       <button class="gate-btn" onclick="checkWeek4Letters()">Unlock</button>
       <div class="gate-error" id="week4-gate-error">Incorrect. Keep looking.</div>
@@ -318,7 +332,7 @@
       <div class="trivia-divider"></div>
       <img class="trivia-image" src="ode-to-sleep.webp" alt="Ode to Sleep"/>
       <div class="trivia-q">Who does Tyler adore?</div>
-      <input class="trivia-input" id="w4-trivia-input" placeholder="Your answer..." autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <input class="trivia-input" id="w4-trivia-input" placeholder="Your answer..." autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 4 trivia answer"/>
       <button class="trivia-btn" id="week4-trivia-btn" onclick="checkWeek4Trivia()">Submit</button>
       <div class="trivia-error" id="week4-trivia-error">Try again.</div>
       <div id="week4-trivia-success" style="display:none;font-size:.72rem;font-weight:700;letter-spacing:.1em;color:#44aa44;margin-top:10px;">&#10003; Correct</div>
@@ -338,8 +352,8 @@
     <div class="letter-gate" id="week5-gate">
       <div class="gate-label">Enter this week&#39;s letters to unlock</div>
       <div class="letter-inputs">
-        <input class="letter-input" id="w5-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
-        <input class="letter-input" id="w5-l2" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <input class="letter-input" id="w5-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 5 letter 1"/>
+        <input class="letter-input" id="w5-l2" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 5 letter 2"/>
       </div>
       <button class="gate-btn" onclick="checkWeek5Letters()">Unlock</button>
       <div class="gate-error" id="week5-gate-error">Incorrect. Keep looking.</div>
@@ -366,7 +380,7 @@
     <div class="letter-gate" id="week6-gate">
       <div class="gate-label">Enter this week&#39;s letter to unlock</div>
       <div class="letter-inputs">
-        <input class="letter-input" id="w6-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <input class="letter-input" id="w6-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 6 letter 1"/>
       </div>
       <button class="gate-btn" onclick="checkWeek6Letters()">Unlock</button>
       <div class="gate-error" id="week6-gate-error">Incorrect. Keep looking.</div>
@@ -391,13 +405,13 @@
     <div class="letter-gate" id="week7-gate">
       <div class="gate-label">Enter this week&#39;s letter to unlock</div>
       <div class="letter-inputs">
-        <input class="letter-input" id="w7-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <input class="letter-input" id="w7-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 7 letter 1"/>
       </div>
       <button class="gate-btn" onclick="checkWeek7Letters()">Unlock</button>
       <div class="gate-error" id="week7-gate-error">Incorrect. Keep looking.</div>
     </div>
     <div class="phrase-reveal" id="week7-phrase">
-      <p class="hint-recap">Need a hint? A couple of words are already out — DM @secondadam_nc if you caught the Week 5 discussion prompt, or check whether you shared the Week 6 video to your Story and tagged us. New hint opportunities keep coming as the hunt continues.</p>
+      <p class="hint-recap">Need a hint? A couple of words are already out — DM @secondadam_nc if you caught the Week 5 discussion prompt, or check whether you shared the Week 6 video to your Story and tagged us. The hunt has since ended and no further hints are being given.</p>
     </div>
   </div>
 
@@ -410,7 +424,7 @@
     <div class="letter-gate" id="week8-gate">
       <div class="gate-label">Enter this week&#39;s letter to unlock</div>
       <div class="letter-inputs">
-        <input class="letter-input" id="w8-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <input class="letter-input" id="w8-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 8 letter 1"/>
       </div>
       <button class="gate-btn" onclick="checkWeek8Letters()">Unlock</button>
       <div class="gate-error" id="week8-gate-error">Incorrect. Keep looking.</div>
@@ -430,7 +444,7 @@
     <div class="letter-gate" id="week9-gate">
       <div class="gate-label">Enter this week&#39;s letter to unlock</div>
       <div class="letter-inputs">
-        <input class="letter-input" id="w9-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <input class="letter-input" id="w9-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 9 letter 1"/>
       </div>
       <button class="gate-btn" onclick="checkWeek9Letters()">Unlock</button>
       <div class="gate-error" id="week9-gate-error">Incorrect. Keep looking.</div>
@@ -449,7 +463,7 @@
     <div class="letter-gate" id="week10-gate">
       <div class="gate-label">Enter this week&#39;s letter to unlock</div>
       <div class="letter-inputs">
-        <input class="letter-input" id="w10-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <input class="letter-input" id="w10-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 10 letter 1"/>
       </div>
       <button class="gate-btn" onclick="checkWeek10Letters()">Unlock</button>
       <div class="gate-error" id="week10-gate-error">Incorrect. Keep looking.</div>
@@ -458,7 +472,7 @@
       <div class="phrase-lore">There is a battle within the heart of every man and woman. The clash is between what one ought be and with what one is. The tension is in knowing that both poles exists and both can win, forcing change one way or the other.<br><br>Galatians 5:17 &#8220;For the desires of the flesh are against the Spirit, and the desires of the Spirit are against the flesh, for these are opposed to each other, to keep you from doing the things you want to do.&#8221;<br><br>Galatians 5:24 &#8220;And those who belong to Christ Jesus have crucified the flesh with its passions and desires.&#8221;<br><br>Revelation from heaven reveals a path that denies self by taking up a cross. A way that kills the old man in us so that the new man, the man that ought, lives.<br><br>I see this truth built into the fabric of so many T&Oslash;P songs &#8212; the Old Man in us who wars against the Spirit of God&#8230; what name does Tyler give him? Answer correctly below for a big reveal.<br><br>John Owen once said, &#8220;Be killing sin, or it will be killing you.&#8221; Go and &#8220;overtake your former selves&#8221; my fellow banditos.</div>
       <div class="week10-trivia-wrap" id="week10-trivia-wrap">
         <div class="week10-trivia-label">Name the album:</div>
-        <input class="week10-trivia-input" id="week10-trivia-input" type="text" placeholder="Album name" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <input class="week10-trivia-input" id="week10-trivia-input" type="text" placeholder="Album name" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 10 trivia answer"/>
         <button class="week10-trivia-btn" onclick="checkWeek10Trivia()">Submit</button>
         <div class="week10-trivia-error" id="week10-trivia-error">Not quite. Think about who wars against the Spirit.</div>
       </div>
@@ -483,7 +497,7 @@
     <div class="letter-gate" id="week11-gate">
       <div class="gate-label">Enter this week&#39;s letter to unlock</div>
       <div class="letter-inputs">
-        <input class="letter-input" id="w11-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <input class="letter-input" id="w11-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 11 letter 1"/>
       </div>
       <button class="gate-btn" onclick="checkWeek11Letters()">Unlock</button>
       <div class="gate-error" id="week11-gate-error">Incorrect. Keep looking.</div>
@@ -519,7 +533,7 @@
     <div class="letter-gate" id="week12-gate">
       <div class="gate-label">Enter this week&#39;s letter to unlock</div>
       <div class="letter-inputs">
-        <input class="letter-input" id="w12-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <input class="letter-input" id="w12-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 12 letter 1"/>
       </div>
       <button class="gate-btn" onclick="checkWeek12Letters()">Unlock</button>
       <div class="gate-error" id="week12-gate-error">Incorrect. Keep looking.</div>
@@ -543,7 +557,7 @@
     <div class="letter-gate" id="week13-gate">
       <div class="gate-label">Enter this week&#39;s letter to unlock</div>
       <div class="letter-inputs">
-        <input class="letter-input" id="w13-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false"/>
+        <input class="letter-input" id="w13-l1" maxlength="1" placeholder="_" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Week 13 letter 1"/>
       </div>
       <button class="gate-btn" onclick="checkWeek13Letters()">Unlock</button>
       <div class="gate-error" id="week13-gate-error">Incorrect. Keep looking.</div>
@@ -552,7 +566,7 @@
       <div class="phrase-label">The Phrase</div>
       <div class="phrase-dashes phrase-tracker">________________</div>
       <p class="phrase-note">16 letters. Collect them all. Unscramble.<br>DM @secondadam_nc when you have the answer.</p>
-      <div class="phrase-lore">Thank you to everyone who&#8217;s followed along with the hunt these past 13 weeks. This is the final letter &#8212; no more hints will be given from here.<br><br>A few of you have already solved the phrase, some even before this week&#8217;s letter dropped. If you&#8217;ve been paying close attention, you already know the pool of potential winners is small.<br><br>You&#8217;re welcome to send your guess as many times as you&#8217;d like &#8212; I&#8217;ll only respond if you get it right. Entries close 7:00 PM Tuesday, September 8th.<br><br>Missed a hint along the way? Three hint opportunities have already gone out: Week 5, Week 6, and Week 12 each had one. If you haven&#8217;t caught them yet, go back and check what each week asked for &#8212; there&#8217;s still time before the window closes.<br><br>Christianity rightly answers foundational questions we all have; ones like: who God is, and who man is. The 66 books of the Bible are self-attesting revelation from heaven, historically tested and proven true time and again, giving words to us through God&#8217;s appointed mouthpieces that we can know answers to these foundational questions and so much more.<br><br>God in scripture is revealed as sovereign and free to do whatever he pleases. There are none like Him, none before or after him, none who control his freedom to do as he pleases. He is holy and set apart from all creatures as the only uncreated one. He calls himself I Am when speaking to His creatures. He is the one who decided to form man from the dust of the ground for His own purposes and pleasure.<br><br>Man in scripture is from here. He is from dust and to dust he returns because of the fall of the 1st Adam. The good news is that the 2nd Adam, also known as Christ Jesus, came to overturn the curse of the 1st Adam. Jesus&#8217;s victory over sin and death, testified to in his resurrection, is a historical proclamation of the greatest news ever, relevant right now to whoever is reading this. Because He is risen there is great news for us cursed to the grave. The sinless Christ willingly died for sins he didn&#8217;t commit because he loves us, those who would believe this gospel (good news) he came to redeem us! To save us from our sins! If you believe this good news, do not harden your heart, turn from the sin and confess it now to him and be free from those chains. Come into the light and honor Him as you were made to do.<br><br>So man is From Here, from the earth, but as Christ teaches Nicodemus in John 3, a man must be born again to enter His kingdom. Christ is from above. He came from heaven to the earth to save sinners and then went back after his resurrection. Those who are born from above share the same testimony, that they are saved from the consequences of their sins In Christ and In Christ alone. Christ alone is the one who restores the relationship with God his Father that our father Adam lost in the garden. This is why I named my musical project Second Adam &amp; the New Creations, the Second Adam restores all things, even giving this sinner a new heart, one that beats for Him. Even though I am From Here, In Christ I am a new creation, full of love, hope, peace, gratitude and joy. I have received grace I didn&#8217;t deserve. You can too. Believe upon him today. Be honest and ask him to lead you to turn from sinful desires. Turn to the holy one. Whom the Son sets free is free indeed.<br><br>&#8220;Our God is in the heavens; he does all that he pleases.&#8221; (Psalm 115:3, ESV)<br><br>&#8220;then the Lord God formed the man of dust from the ground and breathed into his nostrils the breath of life, and the man became a living creature.&#8221; (Genesis 2:7, ESV)<br><br>&#8220;By the sweat of your face you shall eat bread, till you return to the ground, for out of it you were taken; for you are dust, and to dust you shall return.&#8221; (Genesis 3:19, ESV)<br><br>&#8220;Therefore, if anyone is in Christ, he is a new creation.&#8221; (2 Corinthians 5:17, ESV)<br><br>&#8220;He who comes from above is above all. He who is of the earth belongs to the earth and speaks in an earthly way. He who comes from heaven is above all. He bears witness to what he has seen and heard, yet no one receives his testimony. Whoever receives his testimony sets his seal to this, that God is true. For he whom God has sent utters the words of God, for he gives the Spirit without measure. The Father loves the Son and has given all things into his hand. Whoever believes in the Son has eternal life; whoever does not obey the Son shall not see life, but the wrath of God remains on him.&#8221; (John 3:31&#8211;36, ESV)<br><br>&#8220;I have given them your word, and the world has hated them because they are not of the world, just as I am not of the world. 15 I do not ask that you take them out of the world, but that you keep them from the evil one. 16 They are not of the world, just as I am not of the world. 17 Sanctify them in the truth; your word is truth&#8221; (John 17:14&#8211;17, ESV)<br><br>&#8220;And you were dead in the trespasses and sins in which you once walked, following the course of this world, following the prince of the power of the air, the spirit that is now at work in the sons of disobedience&#8212;among whom we all once lived in the passions of our flesh, carrying out the desires of the flesh and the mind, and were by nature children of wrath, like the rest of mankind. But God, being rich in mercy, because of the great love with which he loved us, even when we were dead in our trespasses, made us alive together with Christ&#8212;by grace you have been saved&#8212;and raised us up with him and seated us with him in the heavenly places in Christ Jesus, so that in the coming ages he might show the immeasurable riches of his grace in kindness toward us in Christ Jesus. For by grace you have been saved through faith. And this is not your own doing; it is the gift of God, not a result of works, so that no one may boast. For we are his workmanship, created in Christ Jesus for good works, which God prepared beforehand, that we should walk in them.&#8221; (Ephesians 2:1&#8211;10, ESV)</div>
+      <div class="phrase-lore">Thank you to everyone who&#8217;s followed along with the hunt these past 13 weeks. This is the final letter &#8212; no more hints will be given from here.<br><br>A few of you have already solved the phrase, some even before this week&#8217;s letter dropped. If you&#8217;ve been paying close attention, you already know the pool of potential winners is small.<br><br>Entries have since closed and the ticket has been awarded.<br><br>Missed a hint along the way? Three hint opportunities have already gone out: Week 5, Week 6, and Week 12 each had one. Those hint windows have now closed.<br><br>Christianity rightly answers foundational questions we all have; ones like: who God is, and who man is. The 66 books of the Bible are self-attesting revelation from heaven, historically tested and proven true time and again, giving words to us through God&#8217;s appointed mouthpieces that we can know answers to these foundational questions and so much more.<br><br>God in scripture is revealed as sovereign and free to do whatever he pleases. There are none like Him, none before or after him, none who control his freedom to do as he pleases. He is holy and set apart from all creatures as the only uncreated one. He calls himself I Am when speaking to His creatures. He is the one who decided to form man from the dust of the ground for His own purposes and pleasure.<br><br>Man in scripture is from here. He is from dust and to dust he returns because of the fall of the 1st Adam. The good news is that the 2nd Adam, also known as Christ Jesus, came to overturn the curse of the 1st Adam. Jesus&#8217;s victory over sin and death, testified to in his resurrection, is a historical proclamation of the greatest news ever, relevant right now to whoever is reading this. Because He is risen there is great news for us cursed to the grave. The sinless Christ willingly died for sins he didn&#8217;t commit because he loves us, those who would believe this gospel (good news) he came to redeem us! To save us from our sins! If you believe this good news, do not harden your heart, turn from the sin and confess it now to him and be free from those chains. Come into the light and honor Him as you were made to do.<br><br>So man is From Here, from the earth, but as Christ teaches Nicodemus in John 3, a man must be born again to enter His kingdom. Christ is from above. He came from heaven to the earth to save sinners and then went back after his resurrection. Those who are born from above share the same testimony, that they are saved from the consequences of their sins In Christ and In Christ alone. Christ alone is the one who restores the relationship with God his Father that our father Adam lost in the garden. This is why I named my musical project Second Adam &amp; the New Creations, the Second Adam restores all things, even giving this sinner a new heart, one that beats for Him. Even though I am From Here, In Christ I am a new creation, full of love, hope, peace, gratitude and joy. I have received grace I didn&#8217;t deserve. You can too. Believe upon him today. Be honest and ask him to lead you to turn from sinful desires. Turn to the holy one. Whom the Son sets free is free indeed.<br><br>&#8220;Our God is in the heavens; he does all that he pleases.&#8221; (Psalm 115:3, ESV)<br><br>&#8220;then the Lord God formed the man of dust from the ground and breathed into his nostrils the breath of life, and the man became a living creature.&#8221; (Genesis 2:7, ESV)<br><br>&#8220;By the sweat of your face you shall eat bread, till you return to the ground, for out of it you were taken; for you are dust, and to dust you shall return.&#8221; (Genesis 3:19, ESV)<br><br>&#8220;Therefore, if anyone is in Christ, he is a new creation.&#8221; (2 Corinthians 5:17, ESV)<br><br>&#8220;He who comes from above is above all. He who is of the earth belongs to the earth and speaks in an earthly way. He who comes from heaven is above all. He bears witness to what he has seen and heard, yet no one receives his testimony. Whoever receives his testimony sets his seal to this, that God is true. For he whom God has sent utters the words of God, for he gives the Spirit without measure. The Father loves the Son and has given all things into his hand. Whoever believes in the Son has eternal life; whoever does not obey the Son shall not see life, but the wrath of God remains on him.&#8221; (John 3:31&#8211;36, ESV)<br><br>&#8220;I have given them your word, and the world has hated them because they are not of the world, just as I am not of the world. 15 I do not ask that you take them out of the world, but that you keep them from the evil one. 16 They are not of the world, just as I am not of the world. 17 Sanctify them in the truth; your word is truth&#8221; (John 17:14&#8211;17, ESV)<br><br>&#8220;And you were dead in the trespasses and sins in which you once walked, following the course of this world, following the prince of the power of the air, the spirit that is now at work in the sons of disobedience&#8212;among whom we all once lived in the passions of our flesh, carrying out the desires of the flesh and the mind, and were by nature children of wrath, like the rest of mankind. But God, being rich in mercy, because of the great love with which he loved us, even when we were dead in our trespasses, made us alive together with Christ&#8212;by grace you have been saved&#8212;and raised us up with him and seated us with him in the heavenly places in Christ Jesus, so that in the coming ages he might show the immeasurable riches of his grace in kindness toward us in Christ Jesus. For by grace you have been saved through faith. And this is not your own doing; it is the gift of God, not a result of works, so that no one may boast. For we are his workmanship, created in Christ Jesus for good works, which God prepared beforehand, that we should walk in them.&#8221; (Ephesians 2:1&#8211;10, ESV)</div>
       <img class="week13-closure-image" src="week13-fromhere.jpg" alt="From Here — Twenty One Pilots, Ohio Stadium">
     </div>
   </div>
@@ -603,7 +617,7 @@
       <div class="ci-handle">@grandmotel.band</div>
       <div class="ci-genre">Midwest Emo</div>
     </a>
-    <a class="collective-item" href="https://jacobbrouwermusic.my.canva.site/" target="_blank" rel="noopener">
+    <a class="collective-item" href="https://www.instagram.com/jbrouwer_music/" target="_blank" rel="noopener">
       <div class="ci-name">Jacob Brouwer</div>
       <div class="ci-handle">@jbrouwer_music</div>
       <div class="ci-genre">Indie Rock</div>
@@ -640,7 +654,7 @@
     <li><a href="/#connect">Connect</a></li>
     <li><a href="/signal">The Hunt</a></li>
     <li><a href="https://instagram.com/secondadam_nc" target="_blank" rel="noopener">Instagram</a></li>
-    <li><a href="https://ffm.link/top-ticket-giveaway" target="_blank" rel="noopener">Free T&Oslash;P Ticket</a></li>
+    <li><a href="/blog/campaign-recap-sanc-bir-top-hunt/">Hunt Recap</a></li>
   </ul>
   <p class="footer-disc">#SANCBIRTOPHunt is a campaign by Second Adam &amp; the New Creations.<br>Not affiliated with or endorsed by Twenty One Pilots, Fueled by Ramen, or Elektra Records.</p>
 </footer>
