@@ -2,5 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /site-img/ticketmaster-screenshot.jpg
 Disallow: /site-img/ticket-proof.jpg
+Disallow: /source-art/
+Disallow: /blog-src/
 
 Sitemap: https://secondadamnewcreations.com/sitemap.xml

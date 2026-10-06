@@ -1,3 +1,78 @@
 [build]
   command = "npx @11ty/eleventy"
   publish = "."
+
+# ---------------------------------------------------------------------------
+# Caching. Filenames are not content-hashed, so these are cached for a week
+# rather than marked immutable - a replaced image goes stale for at most 7
+# days instead of forever. HTML is deliberately left on Netlify's default
+# (max-age=0, must-revalidate) so content edits appear immediately.
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/site-img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/blog/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/blog/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# ---------------------------------------------------------------------------
+# Security headers, site-wide. No Content-Security-Policy: the pages rely on
+# inline <style> and inline handlers, so a CSP would need careful authoring
+# and is deliberately left out here.
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# ---------------------------------------------------------------------------
+# Hide build inputs and source originals. publish = "." serves the whole repo,
+# so these would otherwise be public. /admin/* is intentionally NOT blocked:
+# Decap CMS fetches /admin/config.yml from the browser.
+# ---------------------------------------------------------------------------
+[[redirects]]
+  from = "/source-art/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/blog-src/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/node_modules/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package.json"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package-lock.json"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/README.md"
+  to = "/404.html"
+  status = 404
+  force = true
