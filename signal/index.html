@@ -82,9 +82,14 @@
 
     /* NAV */
     nav {
-      position: fixed;
-      top: 68px; /* ticket banner + chain banner height */
-      left: 0; right: 0; z-index: 100;
+      /* Was position:fixed with a hardcoded top offset that did not include
+         the cta-banner between the ticket and chain banners, so the nav sat
+         59px too high and covered them. Sticky keeps it in flow directly
+         below the whole banner stack at any width, with no magic numbers.
+         z-index must beat the banners' 200 so they scroll under it. */
+      position: sticky;
+      top: 0;
+      left: 0; right: 0; z-index: 300;
       display: flex; align-items: center; justify-content: space-between;
       padding: 14px 40px;
       background: rgba(10,10,15,0.96);
@@ -98,7 +103,7 @@
     .nav-zero { color: var(--red); }
     @media (max-width: 640px) {
       .ticket-banner { font-size: .5rem; letter-spacing: .14em; padding: 8px 12px; }
-      nav { top: 62px; padding: 12px 16px; }
+      nav { padding: 12px 16px; }
       .nav-links { gap: 12px; }
       .nav-links a { font-size: .56rem; }
     }
